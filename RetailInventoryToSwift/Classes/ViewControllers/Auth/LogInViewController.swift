@@ -145,7 +145,7 @@ class LogInViewController: BaseViewController {
         networkActivity.hidden = true
         if !isPresentedErrorAlert {
             isPresentedErrorAlert = true
-            let errorAlert = UIAlertController(title:"error.title".localized, message: "\(code)\n\(message)", preferredStyle: .Alert)
+            let errorAlert = UIAlertController(title:"\(code)", message: "\(message)", preferredStyle: .Alert)
             let cancelAction = UIAlertAction(title: "storeSetup.alertCancel".localized, style: .Default) { (action:UIAlertAction!) in
                 self.isPresentedErrorAlert = false
                 return

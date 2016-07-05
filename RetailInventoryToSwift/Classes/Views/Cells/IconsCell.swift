@@ -14,9 +14,10 @@ class IconsCell: UICollectionViewCell {
     
     @IBOutlet private weak var icon: UILabel!
     
-    var title: String! {
-        didSet {
-            self.icon.text = title
+    var title: Character? {
+        didSet {            
+            icon.font = UIFont(name: "FontAwesome", size: MyConstant.iconSize)
+            icon.text = String(title!)
         }
     }
 }

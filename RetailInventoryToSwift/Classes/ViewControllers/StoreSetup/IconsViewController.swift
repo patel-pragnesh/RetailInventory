@@ -10,22 +10,22 @@ import UIKit
 
 protocol IconsViewControllerDelegate
 {
-    func iconsViewControllerResponse(icon: String)
+    func iconsViewControllerResponse(icon: Character)
 }
 
 class IconsViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     var delegateIconViewController: IconsViewControllerDelegate?
     
-    var arrayIcons = [String]()
+    var arrayIcons = [Character]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for char in "ABCDEFGHIJKLMNOPQRSTUVWXYZ".characters {
-            arrayIcons.append(String(char))
+        for char in 61440 ... 61568 {
+            arrayIcons.append(Character(UnicodeScalar(char)))
         }
     }
     

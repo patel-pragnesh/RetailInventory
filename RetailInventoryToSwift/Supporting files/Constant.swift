@@ -16,6 +16,7 @@ struct MyConstant {
     static let defaultCellHeigh: CGFloat = 70
     static let toolbarHeigh: CGFloat = 40
     static let defaultIdentToKeyboard: CGFloat = 10
+    static let iconSize: CGFloat = 24
     static let defaultFont: String = "HelveticaNeue-Bold"
     static let titleFont: String = "HelveticaNeue"
 

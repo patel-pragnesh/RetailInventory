@@ -74,6 +74,7 @@ class AddDepartmentCell: BaseCell {
             arrowImageView.hidden = false
             nameTextField.enabled = false
             infoLabel.hidden = false
+            infoLabel.font = UIFont(name: "FontAwesome", size: MyConstant.iconSize)
             infoLabel.text = infoCell?.icon
         case .link:
             switchCell.hidden = true

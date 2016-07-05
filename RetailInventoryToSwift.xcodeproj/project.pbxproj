@@ -66,6 +66,7 @@
 		E24F16F11D2A82A6004B6601 /* Department.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F16EF1D2A82A6004B6601 /* Department.swift */; };
 		E24F16F31D2A92E9004B6601 /* DepartmentTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F16F21D2A92E9004B6601 /* DepartmentTemplate.swift */; };
 		E24F16F51D2A934C004B6601 /* VendorTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24F16F41D2A934C004B6601 /* VendorTemplate.swift */; };
+		E24F16F91D2BBECC004B6601 /* harbortouch-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E24F16F81D2BBECC004B6601 /* harbortouch-webfont.ttf */; };
 		E2A3DF011D103AA2005819E9 /* InventoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A3DF001D103AA2005819E9 /* InventoryCell.swift */; };
 		E2A3DF051D104472005819E9 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A3DF041D104472005819E9 /* BaseCell.swift */; };
 		E2A3DF0D1D1048A5005819E9 /* StoreSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A3DF0C1D1048A5005819E9 /* StoreSetup.swift */; };
@@ -167,6 +168,7 @@
 		E24F16EF1D2A82A6004B6601 /* Department.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Department.swift; sourceTree = "<group>"; };
 		E24F16F21D2A92E9004B6601 /* DepartmentTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentTemplate.swift; sourceTree = "<group>"; };
 		E24F16F41D2A934C004B6601 /* VendorTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorTemplate.swift; sourceTree = "<group>"; };
+		E24F16F81D2BBECC004B6601 /* harbortouch-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "harbortouch-webfont.ttf"; sourceTree = "<group>"; };
 		E2A3DF001D103AA2005819E9 /* InventoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryCell.swift; sourceTree = "<group>"; };
 		E2A3DF041D104472005819E9 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		E2A3DF0C1D1048A5005819E9 /* StoreSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreSetup.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 		7DFE49B01D057D4100EDF2FC /* RetailInventoryToSwift */ = {
 			isa = PBXGroup;
 			children = (
+				E24F16F71D2BBECC004B6601 /* fonts */,
 				7DB578CA1D09963B00141217 /* Classes */,
 				E23B8DCC1D115D6A0028222D /* Supporting files */,
 				7D050A061D0881070059CDD3 /* Images.xcassets */,
@@ -526,6 +529,14 @@
 				E2381ADD1D12FE060023245A /* Constant.swift */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		E24F16F71D2BBECC004B6601 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E24F16F81D2BBECC004B6601 /* harbortouch-webfont.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 		E2A3DF021D104449005819E9 /* Entity */ = {
@@ -661,6 +672,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E24F16F91D2BBECC004B6601 /* harbortouch-webfont.ttf in Resources */,
 				864399681D09CA01003ECE2A /* Main.storyboard in Resources */,
 				E23B8DCE1D115D7E0028222D /* Localizable.strings in Resources */,
 				7D050A071D0881070059CDD3 /* Images.xcassets in Resources */,

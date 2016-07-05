@@ -62,7 +62,7 @@ class NetworkLoader {
                     failure(code: code, message: message)
                     return
                 }
-                let departments = responseJSON.map({DepartmentResponse(name:($0["name"] as? String)!, id: ($0["id"] as? Int)!, active: ($0["active"] as? Bool)!,itemsAreEBT: ($0["ebtItem"] as? Bool)!) })
+                let departments = responseJSON.map({DepartmentResponse(name:($0["name"] as? String)!, id: ($0["id"] as? Int)!, active: ($0["active"] as? Bool)!,itemsAreEBT: ($0["ebtItem"] as? Bool)!, glyph: ($0["glyph"] as? String)!) })
                 completion(departments: departments)
                 
         }

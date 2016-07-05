@@ -13,4 +13,5 @@ struct DepartmentResponse {
     var id: Int
     var active: Bool
     var itemsAreEBT: Bool
+    var glyph: String
 }

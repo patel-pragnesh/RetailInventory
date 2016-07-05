@@ -68,8 +68,6 @@ class DepartmentMethods: EntityMethods<Department> {
                 }
             }
         }
-
-        
 //        for serverDepartment in serverDepartments {
 //            let index = getIndexById(serverDepartment.id)
 //            switch index {
@@ -115,6 +113,8 @@ class DepartmentMethods: EntityMethods<Department> {
         department.name = departmentResponse.name
         department.active = departmentResponse.active
         department.itemsEbt = departmentResponse.itemsAreEBT
+        let i = UInt32(strtoul(departmentResponse.glyph, nil, 16)) // to decimal
+        department.icon = String(Character(UnicodeScalar(i)))      // to char and string
     }
     
     func editDepartment(index: Int, newDepartment: Department) {

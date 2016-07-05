@@ -214,9 +214,9 @@ extension AddDepartmentViewController: ChangeSwitchDepartmentDelegate {
 
 extension AddDepartmentViewController: IconsViewControllerDelegate {
     
-    func iconsViewControllerResponse(icon: String)
+    func iconsViewControllerResponse(icon: Character)
     {
-        departmentTemplate.icon = icon
+        departmentTemplate.icon = String(icon)
         tableView.reloadData()
     }
 }
