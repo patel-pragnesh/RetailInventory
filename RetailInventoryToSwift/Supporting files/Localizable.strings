@@ -1,0 +1,148 @@
+/* 
+  Localizable.strings
+  RetailInventoryToSwift
+
+  Created by Sak, Andrey2 on 6/15/16.
+  Copyright © 2016 Anashkin, Evgeny. All rights reserved.
+*/
+
+// Authorization
+
+"auth.merchantIDLabel" = "Merchant ID";
+"auth.passwordLabel" = "Password";
+"auth.logInButton" = "Log in";
+
+
+// Menu
+
+"menu.inventoryListButton" = "Inventory List";
+"menu.adjustStockButton" = "Adjust Stock Levels";
+"menu.setupStoreButton" = "Store Setup";
+"menu.menuTitle" = "Menu";
+
+// Bar Items
+
+"barItems.logOut" = "Log Out";
+"barItems.scan" = "Scan";
+"barItems.add" = "Add";
+"barItems.done" = "Done";
+"barItems.save" = "Save";
+
+
+// Inventory List
+"inventory.title" = "Inventory List";
+"inventory.noItemsScannedLabel" = "No Items Scanned";
+"inventory.departmentsButton" = "Departments";
+"inventory.allButton" = "All";
+"inventory.vendorButton" = "Vendor";
+"inventory.submitMyInventory" = "Submit My Inventory";
+"inventory.sendToLabel" = "Send to HT";
+"inventory.scanButton" = "Scan";
+"inventory.deleteTitle" = "Delete";
+
+// Store Setup List
+
+"storeSetup.departments" = "Departments";
+"storeSetup.vendors" = "Vendors";
+"storeSetup.taxes" = "Taxes";
+"storeSetup.cost" = "Cost Tracking";
+"storeSetup.lookup" = "Look up item description";
+"storeSetup.clear" = "Clear Inventory";
+"storeSetup.restore" = "Restore from backup";
+"storeSetup.conf" = " Configured";
+"storeSetup.title" = "Store Setup";
+"storeSetup.alertTitle" = "Do you want to clear the Inventory?";
+"storeSetup.alertMessage" = "Backup will be created.";
+"storeSetup.alertClear" = "Clear";
+"storeSetup.alertCancel" = "Cancel";
+
+// Departments List
+
+"depart.title" = "Departments";
+
+// Add Department List
+
+"addDepart.titleAdd" = "Add Departments";
+"addDepart.titleEdit" = "Edit Departments";
+"addDepart.name" = "Name";
+"addDepart.id" = "Id";
+"addDepart.active" = "Active";
+"addDepart.icon" = "Icon";
+"addDepart.ebt" = "Items are EBT";
+"addDepart.taxes" = "Applied Taxes";
+"addDepart.items" = "Applied Items";
+
+// Vendors List
+
+"vendors.title" = "Vendors";
+
+// Add Vendor List
+
+"addVendor.titleAdd" = "Add Vendor";
+"addVendor.titleEdit" = "Edit Vendor";
+"addVendor.name" = "vendor name";
+"addVendor.alias" = "alias";
+"addVendor.street" = "street";
+"addVendor.сity" = "sity";
+"addVendor.state" = "state";
+"addVendor.zip" = "zip";
+"addVendor.accountNumber" = "account number";
+"addVendor.phone" = "phone number";
+
+// placeholders
+
+"addVendor.enName" = "Enter name";
+"addVendor.enAlias" = "Enter alias";
+"addVendor.enCity" = "Enter city";
+"addVendor.enStreet" = "Enter street";
+"addVendor.enState" = "Enter state";
+"addVendor.enZip" = "Enter zip";
+"addVendor.enAccountNum" = "Enter account number";
+"addVendor.enNumberPhone" = "Enter number phone";
+
+// Taxes List
+
+"taxes.title" = "Adjust your taxes";
+"taxes.nameTax" = "Tax name";
+"taxes.valueTax" = "Tax value, %";
+
+// Add Taxes List
+
+"addTaxes.titleAdd" = "Add Taxes";
+"addTaxes.titleEdit" = "Edit Taxes";
+
+// Scan New Item
+
+"inventoryDetail.scanNewItem" = "Scan A New Item";
+"inventoryDetail.title" = "New Item";
+"inventoryDetail.barCode" = "Barcode";
+"inventoryDetail.description" = "Description";
+"inventoryDetail.department" = "Department";
+"inventoryDetail.vendor" = "Vendor";
+"inventoryDetail.taxes" = "Taxes";
+"inventoryDetail.price" = "Price";
+"inventoryDetail.cost" = "Cost";
+
+// Select Detail
+
+"selectDetail.selectDepartment" = "Select Department";
+"selectDetail.selectVendor" = "Select Vendor";
+"selectDetail.selectTax" = "Select Tax";
+
+// Scan
+"scan.cancel" = "Cancel";
+"scan.scanNew" = "Scan New";
+"scan.rescan" = "Edit existing";
+
+// default parameters
+
+"default" = "Default Cell";
+"unknown" = "Unknown";
+
+// Select Description
+"selectDesc.title" = "Select Description";
+"selectDesc.label" = "or Create New Description";
+
+// Error Alert
+
+"error.title" = "Error";

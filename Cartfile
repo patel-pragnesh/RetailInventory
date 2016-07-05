@@ -1,0 +1,2 @@
+github "MagicalPanda/MagicalRecord"
+github "Alamofire/Alamofire" ~> 3.4
