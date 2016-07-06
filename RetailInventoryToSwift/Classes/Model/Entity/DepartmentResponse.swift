@@ -14,4 +14,5 @@ struct DepartmentResponse {
     var active: Bool
     var itemsAreEBT: Bool
     var glyph: String
+    var taxesId: [Int]?
 }

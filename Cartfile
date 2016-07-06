@@ -1,2 +1,3 @@
 github "MagicalPanda/MagicalRecord"
 github "Alamofire/Alamofire" ~> 3.4
+github "socketio/socket.io-client-swift"

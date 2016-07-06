@@ -35,6 +35,12 @@ class DataManager {
         return InventoryList.MR_findFirstByAttribute(attribute, withValue: value)!
     }
     
+    static func getInventoryByDepartment(departmentID: NSNumber) -> [InventoryList] {
+        let predicate = NSPredicate(format: "listDepartment.id = %@", departmentID)
+        let array = InventoryList.MR_findAllWithPredicate(predicate)
+        return array as! [InventoryList]
+    }
+    
     static func removaAllInventoryList() -> Bool {
         let result = InventoryList.MR_truncateAll()
         saveContext()
@@ -55,6 +61,10 @@ class DataManager {
         let result = department.MR_deleteEntity()
         saveContext()
         return result
+    }
+    
+    static func getFirstDepartmentByAttribute(attribute: String, value: AnyObject) -> Department {
+        return Department.MR_findFirstByAttribute(attribute, withValue: value)!
     }
     
     static func addDepartment(name: String?, id: NSNumber?, icon: String?, active: NSNumber?, itemsEbt: NSNumber?) -> Department {
@@ -133,6 +143,12 @@ class DataManager {
     
     static func getCountTax() -> UInt {
         return Tax.MR_countOfEntities()
+    }
+    
+    static func getTaxesByDepartment(departmentID: NSNumber) -> [Tax] {
+        let predicate = NSPredicate(format: "ANY department == %@", getFirstDepartmentByAttribute("id", value: departmentID))
+        let array = Tax.MR_findAllWithPredicate(predicate)
+        return array as! [Tax]
     }
     
     // MARK: - Common

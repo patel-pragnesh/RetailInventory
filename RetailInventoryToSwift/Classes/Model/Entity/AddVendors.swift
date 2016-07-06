@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class AddVendors {
-    var title: String!
-    
+    var title: String!    
     
     init (title: String) {
         self.title = title

@@ -27,7 +27,7 @@
 "barItems.add" = "Add";
 "barItems.done" = "Done";
 "barItems.save" = "Save";
-
+"barItems.cancel" = "Cancel";
 
 // Inventory List
 "inventory.title" = "Inventory List";

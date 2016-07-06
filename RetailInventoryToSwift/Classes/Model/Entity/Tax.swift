@@ -2,7 +2,7 @@
 //  Tax.swift
 //  RetailInventoryToSwift
 //
-//  Created by Anashkin, Evgeny on 30.06.16.
+//  Created by Sak, Andrey2 on 7/6/16.
 //  Copyright © 2016 Anashkin, Evgeny. All rights reserved.
 //
 

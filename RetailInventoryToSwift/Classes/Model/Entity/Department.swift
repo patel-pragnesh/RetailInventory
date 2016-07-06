@@ -2,7 +2,7 @@
 //  Department.swift
 //  RetailInventoryToSwift
 //
-//  Created by Sak, Andrey2 on 7/4/16.
+//  Created by Sak, Andrey2 on 7/6/16.
 //  Copyright © 2016 Anashkin, Evgeny. All rights reserved.
 //
 

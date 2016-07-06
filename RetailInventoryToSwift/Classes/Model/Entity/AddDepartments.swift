@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 class AddDepartments {
-    var title: String!
-    
+    var title: String!    
     
     init (title: String) {
         self.title = title

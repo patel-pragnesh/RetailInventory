@@ -79,6 +79,15 @@ class AddDepartmentViewController: BaseViewController {
             let iconViewController = segue.destinationViewController as! IconsViewController
             iconViewController.delegateIconViewController = self
         }
+        if segue.identifier == MyConstant.segueAppliedItems {
+            let upcoming = segue.destinationViewController as! AppliedItemsViewController
+            upcoming.selectedItems = InventoryListMethods.itemsByDepartment(departmentTemplate.id!)
+            //upcoming.delegate = self
+        }
+        if segue.identifier == MyConstant.segueAppliedTaxes {
+            let upcoming = segue.destinationViewController as! AppliedTaxesViewController
+            upcoming.selectedTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
+        }
     }
     
     // MARK: - navigationBarButton
@@ -185,8 +194,6 @@ extension AddDepartmentViewController: ToolBarControlsDelegate {
         switch DepartmentCell(rawValue: cellTag)! {
         case .name:
             departmentTemplate.name = text
-        case .id:
-            departmentTemplate.id = Int(text!)
         default:
             break
         }
@@ -210,12 +217,11 @@ extension AddDepartmentViewController: ChangeSwitchDepartmentDelegate {
     }
 }
 
-// MARK: - IconsViewControllerDelegate Methods
+// MARK: - IconsViewControllerDelegate
 
 extension AddDepartmentViewController: IconsViewControllerDelegate {
     
-    func iconsViewControllerResponse(icon: Character)
-    {
+    func iconsViewControllerResponse(icon: Character) {
         departmentTemplate.icon = String(icon)
         tableView.reloadData()
     }

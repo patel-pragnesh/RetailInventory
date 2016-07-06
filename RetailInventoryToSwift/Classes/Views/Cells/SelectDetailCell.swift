@@ -31,6 +31,9 @@ class SelectDetailCell: BaseCell {
             if let selectedTax = selectionItem as? Tax {
                 selectionItemLabel.text = selectedTax.taxName
             }
+            if let selectedInventory = selectionItem as? InventoryList {
+                selectionItemLabel.text = selectedInventory.barcode
+            }
         }
     }
 }

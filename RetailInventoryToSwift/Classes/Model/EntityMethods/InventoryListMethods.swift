@@ -97,4 +97,7 @@ class InventoryListMethods: EntityMethods<InventoryList> {
     static func getCountFromDB() -> UInt {
         return DataManager.getCountInventoryList()
     }
+    static func itemsByDepartment(departmentID: NSNumber) -> [InventoryList] {
+        return DataManager.getInventoryByDepartment(departmentID)
+    }
 }

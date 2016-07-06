@@ -1,2 +1,3 @@
 github "Alamofire/Alamofire" "3.4.1"
 github "MagicalPanda/MagicalRecord" "v2.3.3"
+github "socketio/socket.io-client-swift" "v6.1.4"

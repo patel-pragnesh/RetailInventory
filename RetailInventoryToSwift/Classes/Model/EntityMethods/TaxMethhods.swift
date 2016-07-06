@@ -93,5 +93,29 @@ class TaxMethods: EntityMethods<Tax> {
     func editTaxWithResponse(at tax: Tax, taxResponse: TaxResponse) {
         tax.taxName = taxResponse.name
         tax.taxValue = taxResponse.percent
+        tax.id = taxResponse.id
+        tax.active = taxResponse.active
+    }
+    static func updateTaxesWithDepartmentResponse(department: Department, taxesId: [Int]?) {
+        let taxes = DataManager.fetchAllTax()
+        if let ids = taxesId {
+            for id in ids {
+                for tax in taxes {
+                    if tax.id == id {
+                        var deps = tax.department?.allObjects as! [Department]
+                        if  !deps.contains(department) {
+                            deps.append(department)
+                        }
+                        tax.department = NSSet(array: deps)
+                    }
+                }
+            }
+            DataManager.saveContext()
+        }
+        
+    }
+    
+    static func taxesByDepartment(departmentID: NSNumber) -> [Tax] {
+        return DataManager.getTaxesByDepartment(departmentID)
     }
 }

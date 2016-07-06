@@ -12,6 +12,7 @@ class TaxesViewController: BaseViewController  {
     
     var taxes = TaxMethods()
     var editableRow: Int!
+    var newTax: Tax?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,9 +20,15 @@ class TaxesViewController: BaseViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageForButton()
+        imageForButton(.add)
         titleView()
         subscribeKeyboardNotification()
+    }
+    
+    override func willMoveToParentViewController(parent: UIViewController?) {
+        if let tempTax = newTax {
+            taxes.removeTax(tempTax)
+        }
     }
     
     // MARK: - title
@@ -32,20 +39,42 @@ class TaxesViewController: BaseViewController  {
     
     // MARK: - navigationBarButton
     
-    func imageForButton() {
-        var barItems = [UIBarButtonItem]()
-        barItems.append(getBarButtonView(.add))
-        self.navigationItem.rightBarButtonItems = barItems
+    func imageForButton(type: BarButtonsType) {
+        switch type {
+        case .add:
+            var barItems = [UIBarButtonItem]()
+            barItems.append(getBarButtonView(.add))
+            self.navigationItem.rightBarButtonItems = barItems
+        case .cancel:
+            var barItems = [UIBarButtonItem]()
+            barItems.append(getBarButtonView(.cancel))
+            self.navigationItem.rightBarButtonItems = barItems
+        default:
+            break
+        }
+
     }
     
     override func addButtonTouch(button: UIButton) {
-        let newTax = taxes.addTax(nil, taxValue: nil)
+        imageForButton(.cancel)
+        self.navigationItem.rightBarButtonItem?.title = "barItems.cancel".localized
+        newTax = taxes.addTax(nil, taxValue: nil)
         taxes.refresh()
         tableView.reloadData()
-        if let index = taxes.getIndex(newTax) {
+        if let index = taxes.getIndex(newTax!) {
+            animateScrollTableView(NSIndexPath(forRow: 0, inSection: 0), animated: false)
             let currentCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TaxCell
             currentCell.becomeResponder()
         }
+        
+    }
+    
+    override func cancelBarButtonTouch(button: UIButton) {
+        self.view.endEditing(true)
+        imageForButton(.add)
+        taxes.removeTax(newTax!)
+        taxes.refresh()
+        tableView.reloadData()
     }
     
     // MARK: - Override
@@ -69,38 +98,6 @@ class TaxesViewController: BaseViewController  {
     
     func animateScrollTableView(indexPath: NSIndexPath, animated: Bool) {
         tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: animated)
-    }
-    
-    // MARK: - ChangeResponder
-    
-    func changeResponder(tag: Int, changeToUp: Bool) {
-        var index = tag
-        let currentCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TaxCell
-        if currentCell.editName {
-            if changeToUp {
-                currentCell.becomeResponder()
-                return
-            }
-        } else {
-            if !changeToUp {
-                currentCell.becomeResponder()
-                return
-            }
-        }
-        if changeToUp {
-            index += 1
-            if index == taxes.count {
-                index = 0
-            }
-        } else {
-            index -= 1
-            if index < 0 {
-                index = taxes.count - 1
-            }
-        }
-        animateScrollTableView(NSIndexPath(forRow: index, inSection: 0), animated: false)
-        let newCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0)) as! TaxCell
-        newCell.becomeResponder()
     }
 }
 
@@ -136,15 +133,23 @@ extension TaxesViewController: UITableViewDelegate {
 extension TaxesViewController: ToolBarControlsDelegate {
     
     func nextButtonTouch(cellTag: Int) {
-        changeResponder(cellTag ,changeToUp: true)
+        let currentCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: cellTag, inSection: 0)) as! TaxCell
+        currentCell.becomeResponder()
     }
     
     func prevButtonTouch(cellTag: Int) {
-        changeResponder(cellTag ,changeToUp: false)
+        let currentCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: cellTag, inSection: 0)) as! TaxCell
+        currentCell.becomeResponder()
     }
     
     func doneButtonTouch(cellTag: Int) {
+        imageForButton(.add)
         self.view.endEditing(true)
+        if newTax?.taxName == "" || newTax?.taxValue == nil {
+            taxes.removeTax(newTax!)
+        }
+        taxes.refresh()
+        tableView.reloadData()
         animateScrollTableView(NSIndexPath(forRow: 0, inSection: 0), animated: false)
     }
     

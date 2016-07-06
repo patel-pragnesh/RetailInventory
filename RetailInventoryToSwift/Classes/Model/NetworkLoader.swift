@@ -62,9 +62,24 @@ class NetworkLoader {
                     failure(code: code, message: message)
                     return
                 }
-                let departments = responseJSON.map({DepartmentResponse(name:($0["name"] as? String)!, id: ($0["id"] as? Int)!, active: ($0["active"] as? Bool)!,itemsAreEBT: ($0["ebtItem"] as? Bool)!, glyph: ($0["glyph"] as? String)!) })
+                var departments = [DepartmentResponse]()
+                responseJSON.forEach({ department in
+                    let taxes = department["taxes"] as? [AnyObject]
+                    var arrayID = [Int]()
+                    taxes!.forEach({tax in
+                        arrayID.append((tax["id"] as? Int)!)
+                    })
+                    departments.append(DepartmentResponse( name: (department["name"] as? String)!,
+                        id: (department["id"] as? Int)!,
+                        active: (department["active"] as? Bool)!,
+                        itemsAreEBT: (department["ebtItem"] as? Bool)!,
+                        glyph: (department["glyph"] as? String)!,
+                        taxesId: arrayID
+                    ))
+                })
+//                print("------------- departmetns -----------------")
+//                print(departments)
                 completion(departments: departments)
-                
         }
     }
     static func downloadTaxes(completion: (taxs: [TaxResponse]) -> Void, failure: (code: UInt, message: String) -> Void) {
@@ -92,7 +107,9 @@ class NetworkLoader {
                     failure(code: code, message: message)
                     return
                 }
-                let taxes = responseJSON.map({ TaxResponse(name: ($0["name"] as? String)!,percent: ($0["percent"] as? Double)!) })
+                let taxes = responseJSON.map({ TaxResponse(name: ($0["name"] as? String)!,percent: ($0["percent"] as? Double)!, id: ($0["id"] as? Int)!, active: ($0["active"] as? Bool)!) })
+//                print("------------- taxes -----------------")
+//                print(responseJSON)
                 completion(taxs: taxes)
 
         }

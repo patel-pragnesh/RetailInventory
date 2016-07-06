@@ -56,7 +56,7 @@ class BaseCell: UITableViewCell, ToolBarControlsDelegate{
         
         return toolbar
     }
-    
+   
     func drawToolbarItem(title: String?, imageName: String, selector: String) -> UIBarButtonItem {
         let button: UIButton = UIButton(type: .Custom)
         if title != nil {

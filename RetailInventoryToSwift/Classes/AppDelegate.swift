@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import MagicalRecord
+import SocketIOClientSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

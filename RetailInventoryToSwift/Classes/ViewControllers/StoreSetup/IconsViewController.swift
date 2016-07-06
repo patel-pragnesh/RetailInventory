@@ -17,30 +17,22 @@ class IconsViewController: BaseViewController, UICollectionViewDelegate, UIColle
     
     var delegateIconViewController: IconsViewControllerDelegate?
     
-    var arrayIcons = [Character]()
+    let iconData = IconData()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        for char in 61440 ... 61568 {
-            arrayIcons.append(Character(UnicodeScalar(char)))
-        }
-    }
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrayIcons.count
+        return iconData.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(IconsCell.cellIdentifier, forIndexPath: indexPath) as! IconsCell
-        cell.title = arrayIcons[indexPath.row]
+        cell.title = iconData.itemForIndex(indexPath.row)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.delegateIconViewController?.iconsViewControllerResponse(arrayIcons[indexPath.row])
+        self.delegateIconViewController?.iconsViewControllerResponse(iconData.itemForIndex(indexPath.row)!)
         navigationController?.popViewControllerAnimated(true)
     }
 }

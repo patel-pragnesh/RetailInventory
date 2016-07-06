@@ -9,7 +9,7 @@
 import Foundation
 
 enum DepartmentCell: Int {
-    case name = 0, id, active, icon, ebt, taxes, items
+    case name = 0, active, icon, ebt, taxes, items
     static let count: Int = {
         var max: Int = 0
         while let _ = DepartmentCell(rawValue: max) { max += 1 }
@@ -29,8 +29,6 @@ class AddDepartmentsMethods: EntityMethods<String>{
             switch DepartmentCell(rawValue: index)! {
             case .name:
                 array.append("addDepart.name".localized)
-            case .id:
-                array.append("addDepart.id".localized)
             case .active:
                 array.append("addDepart.active".localized)
             case .icon:
@@ -52,8 +50,7 @@ class AddDepartmentsMethods: EntityMethods<String>{
     
     func parameterCell(cell: DepartmentCell) -> CellType {
         switch cell {
-        case .name,
-             .id:
+        case .name:
             return .inputText
         case .active,
              .ebt:

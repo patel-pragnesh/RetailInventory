@@ -11,4 +11,6 @@ import Foundation
 struct TaxResponse {
     var name: String
     var percent: Double
+    var id: NSNumber
+    var active: Bool
 }

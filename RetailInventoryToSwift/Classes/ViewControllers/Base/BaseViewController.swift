@@ -12,9 +12,13 @@ import Foundation
 class BaseViewController: UIViewController {
     
     enum BarButtonsType: Int {
-        case add = 0, scan, question, save
+        case add = 0, scan, question, save, cancel
     }
     let durationAnimate: Double = MyConstant.durationAnimate
+    var addBarButton: UIBarButtonItem?
+    var saveBarButton: UIBarButtonItem?
+    var scanBarButton: UIBarButtonItem?
+    var questionBarButton: UIBarButtonItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,13 +68,20 @@ class BaseViewController: UIViewController {
     func getBarButtonView(type: BarButtonsType) -> UIBarButtonItem {
         switch(type) {
         case .scan:
-            return drawBarItem("barItems.scan".localized, imageName: "rightItem", selector: #selector(BaseViewController.scanButtonTouch(_:)))
+            scanBarButton = drawBarItem("barItems.scan".localized, imageName: "rightItem", selector: #selector(BaseViewController.scanButtonTouch(_:)))
+            return scanBarButton!
         case .question:
-            return drawBarItem(nil, imageName: "question", selector: #selector(BaseViewController.questionButtonTouch(_:)))
+            questionBarButton = drawBarItem(nil, imageName: "question", selector: #selector(BaseViewController.questionButtonTouch(_:)))
+            return questionBarButton!
         case .add:
-            return drawBarItem("barItems.add".localized, imageName: "rightItem", selector: #selector(BaseViewController.addButtonTouch(_:)))
+            addBarButton = drawBarItem("barItems.add".localized, imageName: "rightItem", selector: #selector(BaseViewController.addButtonTouch(_:)))
+            return addBarButton!
         case .save:
-            return drawBarItem("barItems.save".localized, imageName: "rightItem", selector: #selector(BaseViewController.saveButtonTouch(_:)))
+            saveBarButton = drawBarItem("barItems.save".localized, imageName: "rightItem", selector: #selector(BaseViewController.saveButtonTouch(_:)))
+            return saveBarButton!
+        case .cancel:
+            saveBarButton = drawBarItem("barItems.cancel".localized, imageName: "rightItem", selector: #selector(BaseViewController.cancelBarButtonTouch(_:)))
+            return saveBarButton!
         }
     }
     
@@ -96,7 +107,9 @@ class BaseViewController: UIViewController {
     // MARK: - Action for navigation bar button
     
     func scanButtonTouch(button: UIButton) {
-        
+    }
+    
+    func cancelBarButtonTouch(button: UIButton) {
     }
     
     func questionButtonTouch(button: UIButton) {

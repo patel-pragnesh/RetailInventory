@@ -37,7 +37,7 @@ class AddVendorCell: BaseCell {
         if infoCell != nil {
             textField.text = VendorMethods.fieldDetail(VendorField(rawValue: AddVendorsMethods.fieldNameForDetail(identCell))!, vendor: infoCell!)
         }
-        textField.placeholder = AddVendorsMethods.placeHolderForCell(identCell)
+        //textField.placeholder = AddVendorsMethods.placeHolderForCell(identCell)
     }
     
     // MARK: - Public

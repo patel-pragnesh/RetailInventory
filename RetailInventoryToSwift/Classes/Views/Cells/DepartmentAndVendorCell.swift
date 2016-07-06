@@ -23,8 +23,7 @@ class DepartmentAndVendorCell: BaseCell {
                 self.titleLabel.text = department.name
             } else {
                 self.titleLabel.text = ""
-            }
-            
+            }            
         }
     }
     

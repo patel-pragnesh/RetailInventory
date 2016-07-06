@@ -46,17 +46,7 @@ class AddDepartmentCell: BaseCell {
         case .inputText:
             switchCell.hidden = true
             arrowImageView.hidden = true
-            switch identCell {
-                case .name:
-                    nameTextField.text = infoCell?.name
-                case .id:
-                    nameTextField.keyboardType = .NumberPad
-                    if let id = infoCell?.id as? Int {
-                        nameTextField.text = String(id)
-                    }
-                default:
-                    break
-                }
+            nameTextField.text = infoCell?.name
         case .switchCell:
             arrowImageView.hidden = true
             nameTextField.enabled = false

@@ -52,6 +52,8 @@ struct MyConstant {
     static let kApiTaxes = "taxes"
     static let kApiDepartments = "departments"
     
+    static let socketURL = "https://echo-wss.harbortouch.com:443/"
+    
     // Key for Defaults
     
     static let keyForLookUP = "lookUpItemDescirption"
