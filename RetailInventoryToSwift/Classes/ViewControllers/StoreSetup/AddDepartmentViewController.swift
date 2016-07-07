@@ -30,8 +30,18 @@ class AddDepartmentViewController: BaseViewController {
     var departmentTemplate = DepartmentTemplate()
     var typeWorking: ControllerTypeWorking!
     var editableRow: Int!
+    var oldTaxes: [Tax]!
+    var taxesForAdd: [Tax]?
+    var taxesForRemove: [Tax]?
+    var needUpdateTaxes = false
+    var countCompletedRequest = 0
+    var countRequest = 0
+
+    
+    let socket = SocketClient()
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var networkActivity: UIActivityIndicatorView!
     
     // MARK:
     
@@ -40,17 +50,7 @@ class AddDepartmentViewController: BaseViewController {
         imageForButton()
         titleView()
         subscribeKeyboardNotification()
-    }
-    
-    // MARK: - title
-    
-    func titleView() {
-        switch typeWorking! {
-        case .add:
-            self.navigationItem.title = "addDepart.titleAdd".localized
-        case .edit:
-            self.navigationItem.title = "addDepart.titleEdit".localized            
-        }
+        networkActivity.hidden = true
     }
     
     // MARK: - Override
@@ -71,7 +71,7 @@ class AddDepartmentViewController: BaseViewController {
     }
 
     
-    // MARK: - segue
+    // MARK: - prepareForSegue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
@@ -82,12 +82,42 @@ class AddDepartmentViewController: BaseViewController {
         if segue.identifier == MyConstant.segueAppliedItems {
             let upcoming = segue.destinationViewController as! AppliedItemsViewController
             upcoming.selectedItems = InventoryListMethods.itemsByDepartment(departmentTemplate.id!)
-            //upcoming.delegate = self
         }
         if segue.identifier == MyConstant.segueAppliedTaxes {
             let upcoming = segue.destinationViewController as! AppliedTaxesViewController
-            upcoming.selectedTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
+            oldTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
+            upcoming.selectedTaxes = oldTaxes
+            upcoming.delegate = self
         }
+    }
+    
+    // MARK: - Private
+    
+    private func titleView() {
+        switch typeWorking! {
+        case .add:
+            self.navigationItem.title = "addDepart.titleAdd".localized
+        case .edit:
+            self.navigationItem.title = "addDepart.titleEdit".localized
+        }
+    }
+    
+    private func taxesForRequest(from oldTaxes: [Tax], and selectedTaxes: [Tax]) -> (newTaxes: [Tax], deleteTaxes: [Tax]) {
+        var newTaxes = [Tax]()
+        var deleteTaxes = [Tax]()
+        
+        for oldTax in oldTaxes {
+            if selectedTaxes.indexOf(oldTax) == nil {
+                deleteTaxes.append(oldTax)
+            }
+        }
+        
+        for selectedTax in selectedTaxes {
+            if oldTaxes.indexOf(selectedTax) == nil {
+                newTaxes.append(selectedTax)
+            }
+        }
+        return (newTaxes, deleteTaxes)
     }
     
     // MARK: - navigationBarButton
@@ -99,13 +129,93 @@ class AddDepartmentViewController: BaseViewController {
     }
     
     override func saveButtonTouch(button: UIButton) {
+        
+        self.view.endEditing(true)
+        networkActivity.hidden = false
+        networkActivity.startAnimating()
+        
         switch typeWorking! {
         case .add:
-            self.delegateAddDepartmentViewController?.addDepartmentToBase(departmentTemplate)
+            countRequest += 1
+            socket.emitDepartment(SocketEvent.Create, departmentTemplate: departmentTemplate, taxId: nil,
+                                  success: { department in
+                                    self.delegateAddDepartmentViewController?.addDepartmentToBase(department)
+                                    self.countCompletedRequest += 1
+                                    self.stopAnimateNetworkActivity()
+                                  },
+                                  failure: { (code, message) in
+                    self.errorAlert(code, at: message)
+            })
         case .edit:
-            self.delegateAddDepartmentViewController?.editDepartmentToBase(departmentTemplate)
+            countRequest += 1
+            socket.emitDepartment(SocketEvent.Update, departmentTemplate: departmentTemplate, taxId: nil,
+                                  success: { department in
+                                    if department.name != nil {
+                                        self.delegateAddDepartmentViewController?.editDepartmentToBase(department)
+                                        self.countCompletedRequest += 1
+                                        self.stopAnimateNetworkActivity()
+                                    }
+                                  },
+                                  failure: { (code, message) in
+                                    self.errorAlert(code, at: message)
+                                  })
         }
-        navigationController?.popViewControllerAnimated(true)
+        sendTaxToServer()
+    }
+    
+    func sendTaxToServer() {
+        if taxesForAdd?.count > 0 {
+            for tax in taxesForAdd! {
+                countRequest += 1
+                socket.emitDepartment(SocketEvent.TaxMapCreate, departmentTemplate: departmentTemplate, taxId: tax.id,
+                                      success: { department in
+                                        TaxMethods.addDepartmentTo(tax, department: DepartmentMethods.departmentBy(department.id!))
+                                        self.countCompletedRequest += 1
+                                        self.stopAnimateNetworkActivity()
+                                        
+                                      },
+                                      failure: { (code, message) in
+                                        self.errorAlert(code, at: message)
+                                    })
+            }
+        }
+        if taxesForRemove?.count > 0 {
+            for tax in taxesForRemove! {
+                countRequest += 1
+                socket.emitDepartment(SocketEvent.TaxMapDelete, departmentTemplate: departmentTemplate, taxId: tax.id,
+                                      success: { department in
+                                        TaxMethods.removeDepartment(from: tax, department: DepartmentMethods.departmentBy(department.id!))
+                                        self.countCompletedRequest += 1
+                                        self.stopAnimateNetworkActivity()
+                                      },
+                                      failure: { (code, message) in
+                                        self.errorAlert(code, at: message)
+                                    })
+            }
+        }
+    }
+    
+    // MARK: - ActivityIndicator control
+    
+    func stopAnimateNetworkActivity() {
+        if countCompletedRequest == countRequest {
+            networkActivity.stopAnimating()
+            countCompletedRequest = 0
+            countRequest = 0
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    // MARK: - Alert
+    
+    func errorAlert(code: UInt, at message: String) {
+        
+        let errorAlert = UIAlertController(title:"\(code)", message: "\(message)", preferredStyle: .Alert)
+        let cancelAction = UIAlertAction(title: "storeSetup.alertCancel".localized, style: .Default) { (action:UIAlertAction!) in
+            return
+        }
+        errorAlert.addAction(cancelAction)
+        self.presentViewController(errorAlert, animated: true, completion:nil)
     }
     
     // MARK: - Animation scroll tableView
@@ -168,7 +278,9 @@ extension AddDepartmentViewController: UITableViewDataSource {
         cell.delegateChangeSwitch = self
         cell.delegate = self
         cell.tag = indexPath.row
-        cell.updateCell(addDepartmentMethods.parameterCell(addDepartmentMethods.enumCell(indexPath.row)), infoCell: departmentTemplate, identCell: addDepartmentMethods.enumCell(indexPath.row))
+        cell.updateCell(addDepartmentMethods.parameterCell(addDepartmentMethods.enumCell(indexPath.row)),
+                        infoCell: departmentTemplate,
+                        identCell: addDepartmentMethods.enumCell(indexPath.row))
         return cell
     }
 }
@@ -193,7 +305,12 @@ extension AddDepartmentViewController: ToolBarControlsDelegate {
     func textFieldEndEditing(text: String?, cellTag: Int) {
         switch DepartmentCell(rawValue: cellTag)! {
         case .name:
-            departmentTemplate.name = text
+            if text != "" {
+                departmentTemplate.name = text
+            } else {
+                errorAlert(0, at: "name must have value")
+                tableView.reloadData()                
+            }
         default:
             break
         }
@@ -224,5 +341,16 @@ extension AddDepartmentViewController: IconsViewControllerDelegate {
     func iconsViewControllerResponse(icon: Character) {
         departmentTemplate.icon = String(icon)
         tableView.reloadData()
+    }
+}
+
+// MARK: - SelectedTaxesDelegate 
+
+extension AddDepartmentViewController: SelectedTaxesDelegate {
+    
+    func selectedTaxes(selectedTaxes: [Tax]) {
+        let (newTax, deleteTax) = taxesForRequest(from: oldTaxes, and: selectedTaxes)
+        taxesForAdd = newTax
+        taxesForRemove = deleteTax
     }
 }

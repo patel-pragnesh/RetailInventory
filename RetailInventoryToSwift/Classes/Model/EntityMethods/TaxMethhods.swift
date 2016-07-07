@@ -96,6 +96,7 @@ class TaxMethods: EntityMethods<Tax> {
         tax.id = taxResponse.id
         tax.active = taxResponse.active
     }
+    
     static func updateTaxesWithDepartmentResponse(department: Department, taxesId: [Int]?) {
         let taxes = DataManager.fetchAllTax()
         if let ids = taxesId {
@@ -112,7 +113,35 @@ class TaxMethods: EntityMethods<Tax> {
             }
             DataManager.saveContext()
         }
-        
+    }
+    
+    static func addDepartmentTo(taxForAdd: Tax, department: Department) {
+        let taxes = DataManager.fetchAllTax()
+        for tax in taxes {
+            if tax.id == taxForAdd.id {
+                var deps = tax.department?.allObjects as! [Department]
+                if  !deps.contains(department) {
+                    deps.append(department)
+                }
+                tax.department = NSSet(array: deps)
+            }
+        }
+        DataManager.saveContext()
+    }
+
+    static func removeDepartment(from taxForRemove: Tax, department: Department) {
+        let taxes = DataManager.fetchAllTax()
+        for tax in taxes {
+            if tax.id == taxForRemove.id {
+                var deps = tax.department?.allObjects as! [Department]
+                let index = deps.indexOf(department)
+                if  index != nil {
+                    deps.removeAtIndex(index!)
+                }
+                tax.department = NSSet(array: deps)
+            }
+        }        
+        DataManager.saveContext()
     }
     
     static func taxesByDepartment(departmentID: NSNumber) -> [Tax] {

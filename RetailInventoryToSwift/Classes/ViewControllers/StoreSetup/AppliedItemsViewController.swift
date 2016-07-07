@@ -14,6 +14,17 @@ class AppliedItemsViewController: BaseViewController {
     var selectedItems: [InventoryList]!
     var invetorys = InventoryListMethods()
     
+    // MARK: 
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        titles()
+    }
+    
+    private func titles() {
+        self.navigationItem.title = "selectDetail.selectInventory".localized
+    }
+    
     func isSelectedItem(selectionItem: InventoryList) -> Bool {
         if selectedItems.count > 0 {
             for selectetItem in selectedItems {

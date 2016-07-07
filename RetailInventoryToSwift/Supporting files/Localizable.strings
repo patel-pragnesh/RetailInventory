@@ -128,6 +128,7 @@
 "selectDetail.selectDepartment" = "Select Department";
 "selectDetail.selectVendor" = "Select Vendor";
 "selectDetail.selectTax" = "Select Tax";
+"selectDetail.selectInventory" = "Select Inventory";
 
 // Scan
 "scan.cancel" = "Cancel";

@@ -64,7 +64,7 @@ class DepartmentMethods: EntityMethods<Department> {
         if add_index.count > 0 {
             for i in 0 ... serverDepartments.count - 1 {
                 if (add_index.indexOf(i) != nil) {
-                    let newDep = addDepartment(serverDepartments[i].name, id: serverDepartments[i].id, icon: nil, active: serverDepartments[i].active, itemsEbt: serverDepartments[i].itemsAreEBT)
+                    let newDep = DepartmentMethods.addDepartment(serverDepartments[i].name, id: serverDepartments[i].id, icon: nil, active: serverDepartments[i].active, itemsEbt: serverDepartments[i].itemsAreEBT)
                     TaxMethods.updateTaxesWithDepartmentResponse(newDep, taxesId: serverDepartments[i].taxesId)
                 }
             }
@@ -92,7 +92,11 @@ class DepartmentMethods: EntityMethods<Department> {
 //        DataManager.saveContext()
     }
     
-    func addDepartment(name: String?, id: NSNumber?, icon: String?, active: NSNumber?, itemsEbt: NSNumber?) -> Department {
+//    func addDepartment(name: String?, id: NSNumber?, icon: String?, active: NSNumber?, itemsEbt: NSNumber?) -> Department {
+//        return DataManager.addDepartment(name, id: id, icon: icon, active: active, itemsEbt: itemsEbt)
+//    }
+    
+    static func addDepartment(name: String?, id: NSNumber?, icon: String?, active: NSNumber?, itemsEbt: NSNumber?) -> Department {
         return DataManager.addDepartment(name, id: id, icon: icon, active: active, itemsEbt: itemsEbt)
     }
     
@@ -140,6 +144,10 @@ class DepartmentMethods: EntityMethods<Department> {
     
     static func getCountFromDB() -> UInt {
         return DataManager.getCountDepartment()
+    }
+    
+    static func departmentBy( id: NSNumber) -> Department {
+        return DataManager.getFirstDepartmentByAttribute("id", value: id)
     }
     
     static func fieldDetail(fieldName: DepartmentField, department: DepartmentTemplate) -> AnyObject? {

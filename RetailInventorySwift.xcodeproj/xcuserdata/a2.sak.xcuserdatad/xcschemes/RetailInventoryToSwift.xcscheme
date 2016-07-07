@@ -55,7 +55,7 @@
             BlueprintIdentifier = "7DFE49AD1D057D4100EDF2FC"
             BuildableName = "RetailInventoryToSwift.app"
             BlueprintName = "RetailInventoryToSwift"
-            ReferencedContainer = "container:RetailInventoryToSwift.xcodeproj">
+            ReferencedContainer = "container:RetailInventorySwift.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "7DFE49AD1D057D4100EDF2FC"
             BuildableName = "RetailInventoryToSwift.app"
             BlueprintName = "RetailInventoryToSwift"
-            ReferencedContainer = "container:RetailInventoryToSwift.xcodeproj">
+            ReferencedContainer = "container:RetailInventorySwift.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
