@@ -8,8 +8,7 @@
 
 import UIKit
 
-protocol AddVendorViewControllerDelegate
-{
+protocol AddVendorViewControllerDelegate: class {
     func addVendorToBase(info: VendorTemplate)
     func editVendorToBase(info: VendorTemplate)
 }
@@ -20,9 +19,12 @@ enum ControllerTypeWorking: Int {
 
 class AddVendorViewController: BaseViewController {
     
+    weak var delegateAddVendorViewControllerDelegate: AddVendorViewControllerDelegate?
+    
     var addVendorMethods = AddVendorsMethods()
-    var delegateAddVendorViewControllerDelegate: AddVendorViewControllerDelegate?
     var typeWorking: ControllerTypeWorking!
+    var vendorTemplate = VendorTemplate()
+    var editableRow: Int!
     var editableVendor: Vendor? {
         didSet {
             vendorTemplate.accountNumber = editableVendor?.accountNumber
@@ -35,8 +37,6 @@ class AddVendorViewController: BaseViewController {
             vendorTemplate.zip = editableVendor?.zip
         }
     }
-    var vendorTemplate = VendorTemplate()
-    var editableRow: Int!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,13 +45,13 @@ class AddVendorViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageForButton()
-        titleView()        
+        configTitles()
         subscribeKeyboardNotification()
     }
     
     // MARK: - title
     
-    func titleView() {
+    func configTitles() {
         switch typeWorking! {
         case .add:
             self.navigationItem.title = "addVendor.titleAdd".localized

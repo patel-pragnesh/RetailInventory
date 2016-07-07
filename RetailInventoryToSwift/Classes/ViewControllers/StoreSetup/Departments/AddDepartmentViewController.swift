@@ -8,15 +8,16 @@
 
 import UIKit
 
-protocol AddDepartmentViewControllerDelegate {
+protocol AddDepartmentViewControllerDelegate: class {
     func addDepartmentToBase(info: DepartmentTemplate)
     func editDepartmentToBase(info: DepartmentTemplate)
 }
 
 class AddDepartmentViewController: BaseViewController {
     
+    weak var delegateAddDepartmentViewController: AddDepartmentViewControllerDelegate?
+    
     var addDepartmentMethods = AddDepartmentsMethods()
-    var delegateAddDepartmentViewController: AddDepartmentViewControllerDelegate?
     var editableDepartment: Department? {
         didSet {
             departmentTemplate.active = editableDepartment?.active
@@ -36,10 +37,7 @@ class AddDepartmentViewController: BaseViewController {
     var needUpdateTaxes = false
     var countCompletedRequest = 0
     var countRequest = 0
-
-    
-    let socket = SocketClient()
-    
+        
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var networkActivity: UIActivityIndicatorView!
     
@@ -48,7 +46,7 @@ class AddDepartmentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageForButton()
-        titleView()
+        configTitles()
         subscribeKeyboardNotification()
         networkActivity.hidden = true
     }
@@ -93,7 +91,7 @@ class AddDepartmentViewController: BaseViewController {
     
     // MARK: - Private
     
-    private func titleView() {
+    private func configTitles() {
         switch typeWorking! {
         case .add:
             self.navigationItem.title = "addDepart.titleAdd".localized
@@ -101,8 +99,6 @@ class AddDepartmentViewController: BaseViewController {
             self.navigationItem.title = "addDepart.titleEdit".localized
         }
     }
-    
-//    private func 
     
     private func taxesForRequest(from oldTaxes: [Tax], and selectedTaxes: [Tax]) -> (newTaxes: [Tax], deleteTaxes: [Tax]) {
         var newTaxes = [Tax]()
@@ -133,14 +129,16 @@ class AddDepartmentViewController: BaseViewController {
     override func saveButtonTouch(button: UIButton) {
         
         self.view.endEditing(true)
+        
+        SocketClient.checkConnection()
+        
         networkActivity.hidden = false
         networkActivity.startAnimating()
         
         switch typeWorking! {
         case .add:
             countRequest += 1
-            socket.emitDepartment(SocketEvent.Create, departmentTemplate: departmentTemplate, taxId: nil,
-                                  success: { department in
+            SocketClient.createDepartment(departmentTemplate, success: { department in
                                     self.delegateAddDepartmentViewController?.addDepartmentToBase(department)
                                     self.countCompletedRequest += 1
                                     self.stopAnimateNetworkActivity()
@@ -150,17 +148,17 @@ class AddDepartmentViewController: BaseViewController {
             })
         case .edit:
             countRequest += 1
-            socket.emitDepartment(SocketEvent.Update, departmentTemplate: departmentTemplate, taxId: nil,
-                                  success: { department in
-                                    if department.name != nil {
-                                        self.delegateAddDepartmentViewController?.editDepartmentToBase(department)
-                                        self.countCompletedRequest += 1
-                                        self.stopAnimateNetworkActivity()
-                                    }
-                                  },
-                                  failure: { (code, message) in
-                                    self.errorAlert(code, at: message)
-                                  })
+            SocketClient.updateDepartment(departmentTemplate, success: { department in
+                                                    if department.name != nil {
+                                                        self.delegateAddDepartmentViewController?.editDepartmentToBase(department)
+                                                        self.countCompletedRequest += 1
+                                                        self.stopAnimateNetworkActivity()
+                                                    }
+                                                  },
+                                                  failure: { (code, message) in
+                                                    self.errorAlert(code, at: message)
+                                                    self.networkActivity.hidden = true
+                                                  })
         }
         sendTaxToServer()
     }
@@ -169,7 +167,7 @@ class AddDepartmentViewController: BaseViewController {
         if taxesForAdd?.count > 0 {
             for tax in taxesForAdd! {
                 countRequest += 1
-                socket.emitDepartment(SocketEvent.TaxMapCreate, departmentTemplate: departmentTemplate, taxId: tax.id,
+                SocketClient.taxMapCreate(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
                                       success: { department in
                                         TaxMethods.addDepartmentTo(tax, department: DepartmentMethods.departmentBy(department.id!))
                                         self.countCompletedRequest += 1
@@ -184,7 +182,7 @@ class AddDepartmentViewController: BaseViewController {
         if taxesForRemove?.count > 0 {
             for tax in taxesForRemove! {
                 countRequest += 1
-                socket.emitDepartment(SocketEvent.TaxMapDelete, departmentTemplate: departmentTemplate, taxId: tax.id,
+                SocketClient.taxMapCreate(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
                                       success: { department in
                                         TaxMethods.removeDepartment(from: tax, department: DepartmentMethods.departmentBy(department.id!))
                                         self.countCompletedRequest += 1
@@ -202,6 +200,7 @@ class AddDepartmentViewController: BaseViewController {
     func stopAnimateNetworkActivity() {
         if countCompletedRequest == countRequest {
             networkActivity.stopAnimating()
+            networkActivity.hidden = true
             countCompletedRequest = 0
             countRequest = 0
             self.navigationController?.popViewControllerAnimated(true)

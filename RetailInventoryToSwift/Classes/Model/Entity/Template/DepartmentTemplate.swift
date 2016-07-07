@@ -15,6 +15,19 @@ struct DepartmentTemplate {
     var active: NSNumber?
     var itemsEbt: NSNumber?
     
+    func asDictionaryForRequest() -> [String:AnyObject] {
+        var department = [String:AnyObject]()
+        department["active"] = self.active
+        department["ebtItem"] = self.itemsEbt
+        department["name"] = self.name
+        department["id"] = self.id
+        if let icon = self.icon {
+            let ch = icon.unicodeScalars
+            department["glyph"] = String(ch[ch.startIndex].value, radix: 16)
+        }
+        return department
+    }
+    
     subscript(key: String) -> AnyObject? {
         get {
             switch key {

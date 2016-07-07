@@ -20,6 +20,8 @@ class BaseViewController: UIViewController {
     var scanBarButton: UIBarButtonItem?
     var questionBarButton: UIBarButtonItem?
     
+    // MARK:
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBackgroundView()
@@ -122,7 +124,4 @@ class BaseViewController: UIViewController {
     func saveButtonTouch(button: UIButton) {
         
     }
-
-    
-
 }

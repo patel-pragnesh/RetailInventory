@@ -9,23 +9,24 @@
 import UIKit
 
 class AppliedItemsViewController: BaseViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+    
     var selectedItems: [InventoryList]!
     var invetorys = InventoryListMethods()
+    
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titles()
+        configTitles()
     }
     
-    private func titles() {
+    private func configTitles() {
         self.navigationItem.title = "selectDetail.selectInventory".localized
     }
     
-    func isSelectedItem(selectionItem: InventoryList) -> Bool {
+    private func isSelectedItem(selectionItem: InventoryList) -> Bool {
         if selectedItems.count > 0 {
             for selectetItem in selectedItems {
                 if selectetItem === selectionItem {
@@ -48,7 +49,7 @@ extension AppliedItemsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(SelectDetailCell.cellIdentifier, forIndexPath: indexPath) as! SelectDetailCell
         cell.backgroundType = tableView.backgroundForTableCell(at: indexPath)
-        cell.selectionItem = invetorys.getObjectByIndex(indexPath.row)
+        cell.itemForSelect = invetorys.getObjectByIndex(indexPath.row)
         cell.isSelected = isSelectedItem(invetorys.getObjectByIndex(indexPath.row))
         
         return cell

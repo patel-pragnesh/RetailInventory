@@ -15,16 +15,18 @@ class MenuViewController: BaseViewController {
     @IBOutlet weak var setupStorButton: UIButton!
     @IBOutlet weak var logOutButton: UIButton!
     
+    //MARK:
+    
     override func viewDidLoad() {
         super.viewDidLoad()        
-        titleForButtons()
+        configTitles()
         configAdjustStockButton()
         rightBarItems()
     }
     
     // MARK: - Private
     
-    private func titleForButtons() {
+    private func configTitles() {
         inventoryListButton.setTitle("menu.inventoryListButton".localized, forState: .Normal)
         adjustStockButton.setTitle("menu.adjustStockButton".localized, forState: .Normal)
         setupStorButton.setTitle("menu.setupStoreButton".localized, forState: .Normal)

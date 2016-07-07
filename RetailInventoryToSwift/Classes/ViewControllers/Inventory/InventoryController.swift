@@ -42,7 +42,7 @@ class InventoryController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleForButtons()
+        configTitles()
         rightBarItems()
     }
     
@@ -54,7 +54,7 @@ class InventoryController: BaseViewController {
 
     // MARK: - Private
     
-    private func titleForButtons() {
+    private func configTitles() {
         self.navigationItem.title = "inventory.title".localized
         noItemsScannedLabel.text = "inventory.noItemsScannedLabel".localized
         sortAllButton.setTitle("inventory.allButton".localized, forState: .Normal)

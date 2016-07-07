@@ -34,13 +34,13 @@ class SelectDetailController: BaseViewController {
 
     override func viewDidLoad() {
         selectWorkingType()
-        titleForButtons()
+        configTitles()
         super.viewDidLoad()
     }
     
     // MARK: - Private
     
-    private func titleForButtons() {
+    private func configTitles() {
         switch selectionType! {
         case .department:
             self.navigationItem.title = "selectDetail.selectDepartment".localized
@@ -99,8 +99,8 @@ extension SelectDetailController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(SelectDetailCell.cellIdentifier, forIndexPath: indexPath) as! SelectDetailCell
         cell.backgroundView = tableView.backgroundForTableCell(at: indexPath)
-        cell.selectionItem = selectionArray[indexPath.row]
-        cell.isSelected = cell.selectionItem === selectedItem()
+        cell.itemForSelect = selectionArray[indexPath.row]
+        cell.isSelected = cell.itemForSelect === selectedItem()
                 
         return cell
     }

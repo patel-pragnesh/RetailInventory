@@ -21,7 +21,7 @@ class TaxesViewController: BaseViewController  {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageForButton(.add)
-        titleView()
+        configTitles()
         subscribeKeyboardNotification()
     }
     
@@ -33,7 +33,7 @@ class TaxesViewController: BaseViewController  {
     
     // MARK: - title
     
-    func titleView() {
+    func configTitles() {
         self.navigationItem.title = "taxes.title".localized
     }
     

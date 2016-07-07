@@ -16,7 +16,6 @@ class DepartmentsAndVendorsViewController: BaseViewController  {
     
     var departments: DepartmentMethods?
     var vendors: VendorMethods?
-    
     var controllerType: ControllerType!
     var selectedRow: Int!
     
@@ -33,7 +32,7 @@ class DepartmentsAndVendorsViewController: BaseViewController  {
             vendors = VendorMethods()
         }
         imageForButton()
-        titleView()
+        configTitles()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -58,7 +57,7 @@ class DepartmentsAndVendorsViewController: BaseViewController  {
     
     // MARK: - title
 
-    func titleView() {
+    func configTitles() {
         switch controllerType! {
         case .department:
             self.navigationItem.title = "depart.title".localized

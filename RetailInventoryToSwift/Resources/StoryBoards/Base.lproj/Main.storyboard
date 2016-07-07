@@ -932,23 +932,23 @@
                                                     <rect key="frame" x="8" y="8" width="313" height="54"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nYt-1l-7EX">
-                                                            <rect key="frame" x="0.0" y="0.0" width="37" height="54"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="54" height="54"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="37" id="Jge-U1-EkE"/>
+                                                                <constraint firstAttribute="width" secondItem="nYt-1l-7EX" secondAttribute="height" multiplier="32:32" id="aTb-gQ-Z3k"/>
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aa6-XE-id5">
-                                                            <rect key="frame" x="37" y="0.0" width="276" height="54"/>
+                                                            <rect key="frame" x="54" y="0.0" width="259" height="54"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9R-UI-qTd">
-                                                                    <rect key="frame" x="10" y="0.0" width="266" height="38"/>
+                                                                    <rect key="frame" x="10" y="0.0" width="249" height="38"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6y1-9l-HrU">
-                                                                    <rect key="frame" x="10" y="38" width="266" height="16"/>
+                                                                    <rect key="frame" x="10" y="38" width="249" height="16"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>

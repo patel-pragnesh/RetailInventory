@@ -13,4 +13,12 @@ struct TaxTemplate {
     var taxValue: NSNumber?
     var id: NSNumber?
     var active: Bool?
+    
+    static func taxMapForRequest(taxId: Int, depId: Int) -> [String:AnyObject] {
+        var tax = [String:AnyObject]()
+        tax["taxId"] = taxId
+        tax["departmentId"] = depId
+        
+        return tax
+    }
 }

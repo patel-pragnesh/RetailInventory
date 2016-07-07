@@ -15,8 +15,8 @@ protocol SelectDescription: class {
 class SelectDescriptionController: BaseViewController {
     
     var descriptions: [String]!
+    weak var delegate: SelectDescription?
     private var keyboardFrame: CGRect!
-    var delegate: SelectDescription?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var descriptionText: UITextView!
@@ -26,14 +26,14 @@ class SelectDescriptionController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleForButtons()
+        configTitles()
         setupTableView()
         subscribeKeyboardNotification()
     }
     
     // MARK: - Private
     
-    private func titleForButtons() {
+    private func configTitles() {
         self.navigationItem.title = "selectDesc.title".localized
         newDescriptionLabel.text = "selectDesc.label".localized
     }
@@ -49,7 +49,6 @@ class SelectDescriptionController: BaseViewController {
         keyboardFrame = keyboardFrameInfo(notification)
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
         tableView.contentInset = contentInsets
-        tableView.scrollIndicatorInsets = contentInsets
         
         animateScrollTableView(true)
     }
@@ -57,7 +56,6 @@ class SelectDescriptionController: BaseViewController {
     override func keyboardWillHide(notification: NSNotification) {
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.contentInset = contentInsets
-        tableView.scrollIndicatorInsets = contentInsets
     }
     
     // MARK: - Animation scroll tableView

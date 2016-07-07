@@ -20,18 +20,18 @@ class SelectDetailCell: BaseCell {
         }
     }
     
-    var selectionItem: AnyObject! {
+    var itemForSelect: AnyObject! {
         didSet {
-            if let selectedDepartment = selectionItem as? Department {
+            if let selectedDepartment = itemForSelect as? Department {
                 selectionItemLabel.text = selectedDepartment.name
             }
-            if let selectedVendor = selectionItem as? Vendor {
+            if let selectedVendor = itemForSelect as? Vendor {
                 selectionItemLabel.text = selectedVendor.name
             }
-            if let selectedTax = selectionItem as? Tax {
+            if let selectedTax = itemForSelect as? Tax {
                 selectionItemLabel.text = selectedTax.taxName
             }
-            if let selectedInventory = selectionItem as? InventoryList {
+            if let selectedInventory = itemForSelect as? InventoryList {
                 selectionItemLabel.text = selectedInventory.barcode
             }
         }

@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         MagicalRecord.setupCoreDataStackWithStoreNamed(MyConstant.dataBaseName)
         
         UINavigationBar.setDefaultStyles()
+        SocketClient.initSocket()
+        SocketClient.connect()
         
         return true
     }
@@ -28,16 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
+        SocketClient.disconnect()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
+        SocketClient.connect()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
     }
 
     func applicationWillTerminate(application: UIApplication) {
-
     }
 }
 

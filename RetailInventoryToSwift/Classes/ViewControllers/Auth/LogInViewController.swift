@@ -25,13 +25,15 @@ class LogInViewController: BaseViewController {
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var networkActivity: UIActivityIndicatorView!
     
+    // MARK: 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         defaultButtonConstraint = self.bottomConstraint.constant
         self.subscribeKeyboardNotification()
-        titleForButtons()
+        configTitles()
         
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(LogInViewController.tapOutSideTextField))
         self.view.addGestureRecognizer(tapRecognizer)
@@ -47,7 +49,7 @@ class LogInViewController: BaseViewController {
     
     // MARK: - set up titles
     
-    func titleForButtons() {
+    func configTitles() {
         merchantIdLabel.text = "auth.merchantIDLabel".localized
         passwordLabel.text = "auth.passwordLabel".localized
         logInButton.setTitle("auth.logInButton".localized, forState: .Normal)

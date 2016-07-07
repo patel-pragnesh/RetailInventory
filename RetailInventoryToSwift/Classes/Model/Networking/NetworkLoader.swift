@@ -82,6 +82,7 @@ class NetworkLoader {
                 completion(departments: departments)
         }
     }
+    
     static func downloadTaxes(completion: (taxs: [TaxResponse]) -> Void, failure: (code: UInt, message: String) -> Void) {
         Alamofire.request(TaxeDepartmentRouter.Taxes)
             .responseJSON { response in

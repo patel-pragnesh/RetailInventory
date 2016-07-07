@@ -12,8 +12,7 @@ import Alamofire
 class InventoryDetailController: BaseViewController {
     
     var barcode: String!
-    private var listDescriptions: [String]?
-    
+    private var listDescriptions: [String]?    
     private var inventory: InventoryList!
     private let detailNames = InventoryDetailMethods()
     private var editableRow: Int!
@@ -27,7 +26,7 @@ class InventoryDetailController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleForButtons()
+        configTitles()
         subscribeKeyboardNotification()
         loadInventory()
         downloadDescriptionsIfAllowed()
@@ -39,7 +38,7 @@ class InventoryDetailController: BaseViewController {
     
     // MARK: - Private
     
-    private func titleForButtons() {
+    private func configTitles() {
         self.navigationItem.title = "inventoryDetail.title".localized
         scanButton.setTitle("inventoryDetail.scanNewItem".localized, forState: .Normal)
     }
@@ -134,7 +133,7 @@ class InventoryDetailController: BaseViewController {
     // MARK: - Download descriptions
     
     func downloadDescriptionsIfAllowed() {
-        if UserDefault().lookUpItemDescription {
+        if UserStorage.getLookUpDescription() {
             downloadDescriptions(barcode)
         } else {
             networkActivity.hidden = true

@@ -10,7 +10,7 @@ import UIKit
 
 class ScanController: BaseViewController {
     
-    var delegate: ScanNewBarCodeDelegate?
+    weak var delegate: ScanNewBarCodeDelegate?
     
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var scanNewButton: UIButton!
@@ -21,7 +21,7 @@ class ScanController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleForButtons()
+        configTitles()
     }
     
     override func prefersStatusBarHidden() -> Bool {
@@ -30,20 +30,20 @@ class ScanController: BaseViewController {
     
     // MARK: - Private
     
-    func titleForButtons() {
+    private func configTitles() {
         cancelButton.setTitle("scan.cancel".localized, forState: .Normal)
         scanNewButton.setTitle("scan.scanNew".localized, forState: .Normal)
         rescanButton.setTitle("scan.rescan".localized, forState: .Normal)
     }
     
-    func randomAlphaNumericString(length: Int) -> String {
+    private func randomAlphaNumericString(length: Int) -> String {
         
         let barcodes = ["9501101530003", "5014016150821", "9771234567003", "671860013624", "036000291452", "5010029020519", "9788679912077", "6000980911046"]
         let randomNum = Int(arc4random_uniform(UInt32(barcodes.count)))
         return barcodes[randomNum]
     }
     
-    func closeController() {
+    private func closeController() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

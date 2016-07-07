@@ -11,7 +11,6 @@ import UIKit
 class StoreSetupViewController: BaseViewController {
     
     var storeSetupMethods: StoreSetupMethods!
-    var userDefaults = UserDefault()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -19,7 +18,7 @@ class StoreSetupViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleView()
+        configTitles()
         imageForButton()
     }
     
@@ -30,7 +29,7 @@ class StoreSetupViewController: BaseViewController {
     
     // MARK: - Private
     
-    private func titleView() {
+    private func configTitles() {
         self.navigationItem.title = "storeSetup.title".localized
     }
     
@@ -93,7 +92,7 @@ extension StoreSetupViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(StoreSetupCell.cellIdentifier, forIndexPath: indexPath) as! StoreSetupCell
         cell.backgroundType = tableView.backgroundForTableCell(at: indexPath)
         tableView.rowHeight = cell.heightCell
-        cell.cellContents = (indexPath.row, storeSetupMethods.getObjectByIndex(indexPath.row), userDefaults.costTracking, userDefaults.lookUpItemDescription)
+        cell.cellContents = (indexPath.row, storeSetupMethods.getObjectByIndex(indexPath.row), UserStorage.getCostTracking(), UserStorage.getLookUpDescription())
         cell.delegateChangeSwitch = self
         
         return cell
@@ -127,10 +126,10 @@ extension StoreSetupViewController: UITableViewDelegate {
 extension StoreSetupViewController: ChangeSwitchStoreSetupDelegate {
     
     func changeLookUpItem(newValue: Bool) {
-        userDefaults.lookUpItemDescription = newValue
+        UserStorage.setLookUpDescription(newValue)
     }
     
     func changeCostTracking(newValue: Bool) {
-        userDefaults.costTracking = newValue
+        UserStorage.setCostTracking(newValue)
     }
 }
