@@ -29,7 +29,6 @@ class AddDepartmentCell: BaseCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var switchCell: UISwitch!
     @IBOutlet private weak var arrowImageView: UIImageView!
-    @IBOutlet private weak var infoLabel: UILabel!
     @IBOutlet private weak var nameTextField: UITextField!
     
     var addDepartments: String! {
@@ -63,9 +62,8 @@ class AddDepartmentCell: BaseCell {
             switchCell.hidden = true
             arrowImageView.hidden = false
             nameTextField.enabled = false
-            infoLabel.hidden = false
-            infoLabel.font = UIFont(name: "FontAwesome", size: MyConstant.iconSize)
-            infoLabel.text = infoCell?.icon
+            nameTextField.font = UIFont(name: "FontAwesome", size: MyConstant.iconSize)
+            nameTextField.text = infoCell?.icon
         case .link:
             switchCell.hidden = true
             arrowImageView.hidden = false

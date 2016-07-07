@@ -8,8 +8,7 @@
 
 import UIKit
 
-protocol AddDepartmentViewControllerDelegate
-{
+protocol AddDepartmentViewControllerDelegate {
     func addDepartmentToBase(info: DepartmentTemplate)
     func editDepartmentToBase(info: DepartmentTemplate)
 }
@@ -33,6 +32,7 @@ class AddDepartmentViewController: BaseViewController {
     var oldTaxes: [Tax]!
     var taxesForAdd: [Tax]?
     var taxesForRemove: [Tax]?
+    var taxesNamesForCell: [String]?
     var needUpdateTaxes = false
     var countCompletedRequest = 0
     var countRequest = 0
@@ -101,6 +101,8 @@ class AddDepartmentViewController: BaseViewController {
             self.navigationItem.title = "addDepart.titleEdit".localized
         }
     }
+    
+//    private func 
     
     private func taxesForRequest(from oldTaxes: [Tax], and selectedTaxes: [Tax]) -> (newTaxes: [Tax], deleteTaxes: [Tax]) {
         var newTaxes = [Tax]()
