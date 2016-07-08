@@ -22,6 +22,25 @@ class DataManager {
         saveContext()
         return result
     }
+
+  
+    static func addInventoryList(cost: String?, list_description: String?, price: String?, id: Int?, name: String?, departmentId: Int?, barcode: String?) -> InventoryList {
+        let newInventory = InventoryList.MR_createEntity()!
+        
+        newInventory.cost = cost
+        newInventory.id = id
+        newInventory.list_description = list_description
+        newInventory.price = price
+        newInventory.name = name
+        newInventory.barcode = barcode
+        if let depId = departmentId {
+            newInventory.listDepartment = getFirstDepartmentByAttribute("id", value: depId)
+        }
+        
+        
+        DataManager.saveContext()
+        return newInventory
+    }
     
     static func addInventoryList(barcode: String?) -> InventoryList {
         let newInventory = InventoryList.MR_createEntity()!

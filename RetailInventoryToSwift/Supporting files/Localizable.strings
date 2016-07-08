@@ -147,3 +147,9 @@
 // Error Alert
 
 "error.title" = "Error";
+
+// Select Icon
+
+"icon.hospitality" = "Hospitality";
+"icon.retail" = "Retail";
+"icon.title" = "Chose Icon";

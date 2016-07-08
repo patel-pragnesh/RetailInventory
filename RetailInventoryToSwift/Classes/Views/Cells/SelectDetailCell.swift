@@ -32,7 +32,7 @@ class SelectDetailCell: BaseCell {
                 selectionItemLabel.text = selectedTax.taxName
             }
             if let selectedInventory = itemForSelect as? InventoryList {
-                selectionItemLabel.text = selectedInventory.barcode
+                selectionItemLabel.text = selectedInventory.name
             }
         }
     }

@@ -20,8 +20,10 @@
     <entity name="InventoryList" representedClassName="InventoryList" syncable="YES">
         <attribute name="barcode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cost" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="list_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="merchantID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="needUpdate" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="adjustStockLevels" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AdjustStockLevels" inverseName="inventoryList" inverseEntity="AdjustStockLevels" syncable="YES"/>
@@ -58,7 +60,7 @@
     <elements>
         <element name="AdjustStockLevels" positionX="-459" positionY="288" width="128" height="133"/>
         <element name="Department" positionX="-459" positionY="567" width="110" height="148"/>
-        <element name="InventoryList" positionX="-279" positionY="297" width="128" height="195"/>
+        <element name="InventoryList" positionX="-279" positionY="297" width="128" height="225"/>
         <element name="Tax" positionX="-711" positionY="423" width="128" height="133"/>
         <element name="User" positionX="-171" positionY="141" width="128" height="75"/>
         <element name="Vendor" positionX="52" positionY="407" width="128" height="225"/>

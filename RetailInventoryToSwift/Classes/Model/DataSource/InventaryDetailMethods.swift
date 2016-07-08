@@ -9,7 +9,7 @@
 import Foundation
 
 enum DetailName: Int {
-    case barcode = 0, description, department, vendor, taxes, price, cost
+    case barcode = 0, description, department, vendor, taxes, price, cost, id
     static let count: Int = {
         var max: Int = 0
         while let _ = DetailName(rawValue: max) { max += 1 }
@@ -58,7 +58,7 @@ class InventoryDetailMethods: EntityMethods<String> {
              .vendor,
              .taxes:
             return .label
-        case  .price, .cost:
+        case  .price, .cost, .id:
             return .editNumber
         }
     }
@@ -79,6 +79,8 @@ class InventoryDetailMethods: EntityMethods<String> {
             return "price"
         case .cost:
             return "cost"
+        case .id:
+            return "id"
         }
     }
 }

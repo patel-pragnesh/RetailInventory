@@ -34,6 +34,7 @@ class AddDepartmentViewController: BaseViewController {
     var taxesForAdd: [Tax]?
     var taxesForRemove: [Tax]?
     var taxesNamesForCell: [String]?
+    var selectedItems: [InventoryList]!
     var needUpdateTaxes = false
     var countCompletedRequest = 0
     var countRequest = 0
@@ -50,6 +51,7 @@ class AddDepartmentViewController: BaseViewController {
         subscribeKeyboardNotification()
         
         oldTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
+        selectedItems = InventoryListMethods.itemsByDepartment(departmentTemplate.id!)
         networkActivity.hidden = true
     }
     
@@ -81,7 +83,7 @@ class AddDepartmentViewController: BaseViewController {
         }
         if segue.identifier == MyConstant.segueAppliedItems {
             let upcoming = segue.destinationViewController as! AppliedItemsViewController
-            upcoming.selectedItems = InventoryListMethods.itemsByDepartment(departmentTemplate.id!)
+            upcoming.selectedItems = selectedItems
         }
         if segue.identifier == MyConstant.segueAppliedTaxes {
             let upcoming = segue.destinationViewController as! AppliedTaxesViewController
@@ -326,7 +328,8 @@ extension AddDepartmentViewController: UITableViewDataSource {
         cell.updateCell(addDepartmentMethods.parameterCell(addDepartmentMethods.enumCell(indexPath.row)),
                         infoCell: departmentTemplate,
                         identCell: addDepartmentMethods.enumCell(indexPath.row),
-                        taxes: oldTaxesToString())
+                        taxes: oldTaxesToString(),
+                        countItems: selectedItems.count)
         return cell
     }
 }

@@ -16,15 +16,19 @@ public enum TaxeDepartmentRouter: URLRequestConvertible {
     
     case Taxes
     case Departments
+    case Items
     
     public var URLRequest: NSMutableURLRequest {
         let result: (path: String, method: Alamofire.Method) = {
             switch self {
             case .Taxes:
-                let path = MyConstant.kApiPrefix + "taxes"
+                let path = MyConstant.kApiPrefix + MyConstant.kApiTaxes
                 return (path, .GET)
             case .Departments:
-                let path = MyConstant.kApiPrefix + "departments"
+                let path = MyConstant.kApiPrefix + MyConstant.kApiDepartments
+                return (path, .GET)
+            case .Items:
+                let path = MyConstant.kApiPrefix + MyConstant.kApiItems
                 return (path, .GET)
             }
         }()
@@ -34,7 +38,7 @@ public enum TaxeDepartmentRouter: URLRequestConvertible {
         let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(result.path))
         URLRequest.HTTPMethod = result.method.rawValue
         URLRequest.setValue(MyConstant.kUserToken, forHTTPHeaderField: "X-Access-Token")
-        URLRequest.timeoutInterval = NSTimeInterval(10 * 1000)
+
         let encoding = Alamofire.ParameterEncoding.URL
         return encoding.encode(URLRequest, parameters: nil).0
     }

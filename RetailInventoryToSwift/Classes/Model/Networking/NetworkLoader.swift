@@ -115,4 +115,45 @@ class NetworkLoader {
 
         }
     }
+    static func downloadItems(completion: (items: [ItemResponse]) -> Void, failure: (code: UInt, message: String) -> Void) {
+        Alamofire.request(TaxeDepartmentRouter.Items)
+            .responseJSON { response in
+                guard !response.result.isFailure else {
+                    failure(code: 0, message: "unable to network connection or server unreachable")
+                    return
+                }
+                guard response.result.isSuccess else {
+                    failure(code: 0, message: "response unsuccessful")
+                    return
+                }
+                print(response.result.value)
+                guard let responseJSON = response.result.value as? [AnyObject] else {
+                    guard let fail = response.result.value as AnyObject! else {
+                        return
+                    }
+                    guard let error = fail["error"] as AnyObject! else {
+                        return
+                    }
+                    guard let code = error["code"] as? UInt else {
+                        return
+                    }
+                    guard let message = error["message"] as? String else {
+                        return
+                    }
+                    
+                    failure(code: code, message: message)
+                    return
+                }
+                let items = responseJSON.map({ ItemResponse(departmentId: ($0["departmentId"] as? Int)!,
+                    itemName: ($0["itemName"] as? String)!,
+                    itemNotes: ($0["itemNotes"] as? String)!,
+                    price: String(($0["price"] as? Int)!),
+                    cost: String(($0["cost"] as? Int)!),
+                    id: ($0["id"] as? Int)!,
+                    barcode: ($0["lookup"] as? String)
+                    )
+                })
+                completion(items: items)
+        }
+    }
 }

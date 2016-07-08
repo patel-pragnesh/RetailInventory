@@ -1,8 +1,8 @@
 //
 //  InventoryList+CoreDataProperties.swift
-//  RetailInventoryToSwift
+//  RetailInventorySwift
 //
-//  Created by Sak, Andrey2 on 6/21/16.
+//  Created by Sak, Andrey2 on 7/8/16.
 //  Copyright © 2016 Anashkin, Evgeny. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,14 +20,18 @@ extension InventoryList {
     @NSManaged var merchantID: String?
     @NSManaged var needUpdate: NSNumber?
     @NSManaged var price: String?
-    @NSManaged var listDepartment: Department?
-    @NSManaged var listVendor: Vendor?
-    @NSManaged var listTax: Tax?
+    @NSManaged var id: NSNumber?
+    @NSManaged var name: String?
     @NSManaged var adjustStockLevels: AdjustStockLevels?
+    @NSManaged var listDepartment: Department?
+    @NSManaged var listTax: Tax?
+    @NSManaged var listVendor: Vendor?
     
     subscript(key: String) -> AnyObject? {
         get {
             switch key {
+            case "id":
+                return id
             case "barcode":
                 return barcode
             case "cost":
@@ -54,6 +58,8 @@ extension InventoryList {
         }
         set(value) {
             switch key {
+            case "id":
+                id = value as? Int
             case "barcode":
                 barcode = value as? String
             case "cost":

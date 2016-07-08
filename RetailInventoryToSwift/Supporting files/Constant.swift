@@ -16,7 +16,7 @@ struct MyConstant {
     static let defaultCellHeigh: CGFloat = 70
     static let toolbarHeigh: CGFloat = 40
     static let defaultIdentToKeyboard: CGFloat = 10
-    static let iconSize: CGFloat = 24
+    static let iconSize: CGFloat = 35
     static let defaultFont: String = "HelveticaNeue-Bold"
     static let titleFont: String = "HelveticaNeue"
 
@@ -51,6 +51,7 @@ struct MyConstant {
     static let kApiPrefix = "api/v1/"
     static let kApiTaxes = "taxes"
     static let kApiDepartments = "departments"
+    static let kApiItems = "items"
     
     static let socketURL = "https://echo-wss.harbortouch.com:443/"
     

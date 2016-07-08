@@ -72,6 +72,7 @@ class SocketClient {
         
         socket?.on("command error") { data, ack in
             let response = (data[0] as! String).parseJSONString! as? [String: AnyObject]
+            print("command error") // TODO: print
             print (response)
             if response!["error"] != nil {
                 if let errorContext = response!["error"] as? [String: AnyObject] {

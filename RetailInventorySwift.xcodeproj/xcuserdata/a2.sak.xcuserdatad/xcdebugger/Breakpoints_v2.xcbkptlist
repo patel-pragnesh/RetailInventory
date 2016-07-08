@@ -89,61 +89,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RetailInventoryToSwift/Classes/Model/Networking/SocketClient.swift"
-            timestampString = "489660712.940823"
+            filePath = "RetailInventoryToSwift/Classes/Model/Networking/NetworkLoader.swift"
+            timestampString = "489674679.49329"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "addHandlers()"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "downloadItems(_:failure:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RetailInventoryToSwift/Classes/Model/Networking/SocketClient.swift"
-            timestampString = "489660715.595917"
+            filePath = "RetailInventoryToSwift/Classes/Model/Entity/Template/DepartmentTemplate.swift"
+            timestampString = "489684158.730303"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "addHandlers()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RetailInventoryToSwift/Classes/Model/Networking/SocketClient.swift"
-            timestampString = "489660979.9316"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "parseResponse(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RetailInventoryToSwift/Classes/Model/Networking/SocketClient.swift"
-            timestampString = "489660964.873705"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "taxMapDelete(_:DepartmentId:failure:)"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "asDictionaryForRequest()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

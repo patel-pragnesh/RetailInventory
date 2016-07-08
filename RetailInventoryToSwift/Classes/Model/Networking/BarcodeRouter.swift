@@ -27,7 +27,6 @@ public enum BarcodeRouter: URLRequestConvertible {
         let URL = NSURL(string: BarcodeRouter.baseURLPath)!
         let URLRequest = NSMutableURLRequest(URL: URL)
         URLRequest.HTTPMethod = result.method.rawValue
-        URLRequest.timeoutInterval = NSTimeInterval(10 * 1000)
         
         let encoding = Alamofire.ParameterEncoding.URL
         

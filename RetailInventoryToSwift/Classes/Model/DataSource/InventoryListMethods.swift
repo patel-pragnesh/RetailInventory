@@ -11,6 +11,8 @@ import Foundation
 enum InventoryListField: String {
     case barcode = "barcode",
         cost = "cost",
+        id = "id",
+        name = "name",
         descriptopn = "list_description",
         merchandID = "merchandID",
         price = "price",
@@ -30,6 +32,42 @@ class InventoryListMethods: EntityMethods<InventoryList> {
     
     static func addInventory(barcode: String?) -> InventoryList {
          return DataManager.addInventoryList(barcode)
+    }
+    
+    
+
+    static func addInventory(cost: String?, list_description: String?, price: String?, id: Int?, name: String?, departmentId: Int?, barcode: String?) -> InventoryList {
+        var depId: Int?
+        if departmentId == 0 {
+            depId = nil
+        } else {
+            depId = departmentId
+        }
+        return DataManager.addInventoryList(cost, list_description: list_description, price: price, id: id, name: name, departmentId: depId, barcode: barcode)
+    }
+    
+    static func addInventoryFromResponse(items: [ItemResponse]) {
+        let inventorys = DataManager.fetchAllInventoryList()
+        for item in items {
+            var isConsist = false
+            for inventory in inventorys {
+                if inventory.id == item.id {
+                    isConsist = true
+                    editInventory(InventoryListField.descriptopn, at: inventory, value: item.itemNotes)
+                    editInventory(InventoryListField.cost, at: inventory, value: item.cost)
+                    editInventory(InventoryListField.price, at: inventory, value: item.price)
+                    editInventory(InventoryListField.name, at: inventory, value: item.itemName)
+                    editInventory(InventoryListField.barcode, at: inventory, value: item.barcode)
+                    if item.departmentId != 0 {
+                        editInventory(InventoryListField.listDepartment, at: inventory, value: DepartmentMethods.departmentBy(item.departmentId!))
+                    }
+                }
+            }
+            if !isConsist {
+                addInventory(item.cost, list_description: item.itemNotes, price: item.price, id: item.id, name: item.itemName, departmentId: item.departmentId, barcode: item.barcode)
+            }
+            
+        }
     }
            
     static func removeInventory(inventory: InventoryList) -> Bool {
@@ -78,6 +116,8 @@ class InventoryListMethods: EntityMethods<InventoryList> {
             return inventory.listTax?.taxName
         case .vendor:
             return inventory.listVendor?.name
+        case .id:
+            return inventory.id
         }
     }
     

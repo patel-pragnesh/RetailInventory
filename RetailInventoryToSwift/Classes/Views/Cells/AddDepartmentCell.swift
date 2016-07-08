@@ -37,7 +37,7 @@ class AddDepartmentCell: BaseCell {
         }
     }
     
-    func updateCell(typeCell: AddDepartmentsMethods.CellType, infoCell: DepartmentTemplate?, identCell: DepartmentCell, taxes: String){
+    func updateCell(typeCell: AddDepartmentsMethods.CellType, infoCell: DepartmentTemplate?, identCell: DepartmentCell, taxes: String, countItems: Int){
         nameTextField.inputAccessoryView = toolbar()
         self.titleLabel.hidden = false
         
@@ -70,7 +70,7 @@ class AddDepartmentCell: BaseCell {
             nameTextField.enabled = false
             switch identCell {
                 case .items:
-                    nameTextField.text = "" // maybe need input count applied items
+                    nameTextField.text = String(countItems)
                 case .taxes:
                     nameTextField.text = taxes
                 default:

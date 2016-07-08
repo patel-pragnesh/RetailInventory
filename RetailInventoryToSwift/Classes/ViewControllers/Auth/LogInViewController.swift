@@ -13,7 +13,7 @@ class LogInViewController: BaseViewController {
     var defaultButtonConstraint: CGFloat = 0
     var tapRecognizer: UITapGestureRecognizer!
     var countCompletedRequest = 0
-    var countRequest = 2
+    var countRequest = 3
     var isPresentedErrorAlert = false
     
     @IBOutlet weak var merchantIdLabel: UILabel!
@@ -119,11 +119,23 @@ class LogInViewController: BaseViewController {
         
     }
     
+    func downloadItems() {
+        NetworkLoader.downloadItems({ items in
+            InventoryListMethods.addInventoryFromResponse(items)
+            self.countCompletedRequest += 1
+            self.stopAnimateNetworkActivity()
+            },
+                                          failure: {(code, message) in
+                                            self.errorAlert(code, message: message)
+        })
+    }
+    
     func downloadDepartments() {
         NetworkLoader.downloadDepartments({ departments in
                 DepartmentMethods().updateDepartments(departments)
                 self.countCompletedRequest += 1
                 self.stopAnimateNetworkActivity()
+                self.downloadItems()
         },
               failure: {(code, message) in
                 self.errorAlert(code, message: message)
