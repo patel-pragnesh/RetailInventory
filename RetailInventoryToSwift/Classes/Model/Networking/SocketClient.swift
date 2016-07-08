@@ -10,7 +10,7 @@ import Foundation
 import SocketIOClientSwift
 
 enum ResponseCode: Int {
-    case succes = 0, fail
+    case fail, depCreate, depUpdate, taxMapCreate, taxMapDelete
 }
 
 class SocketClient {
@@ -22,8 +22,7 @@ class SocketClient {
     
     
     static var socket: SocketIOClient?
-    static var failure: ((code: UInt, message: String) -> Void)?
-    static var success: ((department: DepartmentTemplate) -> Void)?
+    static var failure: ((ResponseCode, [String: AnyObject]?) -> Void)?
     
     static func initSocket() {
         socket = SocketIOClient(socketURL: NSURL(string: MyConstant.socketURL)!, options: [.ForcePolling(true)])
@@ -51,33 +50,24 @@ class SocketClient {
     static func addHandlers() {
         socket?.on("command response") {data, ack in
             let response = (data[0] as! String).parseJSONString! as? [String: AnyObject]
-            print (response)
             
-            if response!["error"] != nil {
-                if let errorContext = response!["error"] as? [String: AnyObject] {
-                    failure?(code: errorContext["code"] as! UInt, message: errorContext["message"] as! String)
-                    return
-                }
+            let (responseCode, responseValue) = parseResponse(response!)
+            
+            switch responseCode {
+            case .depCreate:
+                DepartmentMethods.addDepartmentFromResponse(responseValue)
+            case .depUpdate:
+                DepartmentMethods.updateDepartmentFromResponse(responseValue)
+            case .taxMapCreate:
+                TaxMethods.addTaxMapFromResponse(responseValue)
+            case .taxMapDelete:
+                TaxMethods.removeTaxMapFromResponse(responseValue)
+            case .fail:
+                failure?(responseCode, responseValue)
+                return
             }
-            let event = response!["event"] as? String
-            var departmentResponse = DepartmentTemplate()
-            switch event! {
-            case keyTaxMapCreate:
-                departmentResponse.id = response!["departmentId"] as? Int
-            case keyTaxMapDelete:
-                departmentResponse.id = response!["departmentId"] as? Int
-            case keyCreateDepartment, keyUpdateDepartment:
-                departmentResponse.name = response!["name"] as? String
-                departmentResponse.itemsEbt = response!["ebtItem"] as? Bool
-                departmentResponse.id = response!["id"] as? Int
-                if let icon = response!["glyph"] as! String? {
-                    let i = UInt32(strtoul(icon, nil, 16)) // to decimal
-                    departmentResponse.icon = String(Character(UnicodeScalar(i)))      // to char and string
-                }
-                departmentResponse.active = response!["active"] as? Bool
-            default: return
-            }
-            success?(department: departmentResponse)
+            failure?(responseCode, nil)
+            
         }
         
         socket?.on("command error") { data, ack in
@@ -85,13 +75,13 @@ class SocketClient {
             print (response)
             if response!["error"] != nil {
                 if let errorContext = response!["error"] as? [String: AnyObject] {
-                    failure?(code: errorContext["code"] as! UInt, message: errorContext["message"] as! String)
+                    failure?(ResponseCode.fail, errorContext)
                 }
             }
         }
     }
     
-    static func updateDepartment(departmentTemplate: DepartmentTemplate, success: (department: DepartmentTemplate) -> Void, failure: (code: UInt, message: String) -> Void) {
+    static func updateDepartment(departmentTemplate: DepartmentTemplate, failure:(ResponseCode, [String: AnyObject]?) -> Void) {
         var department = departmentTemplate.asDictionaryForRequest()
 
         department["token"] = MyConstant.kUserToken
@@ -99,119 +89,94 @@ class SocketClient {
         var items = department
         items["event"] = keyUpdateDepartment
             
-            self.success = success
         self.failure = failure
         
         socket?.emit("command", items)
     }
     
-    static func createDepartment(departmentTemplate: DepartmentTemplate, success: (department: DepartmentTemplate) -> Void, failure: (code: UInt, message: String) -> Void) {
+    static func createDepartment(departmentTemplate: DepartmentTemplate, failure: (ResponseCode, [String: AnyObject]?) -> Void) {
         var department = departmentTemplate.asDictionaryForRequest()
         
         department["token"] = MyConstant.kUserToken
         
         var items = department
         items["event"] = keyCreateDepartment
-        
-        self.success = success
+
         self.failure = failure
         
         socket?.emit("command", items)
     }
     
-    static func taxMapCreate(taxId: Int, DepartmentId: Int, success: (department: DepartmentTemplate) -> Void, failure: (code: UInt, message: String) -> Void) {
-        var tax = TaxTemplate.taxMapForRequest(taxId, depId: DepartmentId)
+    static func taxMapCreate(taxId: Int, DepartmentId: Int, failure: (ResponseCode, [String: AnyObject]?) -> Void) {
+        var tax = TaxTemplate.taxMapAsDictionaryForRequest(taxId, depId: DepartmentId)
         
         tax["token"] = MyConstant.kUserToken
         
         var items = tax
         items["event"] = keyTaxMapCreate
-        
-        self.success = success
+
         self.failure = failure
         
         socket?.emit("command", items)
     }
     
-    static func taxMapDelete(taxId: Int, DepartmentId: Int, success: (department: DepartmentTemplate) -> Void, failure: (code: UInt, message: String) -> Void) {
-        var tax = TaxTemplate.taxMapForRequest(taxId, depId: DepartmentId)
+    static func taxMapDelete(taxId: Int, DepartmentId: Int, failure: (ResponseCode, [String: AnyObject]?) -> Void) {
+        var tax = TaxTemplate.taxMapAsDictionaryForRequest(taxId, depId: DepartmentId)
         
         tax["token"] = MyConstant.kUserToken
         
         var items = tax
         items["event"] = keyTaxMapDelete
-        
-        self.success = success
+
         self.failure = failure
         
         socket?.emit("command", items)
     }
     
-//    static func emitDepartment(departmentTemplate: DepartmentTemplate, taxId: NSNumber?, success: (department: DepartmentTemplate) -> Void, failure: (code: UInt, message: String) -> Void) {
-//        var department = [String:AnyObject]()
-//        
-//        switch typeEmit {
-//        case .create:
-//            department["active"] = departmentTemplate.active
-//            department["ebtItem"] = departmentTemplate.itemsEbt
-//            department["name"] = departmentTemplate.name
-//            if let icon = departmentTemplate.icon {
-//                department["glyph"] = String((Int(icon))!, radix: 16)
-//            }
-//        case .update:
-//            department["active"] = departmentTemplate.active
-//            department["ebtItem"] = departmentTemplate.itemsEbt
-//            department["name"] = departmentTemplate.name
-//            department["id"] = departmentTemplate.id
-//            if let icon = departmentTemplate.icon {
-//                let ch = icon.unicodeScalars
-//                department["glyph"] = String(ch[ch.startIndex].value, radix: 16)
-//            }
-//        case .taxMapCreate:
-//            department["departmentId"] = departmentTemplate.id
-//            department["taxId"] = taxId
-//        case .taxMapDelete:
-//            department["departmentId"] = departmentTemplate.id
-//            department["taxId"] = taxId
-//        }
-//        
-//        department["token"] = MyConstant.kUserToken
-//        
-//        var items = department
-//        items["event"] = typeEmit.rawValue
-//        
-//        socket?.emit("command", items)
-//        
-//        socket?.on("command response") {data, ack in
-//            let response = (data[0] as! String).parseJSONString! as? [String: AnyObject]
-//            // let response = (data[0] as! AnyObject)
-//            print (response)
-//            if response!["error"] != nil {
-//                if let errorContext = response!["error"] as? [String: AnyObject] {
-//                    failure(code: errorContext["code"] as! UInt, message: errorContext["message"] as! String)
-//                }
-//            } else {
-//                let event = response!["event"] as? String
-//                var departmentResponse = DepartmentTemplate()
-//                switch SocketEvent(rawValue: event!)! {
-//                case .taxMapCreate:
-//                    departmentResponse.id = response!["departmentId"] as? Int
-//                case .taxMapDelete:
-//                    departmentResponse.id = response!["departmentId"] as? Int
-//                case .create, .update:
-//                    departmentResponse.name = response!["name"] as? String
-//                    departmentResponse.itemsEbt = response!["ebtItem"] as? Bool
-//                    departmentResponse.id = response!["id"] as? Int
-//                    if let icon = response!["glyph"] as! String? {
-//                        let i = UInt32(strtoul(icon, nil, 16)) // to decimal
-//                        departmentResponse.icon = String(Character(UnicodeScalar(i)))      // to char and string
-//                    }
-//                    departmentResponse.active = response!["active"] as? Bool
-//                }
-//                success(department: departmentResponse)
-//            }
-//        }
-//    }
+    static private func parseResponse(response: AnyObject) -> (code: ResponseCode, responseValue: [String: AnyObject]) {
+        let responseDictionary = response as? [String: AnyObject]
+        print ("++++++++++++++++++++++++")
+        print(responseDictionary)
+        print ("++++++++++++++++++++++++")
+        if responseDictionary!["error"] != nil {
+            if let errorContext = responseDictionary!["error"] as? [String: AnyObject] {
+                print(errorContext)
+                var error = [String: AnyObject]()
+                error["code"] = errorContext["code"] as? UInt
+                error["message"] = errorContext["message"] as? String
+                error["details"] = errorContext["details"] as? String
+                return (ResponseCode.fail, error)
+            }
+        }
+        let event = responseDictionary!["event"] as? String
+        var departmentResponse = [String: AnyObject]()
+        switch event! {
+        case keyTaxMapCreate:
+            departmentResponse["departmentId"] = responseDictionary!["departmentId"] as? Int
+            departmentResponse["taxId"] = responseDictionary!["taxId"] as? Int
+            return (ResponseCode.taxMapCreate, departmentResponse)
+        case keyTaxMapDelete:
+            departmentResponse["departmentId"] = responseDictionary!["departmentId"] as? Int
+            departmentResponse["taxId"] = responseDictionary!["taxId"] as? Int
+            return (ResponseCode.taxMapDelete, departmentResponse)
+        case keyCreateDepartment, keyUpdateDepartment:
+            departmentResponse["name"] = responseDictionary!["name"] as? String
+            departmentResponse["itemsEbt"] = responseDictionary!["ebtItem"] as? Bool
+            departmentResponse["id"] = responseDictionary!["id"] as? Int
+            if let icon = responseDictionary!["glyph"] as! String? {
+                let i = UInt32(strtoul(icon, nil, 16)) // to decimal
+                departmentResponse["icon"] = String(Character(UnicodeScalar(i)))      // to char and string
+            }
+            departmentResponse["active"] = responseDictionary!["active"] as? Bool
+            if event == keyCreateDepartment {
+                return (ResponseCode.depCreate, departmentResponse)
+            } else {
+                return (ResponseCode.depUpdate, departmentResponse)
+            }
+        default: return (ResponseCode.fail, [String: AnyObject]())
+        }
+    }
+    
 }
 
 

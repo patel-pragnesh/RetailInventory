@@ -127,6 +127,10 @@ class DataManager {
         return Tax.MR_findAllSortedBy("taxName", ascending: true) as! [Tax]
     }
     
+    static func getFirstTaxByAttribute(attribute: String, value: AnyObject) -> Tax? {
+        return Tax.MR_findFirstByAttribute(attribute, withValue: value)
+    }
+    
     static func deleteTax(tax: Tax) -> Bool {
         return tax.MR_deleteEntity()
     }
@@ -140,6 +144,7 @@ class DataManager {
         saveContext()
         return newTax
     }
+    
     
     static func getCountTax() -> UInt {
         return Tax.MR_countOfEntities()

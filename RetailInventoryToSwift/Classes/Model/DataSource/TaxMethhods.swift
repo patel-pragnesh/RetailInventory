@@ -115,35 +115,70 @@ class TaxMethods: EntityMethods<Tax> {
         }
     }
     
-    static func addDepartmentTo(taxForAdd: Tax, department: Department) {
-        let taxes = DataManager.fetchAllTax()
-        for tax in taxes {
-            if tax.id == taxForAdd.id {
-                var deps = tax.department?.allObjects as! [Department]
-                if  !deps.contains(department) {
-                    deps.append(department)
-                }
-                tax.department = NSSet(array: deps)
+//    static func addDepartmentTo(taxForAdd: Tax, department: Department) {
+//        let taxes = DataManager.fetchAllTax()
+//        for tax in taxes {
+//            if tax.id == taxForAdd.id {
+//                var deps = tax.department?.allObjects as! [Department]
+//                if  !deps.contains(department) {
+//                    deps.append(department)
+//                }
+//                tax.department = NSSet(array: deps)
+//            }
+//        }
+//        DataManager.saveContext()
+//    }
+    
+    static func addTaxMapFromResponse(responseValue: [String: AnyObject]) {
+        let taxId = responseValue["taxId"]
+        let departmentId = responseValue["departmentId"]
+        
+        let tax = DataManager.getFirstTaxByAttribute("id", value: taxId!)
+        let department = DataManager.getFirstDepartmentByAttribute("id", value: departmentId!)
+        
+        if tax != nil {
+            var deps = tax!.department?.allObjects as! [Department]
+            if !deps.contains(department) {
+                deps.append(department)
             }
+            tax!.department = NSSet(array: deps)
+        }
+        DataManager.saveContext()
+    }
+    
+    static func removeTaxMapFromResponse(responseValue: [String: AnyObject]) {
+        let taxId = responseValue["taxId"]
+        let departmentId = responseValue["departmentId"]
+
+        let tax = DataManager.getFirstTaxByAttribute("id", value: taxId!)
+        let department = DataManager.getFirstDepartmentByAttribute("id", value: departmentId!)
+        
+        if tax != nil {
+            var deps = tax!.department?.allObjects as! [Department]
+            let index = deps.indexOf(department)
+            if  index != nil {
+                deps.removeAtIndex(index!)
+            }
+            tax!.department = NSSet(array: deps)
         }
         DataManager.saveContext()
     }
 
-    static func removeDepartment(from taxForRemove: Tax, department: Department) {
-        let taxes = DataManager.fetchAllTax()
-        for tax in taxes {
-            if tax.id == taxForRemove.id {
-                var deps = tax.department?.allObjects as! [Department]
-                let index = deps.indexOf(department)
-                if  index != nil {
-                    deps.removeAtIndex(index!)
-                }
-                tax.department = NSSet(array: deps)
-            }
-        }        
-        DataManager.saveContext()
-    }
-    
+//    static func removeDepartment(from taxForRemove: Tax, department: Department) {
+//        let taxes = DataManager.fetchAllTax()
+//        for tax in taxes {
+//            if tax.id == taxForRemove.id {
+//                var deps = tax.department?.allObjects as! [Department]
+//                let index = deps.indexOf(department)
+//                if  index != nil {
+//                    deps.removeAtIndex(index!)
+//                }
+//                tax.department = NSSet(array: deps)
+//            }
+//        }        
+//        DataManager.saveContext()
+//    }
+//    
     static func taxesByDepartment(departmentID: NSNumber) -> [Tax] {
         return DataManager.getTaxesByDepartment(departmentID)
     }

@@ -48,6 +48,8 @@ class AddDepartmentViewController: BaseViewController {
         imageForButton()
         configTitles()
         subscribeKeyboardNotification()
+        
+        oldTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
         networkActivity.hidden = true
     }
     
@@ -83,7 +85,6 @@ class AddDepartmentViewController: BaseViewController {
         }
         if segue.identifier == MyConstant.segueAppliedTaxes {
             let upcoming = segue.destinationViewController as! AppliedTaxesViewController
-            oldTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
             upcoming.selectedTaxes = oldTaxes
             upcoming.delegate = self
         }
@@ -118,6 +119,32 @@ class AddDepartmentViewController: BaseViewController {
         return (newTaxes, deleteTaxes)
     }
     
+    private func updateOldTaxes() {
+        for taxAdd in taxesForAdd! {
+            oldTaxes.append(taxAdd)
+        }
+        for taxRemove in taxesForRemove! {
+            oldTaxes.removeAtIndex(oldTaxes.indexOf(taxRemove)!)
+        }
+    }
+    
+    private func oldTaxesToString() -> String {
+        var taxes = String()
+        if oldTaxes.count > 1 {
+            for i in  0 ... oldTaxes.count - 2 {
+                taxes += oldTaxes[i].taxName! + ", "
+            }
+            taxes += (oldTaxes.last?.taxName!)!
+            return taxes
+        } else {
+            if oldTaxes.count == 0 {
+                return ""
+            } else {
+                return (oldTaxes.first?.taxName)!
+            }
+        }
+    }
+    
     // MARK: - navigationBarButton
     
     func imageForButton() {
@@ -138,59 +165,69 @@ class AddDepartmentViewController: BaseViewController {
         switch typeWorking! {
         case .add:
             countRequest += 1
-            SocketClient.createDepartment(departmentTemplate, success: { department in
-                                    self.delegateAddDepartmentViewController?.addDepartmentToBase(department)
-                                    self.countCompletedRequest += 1
-                                    self.stopAnimateNetworkActivity()
-                                  },
-                                  failure: { (code, message) in
-                    self.errorAlert(code, at: message)
-            })
+            sendNewDepartment()
         case .edit:
             countRequest += 1
-            SocketClient.updateDepartment(departmentTemplate, success: { department in
-                                                    if department.name != nil {
-                                                        self.delegateAddDepartmentViewController?.editDepartmentToBase(department)
-                                                        self.countCompletedRequest += 1
-                                                        self.stopAnimateNetworkActivity()
-                                                    }
-                                                  },
-                                                  failure: { (code, message) in
-                                                    self.errorAlert(code, at: message)
-                                                    self.networkActivity.hidden = true
-                                                  })
+            sendEditDepartment()
         }
-        sendTaxToServer()
+        sendTaxesToServer()
     }
     
-    func sendTaxToServer() {
+    func sendNewDepartment() {
+        SocketClient.createDepartment(departmentTemplate,
+                                      failure: { (code, error) in
+                                        switch code {
+                                        case .fail:
+                                            self.errorAlert(error!)
+                                        default:
+                                            self.countCompletedRequest += 1
+                                            self.stopAnimateNetworkActivity()
+                                        }
+        })
+    }
+    
+    func sendEditDepartment() {
+        SocketClient.updateDepartment(departmentTemplate,
+                                      failure: { (code, error) in
+                                        switch code {
+                                        case .fail:
+                                            self.errorAlert(error!)
+                                        default:
+                                            self.countCompletedRequest += 1
+                                            self.stopAnimateNetworkActivity()
+                                        }
+        })
+    }
+    
+    func sendTaxesToServer() {
         if taxesForAdd?.count > 0 {
             for tax in taxesForAdd! {
                 countRequest += 1
                 SocketClient.taxMapCreate(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
-                                      success: { department in
-                                        TaxMethods.addDepartmentTo(tax, department: DepartmentMethods.departmentBy(department.id!))
-                                        self.countCompletedRequest += 1
-                                        self.stopAnimateNetworkActivity()
-                                        
-                                      },
-                                      failure: { (code, message) in
-                                        self.errorAlert(code, at: message)
-                                    })
+                                          failure: { (code, error) in
+                                            switch code {
+                                            case .fail:
+                                                self.errorAlert(error!)
+                                            default:
+                                                self.countCompletedRequest += 1
+                                                self.stopAnimateNetworkActivity()
+                                            }
+                })
             }
         }
         if taxesForRemove?.count > 0 {
             for tax in taxesForRemove! {
                 countRequest += 1
-                SocketClient.taxMapCreate(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
-                                      success: { department in
-                                        TaxMethods.removeDepartment(from: tax, department: DepartmentMethods.departmentBy(department.id!))
-                                        self.countCompletedRequest += 1
-                                        self.stopAnimateNetworkActivity()
-                                      },
-                                      failure: { (code, message) in
-                                        self.errorAlert(code, at: message)
-                                    })
+                SocketClient.taxMapDelete(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
+                                          failure: { (code, error) in
+                                            switch code {
+                                            case .fail:
+                                                self.errorAlert(error!)
+                                            default:
+                                                self.countCompletedRequest += 1
+                                                self.stopAnimateNetworkActivity()
+                                            }
+                })
             }
         }
     }
@@ -209,10 +246,11 @@ class AddDepartmentViewController: BaseViewController {
     
     // MARK: - Alert
     
-    func errorAlert(code: UInt, at message: String) {
+    func errorAlert(error: [String: AnyObject]) {
         
-        let errorAlert = UIAlertController(title:"\(code)", message: "\(message)", preferredStyle: .Alert)
+        let errorAlert = UIAlertController(title:"\(error["code"]!)", message: "\(error["message"]!)", preferredStyle: .Alert)
         let cancelAction = UIAlertAction(title: "storeSetup.alertCancel".localized, style: .Default) { (action:UIAlertAction!) in
+            self.networkActivity.hidden = true
             return
         }
         errorAlert.addAction(cancelAction)
@@ -281,7 +319,8 @@ extension AddDepartmentViewController: UITableViewDataSource {
         cell.tag = indexPath.row
         cell.updateCell(addDepartmentMethods.parameterCell(addDepartmentMethods.enumCell(indexPath.row)),
                         infoCell: departmentTemplate,
-                        identCell: addDepartmentMethods.enumCell(indexPath.row))
+                        identCell: addDepartmentMethods.enumCell(indexPath.row),
+                        taxes: oldTaxesToString())
         return cell
     }
 }
@@ -309,7 +348,10 @@ extension AddDepartmentViewController: ToolBarControlsDelegate {
             if text != "" {
                 departmentTemplate.name = text
             } else {
-                errorAlert(0, at: "name must have value")
+                var error = [String: AnyObject]()
+                error["code"] = 0
+                error["message"] = "name must have value"
+                errorAlert(error)
                 tableView.reloadData()                
             }
         default:
@@ -353,5 +395,7 @@ extension AddDepartmentViewController: SelectedTaxesDelegate {
         let (newTax, deleteTax) = taxesForRequest(from: oldTaxes, and: selectedTaxes)
         taxesForAdd = newTax
         taxesForRemove = deleteTax
+        updateOldTaxes()
+        tableView.reloadData()
     }
 }

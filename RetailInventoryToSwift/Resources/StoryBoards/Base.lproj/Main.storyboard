@@ -1181,7 +1181,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDetailCell" id="8xP-OB-OUB" customClass="SelectDetailCell" customModule="RetailInventoryToSwift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDetailCell" id="8xP-OB-OUB" customClass="SelectDetailCell" customModule="RetailInventoryToSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="398" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8xP-OB-OUB" id="WrL-gx-bmg">
@@ -1255,7 +1255,7 @@
                                 <rect key="frame" x="8" y="20" width="398" height="716"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDetailCell" id="kNq-JY-fpo" customClass="SelectDetailCell" customModule="RetailInventoryToSwift" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SelectDetailCell" id="kNq-JY-fpo" customClass="SelectDetailCell" customModule="RetailInventoryToSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="398" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kNq-JY-fpo" id="B6h-CM-Lz4">
@@ -1572,7 +1572,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fh8-rK-mSM">
-                                                    <rect key="frame" x="16" y="12" width="358" height="21"/>
+                                                    <rect key="frame" x="146" y="12" width="228" height="21"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1580,8 +1580,11 @@
                                                         <outlet property="delegate" destination="cUW-Ue-Ber" id="v0J-D4-kCu"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C89-Kf-ooN">
-                                                    <rect key="frame" x="8" y="22" width="0.0" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test LAbel lalala" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C89-Kf-ooN">
+                                                    <rect key="frame" x="8" y="12" width="130" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="130" id="tFm-1D-3Ja"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>

@@ -14,7 +14,7 @@ struct TaxTemplate {
     var id: NSNumber?
     var active: Bool?
     
-    static func taxMapForRequest(taxId: Int, depId: Int) -> [String:AnyObject] {
+    static func taxMapAsDictionaryForRequest(taxId: Int, depId: Int) -> [String:AnyObject] {
         var tax = [String:AnyObject]()
         tax["taxId"] = taxId
         tax["departmentId"] = depId

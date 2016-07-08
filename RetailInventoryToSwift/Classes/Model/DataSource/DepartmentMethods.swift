@@ -96,7 +96,7 @@ class DepartmentMethods: EntityMethods<Department> {
 //        return DataManager.addDepartment(name, id: id, icon: icon, active: active, itemsEbt: itemsEbt)
 //    }
     
-    static func addDepartment(name: String?, id: NSNumber?, icon: String?, active: NSNumber?, itemsEbt: NSNumber?) -> Department {
+    static func addDepartment(name: String?, id: Int?, icon: String?, active: Bool?, itemsEbt: Bool?) -> Department {
         return DataManager.addDepartment(name, id: id, icon: icon, active: active, itemsEbt: itemsEbt)
     }
     
@@ -152,5 +152,26 @@ class DepartmentMethods: EntityMethods<Department> {
     
     static func fieldDetail(fieldName: DepartmentField, department: DepartmentTemplate) -> AnyObject? {
         return department[fieldName.rawValue]! as AnyObject
+    }
+    
+    static func addDepartmentFromResponse(responseDepartment: [String: AnyObject]) {
+        let name = responseDepartment["name"] as? String
+        let id = responseDepartment["id"] as? Int
+        let icon = responseDepartment["icon"] as? String
+        let itemEbt = responseDepartment["itemsEbt"] as? Bool
+        let active = responseDepartment["active"] as? Bool
+        addDepartment(name, id: id, icon: icon, active: active, itemsEbt: itemEbt)
+    }
+    
+    static func updateDepartmentFromResponse(responseDepartment: [String: AnyObject]) {
+        let id = responseDepartment["id"] as? Int
+        
+        let department = departmentBy(id!)
+        
+        department.name = responseDepartment["name"] as? String
+        department.active = responseDepartment["active"] as? Bool
+        department.itemsEbt = responseDepartment["itemsEbt"] as? Bool
+        department.icon = responseDepartment["icon"] as? String
+
     }
 }

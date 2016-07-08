@@ -33,11 +33,11 @@ class AddDepartmentCell: BaseCell {
     
     var addDepartments: String! {
         didSet {
-            self.titleLabel.text = addDepartments
+            titleLabel.text = addDepartments
         }
     }
     
-    func updateCell(typeCell: AddDepartmentsMethods.CellType, infoCell: DepartmentTemplate?, identCell: DepartmentCell){
+    func updateCell(typeCell: AddDepartmentsMethods.CellType, infoCell: DepartmentTemplate?, identCell: DepartmentCell, taxes: String){
         nameTextField.inputAccessoryView = toolbar()
         self.titleLabel.hidden = false
         
@@ -72,7 +72,7 @@ class AddDepartmentCell: BaseCell {
                 case .items:
                     nameTextField.text = "" // maybe need input count applied items
                 case .taxes:
-                    nameTextField.text = "" // maybe need input count applied taxes
+                    nameTextField.text = taxes
                 default:
                     break
             }            
