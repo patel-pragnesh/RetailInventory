@@ -89,22 +89,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RetailInventoryToSwift/Classes/ViewControllers/StoreSetup/Departments/AddDepartmentViewController.swift"
-            timestampString = "489663423.329396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "saveButtonTouch(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "RetailInventoryToSwift/Classes/Model/Networking/SocketClient.swift"
             timestampString = "489660712.940823"
             startingColumnNumber = "9223372036854775807"

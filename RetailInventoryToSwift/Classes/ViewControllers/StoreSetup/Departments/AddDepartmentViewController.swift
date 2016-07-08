@@ -157,18 +157,20 @@ class AddDepartmentViewController: BaseViewController {
         
         self.view.endEditing(true)
         
-        SocketClient.checkConnection()
-        
-        networkActivity.hidden = false
-        networkActivity.startAnimating()
-        
-        switch typeWorking! {
-        case .add:
-            countRequest += 1
-            sendNewDepartment()
-        case .edit:
-            countRequest += 1
-            sendEditDepartment()
+        if needUpdateTaxes {
+            SocketClient.checkConnection()
+            
+            networkActivity.hidden = false
+            networkActivity.startAnimating()
+            
+            switch typeWorking! {
+            case .add:
+                countRequest += 1
+                sendNewDepartment()
+            case .edit:
+                countRequest += 1
+                sendEditDepartment()
+            }
         }
         sendTaxesToServer()
     }
@@ -182,6 +184,7 @@ class AddDepartmentViewController: BaseViewController {
                                         default:
                                             self.countCompletedRequest += 1
                                             self.stopAnimateNetworkActivity()
+                                            self.needUpdateTaxes = false
                                         }
         })
     }
@@ -195,6 +198,7 @@ class AddDepartmentViewController: BaseViewController {
                                         default:
                                             self.countCompletedRequest += 1
                                             self.stopAnimateNetworkActivity()
+                                            self.needUpdateTaxes = false
                                         }
         })
     }
@@ -212,6 +216,7 @@ class AddDepartmentViewController: BaseViewController {
                                                 self.countCompletedRequest += 1
                                                 self.stopAnimateNetworkActivity()
                                             }
+                                            self.taxesForAdd = nil
                 })
             }
         }
@@ -227,6 +232,7 @@ class AddDepartmentViewController: BaseViewController {
                                                 self.countCompletedRequest += 1
                                                 self.stopAnimateNetworkActivity()
                                             }
+                                            self.taxesForRemove = nil
                 })
             }
         }
@@ -347,6 +353,7 @@ extension AddDepartmentViewController: ToolBarControlsDelegate {
         case .name:
             if text != "" {
                 departmentTemplate.name = text
+                needUpdateTaxes = true
             } else {
                 var error = [String: AnyObject]()
                 error["code"] = 0
@@ -370,10 +377,12 @@ extension AddDepartmentViewController: ChangeSwitchDepartmentDelegate {
     
     func changeActive(newValue: Bool) {
         departmentTemplate.active = newValue
+        needUpdateTaxes = true
     }
     
     func changeEbt(newValue: Bool) {
         departmentTemplate.itemsEbt = newValue
+        needUpdateTaxes = true
     }
 }
 
@@ -384,6 +393,7 @@ extension AddDepartmentViewController: IconsViewControllerDelegate {
     func iconsViewControllerResponse(icon: Character) {
         departmentTemplate.icon = String(icon)
         tableView.reloadData()
+        needUpdateTaxes = true
     }
 }
 
