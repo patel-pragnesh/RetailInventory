@@ -55,13 +55,13 @@ class SocketClient {
             
             switch responseCode {
             case .depCreate:
-                DepartmentMethods.addDepartmentFromResponse(responseValue)
+                DepartmentData.addDepartmentFromResponse(responseValue)
             case .depUpdate:
-                DepartmentMethods.updateDepartmentFromResponse(responseValue)
+                DepartmentData.updateDepartmentFromResponse(responseValue)
             case .taxMapCreate:
-                TaxMethods.addTaxMapFromResponse(responseValue)
+                TaxData.addTaxMapFromResponse(responseValue)
             case .taxMapDelete:
-                TaxMethods.removeTaxMapFromResponse(responseValue)
+                TaxData.removeTaxMapFromResponse(responseValue)
             case .fail:
                 failure?(responseCode, responseValue)
                 return

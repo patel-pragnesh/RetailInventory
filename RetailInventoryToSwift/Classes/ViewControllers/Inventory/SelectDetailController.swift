@@ -12,10 +12,12 @@ protocol SelectDetailDelegate: class {
     func updateDepartment(department: Department?)
     func updateTax(tax:Tax?)
     func updateVendor(vendor: Vendor?)
+    func updateTag(tag: Tag?)
+    func updateSet(set: Set?)
 }
 
 enum SelectionType: Int {
-    case vendor = 0, department, tax
+    case vendor = 0, department, tax, tag, set
 }
 
 class SelectDetailController: BaseViewController {
@@ -25,6 +27,8 @@ class SelectDetailController: BaseViewController {
     var department: Department?
     var vendor: Vendor?
     var tax: Tax?
+    var tag: Tag?
+    var set: Set?
     var selectionType: SelectionType!
     var selectionArray: [AnyObject]!
     
@@ -48,17 +52,25 @@ class SelectDetailController: BaseViewController {
             self.navigationItem.title = "selectDetail.selectTax".localized
         case .vendor:
              self.navigationItem.title = "selectDetail.selectVendor".localized
+        case .tag:
+            self.navigationItem.title = "selectDetail.selectTag".localized
+        case .set:
+            self.navigationItem.title = "selectDetail.selectSet".localized
         }
     }
    
     private func selectWorkingType() {
         switch selectionType! {
         case .department:
-            selectionArray = DepartmentMethods().getArray()
+            selectionArray = DepartmentData().getArray()
         case .tax:
-            selectionArray = TaxMethods().getArray()
+            selectionArray = TaxData().getArray()
         case .vendor:
-            selectionArray = VendorMethods().getArray()
+            selectionArray = VendorData().getArray()
+        case .tag:
+            selectionArray = TagData().getArray()
+        case .set:
+            selectionArray = SetData().getArray()
         }
     }
     
@@ -73,6 +85,12 @@ class SelectDetailController: BaseViewController {
         case .vendor:
             vendor = item as? Vendor
             updateVendor(vendor)
+        case .tag:
+            tag = item as? Tag
+            updateTag(tag)
+        case .set:
+            set = item as? Set
+            updateSet(set)
         }
     }
     
@@ -84,6 +102,10 @@ class SelectDetailController: BaseViewController {
             return tax
         case .vendor:
             return vendor
+        case .set:
+            return set
+        case .tag:
+            return tag
         }
     }
 }
@@ -131,6 +153,14 @@ extension SelectDetailController: SelectDetailDelegate {
     
     func updateVendor(vendor: Vendor?) {
         delegate!.updateVendor(vendor)
+    }
+    
+    func updateTag(tag: Tag?) {
+        delegate!.updateTag(tag)
+    }
+    
+    func updateSet(set: Set?) {
+        delegate!.updateSet(set)
     }
 }
 

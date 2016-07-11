@@ -37,7 +37,7 @@ class AddDepartmentCell: BaseCell {
         }
     }
     
-    func updateCell(typeCell: AddDepartmentsMethods.CellType, infoCell: DepartmentTemplate?, identCell: DepartmentCell, taxes: String, countItems: Int){
+    func updateCell(typeCell: AddDepartmentsData.CellType, infoCell: DepartmentTemplate?, identCell: DepartmentCell, taxes: String, countItems: Int){
         nameTextField.inputAccessoryView = toolbar()
         self.titleLabel.hidden = false
         

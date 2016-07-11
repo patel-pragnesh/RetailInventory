@@ -17,6 +17,8 @@ public enum TaxeDepartmentRouter: URLRequestConvertible {
     case Taxes
     case Departments
     case Items
+    case Sets
+    case Tags
     
     public var URLRequest: NSMutableURLRequest {
         let result: (path: String, method: Alamofire.Method) = {
@@ -29,6 +31,12 @@ public enum TaxeDepartmentRouter: URLRequestConvertible {
                 return (path, .GET)
             case .Items:
                 let path = MyConstant.kApiPrefix + MyConstant.kApiItems
+                return (path, .GET)
+            case .Sets:
+                let path = MyConstant.kApiPrefix + MyConstant.kApiSets
+                return (path, .GET)
+            case .Tags:
+                let path = MyConstant.kApiPrefix + MyConstant.kApiTags
                 return (path, .GET)
             }
         }()

@@ -18,18 +18,45 @@
         <relationship name="tax" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tax" inverseName="department" inverseEntity="Tax" syncable="YES"/>
     </entity>
     <entity name="InventoryList" representedClassName="InventoryList" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="barcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cost" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gtyOnHand" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="itemShortName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="list_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="merchantID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="needUpdate" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="openItem" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="printItem" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="tareWeight" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="usesWeightScale" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="weighted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="adjustStockLevels" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AdjustStockLevels" inverseName="inventoryList" inverseEntity="AdjustStockLevels" syncable="YES"/>
         <relationship name="listDepartment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Department" inverseName="inventoryList" inverseEntity="Department" syncable="YES"/>
+        <relationship name="listSets" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Set" inverseName="item" inverseEntity="Set" syncable="YES"/>
+        <relationship name="listTags" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="item" inverseEntity="Tag" syncable="YES"/>
         <relationship name="listTax" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tax" inverseName="inventoryList" inverseEntity="Tax" syncable="YES"/>
         <relationship name="listVendor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vendor" inverseName="inventoryList" inverseEntity="Vendor" syncable="YES"/>
+    </entity>
+    <entity name="Set" representedClassName=".Set" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="manyPer" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="max" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="item" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InventoryList" inverseName="listSets" inverseEntity="InventoryList" syncable="YES"/>
+    </entity>
+    <entity name="Tag" representedClassName=".Tag" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hidden" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="itemTagDesc" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="item" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="InventoryList" inverseName="listTags" inverseEntity="InventoryList" syncable="YES"/>
     </entity>
     <entity name="Tax" representedClassName=".Tax" syncable="YES">
         <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -59,10 +86,12 @@
     </entity>
     <elements>
         <element name="AdjustStockLevels" positionX="-459" positionY="288" width="128" height="133"/>
-        <element name="Department" positionX="-459" positionY="567" width="110" height="148"/>
-        <element name="InventoryList" positionX="-279" positionY="297" width="128" height="225"/>
-        <element name="Tax" positionX="-711" positionY="423" width="128" height="133"/>
+        <element name="Department" positionX="-497" positionY="477" width="110" height="148"/>
+        <element name="InventoryList" positionX="-272" positionY="342" width="128" height="403"/>
+        <element name="Tax" positionX="-713" positionY="542" width="128" height="133"/>
         <element name="User" positionX="-171" positionY="141" width="128" height="75"/>
         <element name="Vendor" positionX="52" positionY="407" width="128" height="225"/>
+        <element name="Tag" positionX="-443" positionY="750" width="128" height="118"/>
+        <element name="Set" positionX="70" positionY="675" width="128" height="133"/>
     </elements>
 </model>

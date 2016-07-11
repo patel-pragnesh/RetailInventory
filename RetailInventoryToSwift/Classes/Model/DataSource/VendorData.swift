@@ -19,7 +19,7 @@ enum VendorField: String {
     zip = "zip"
 }
 
-class VendorMethods: EntityMethods<Vendor> {
+class VendorData: EntityMethods<Vendor> {
     
     init() {
         let vendors = DataManager.fetchAllVendor()

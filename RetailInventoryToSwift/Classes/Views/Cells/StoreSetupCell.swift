@@ -32,7 +32,7 @@ class StoreSetupCell: BaseCell {
             self.storeSetup = storeSetup
             self.costState = costState
             self.lookUpState = lookUpState
-            updateCell(StoreSetupMethods.parameterCell(StoreSetupCells(rawValue: self.tag)!))
+            updateCell(StoreSetupData.parameterCell(StoreSetupCells(rawValue: self.tag)!))
             stateFotSwicth()
         }
     }

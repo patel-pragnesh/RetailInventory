@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AddVendorsMethods: EntityMethods<AddVendors>{
+class AddVendorsData: EntityMethods<AddVendors>{
     
     enum VendorCell: Int {
         case name = 0, alias, street, сity, state, zip, accountNumber, phone

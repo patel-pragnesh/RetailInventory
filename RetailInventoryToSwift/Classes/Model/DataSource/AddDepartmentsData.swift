@@ -17,7 +17,7 @@ enum DepartmentCell: Int {
     }()
 }
 
-class AddDepartmentsMethods: EntityMethods<String>{
+class AddDepartmentsData: EntityMethods<String>{
     
     enum CellType: Int {
         case inputText = 0, switchCell, icon, link

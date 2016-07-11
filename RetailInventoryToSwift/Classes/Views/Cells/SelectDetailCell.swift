@@ -34,6 +34,12 @@ class SelectDetailCell: BaseCell {
             if let selectedInventory = itemForSelect as? InventoryList {
                 selectionItemLabel.text = selectedInventory.name
             }
+            if let selectedTag = itemForSelect as? Tag {
+                selectionItemLabel.text = selectedTag.itemTagDesc
+            }
+            if let selectedSet = itemForSelect as? Set {
+                selectionItemLabel.text = selectedSet.name
+            }
         }
     }
 }

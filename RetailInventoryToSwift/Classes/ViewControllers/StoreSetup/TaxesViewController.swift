@@ -10,7 +10,7 @@ import UIKit
 
 class TaxesViewController: BaseViewController  {
     
-    var taxes = TaxMethods()
+    var taxes = TaxData()
     var editableRow: Int!
     var newTax: Tax?
     
@@ -164,10 +164,10 @@ extension TaxesViewController: ToolBarControlsDelegate {
 extension TaxesViewController: TaxCellDelegate {
     
     func taxNameChange(text: String?) {
-        TaxMethods.editTax(TaxField.taxName, at: taxes.getObjectByIndex(editableRow), value: text)
+        TaxData.editTax(TaxField.taxName, at: taxes.getObjectByIndex(editableRow), value: text)
     }
     
     func taxValueChange(text: String?) {
-        TaxMethods.editTax(TaxField.taxValue, at: taxes.getObjectByIndex(editableRow), value: Double(text!))
+        TaxData.editTax(TaxField.taxValue, at: taxes.getObjectByIndex(editableRow), value: Double(text!))
     }
 }

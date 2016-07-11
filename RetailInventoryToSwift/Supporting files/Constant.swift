@@ -32,6 +32,8 @@ struct MyConstant {
     static let segueSelectDepartments = "segueSelectDepartments"
     static let segueSelectTaxes = "segueSelectTaxes"
     static let segueSelectVendors = "segueSelectVendors"
+    static let segueSelectTag = "segueSelectTag"
+    static let segueSelectSet = "segueSelectSet"
     static let segueInventaryDetail = "inventoryDetail"
 
     static let segueAddListFromButtonDepartment = "addListSegueFromButtonDepartment"
@@ -52,6 +54,8 @@ struct MyConstant {
     static let kApiTaxes = "taxes"
     static let kApiDepartments = "departments"
     static let kApiItems = "items"
+    static let kApiSets = "modifier-sets"
+    static let kApiTags = "item-tags"
     
     static let socketURL = "https://echo-wss.harbortouch.com:443/"
     

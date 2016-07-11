@@ -21,7 +21,7 @@ class AddVendorViewController: BaseViewController {
     
     weak var delegateAddVendorViewControllerDelegate: AddVendorViewControllerDelegate?
     
-    var addVendorMethods = AddVendorsMethods()
+    var addVendorMethods = AddVendorsData()
     var typeWorking: ControllerTypeWorking!
     var vendorTemplate = VendorTemplate()
     var editableRow: Int!
@@ -161,7 +161,7 @@ extension AddVendorViewController: ToolBarControlsDelegate {
     }
     
     func textFieldEndEditing(text: String?, cellTag: Int) {
-        switch AddVendorsMethods.VendorCell(rawValue: cellTag)! {
+        switch AddVendorsData.VendorCell(rawValue: cellTag)! {
             case .name:
                 vendorTemplate.name = text
             case .alias:

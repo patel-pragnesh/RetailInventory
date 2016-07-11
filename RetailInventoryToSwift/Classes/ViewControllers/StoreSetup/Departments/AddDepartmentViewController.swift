@@ -17,7 +17,7 @@ class AddDepartmentViewController: BaseViewController {
     
     weak var delegateAddDepartmentViewController: AddDepartmentViewControllerDelegate?
     
-    var addDepartmentMethods = AddDepartmentsMethods()
+    var addDepartmentMethods = AddDepartmentsData()
     var editableDepartment: Department? {
         didSet {
             departmentTemplate.active = editableDepartment?.active
@@ -50,8 +50,8 @@ class AddDepartmentViewController: BaseViewController {
         configTitles()
         subscribeKeyboardNotification()
         
-        oldTaxes = TaxMethods.taxesByDepartment(departmentTemplate.id!)
-        selectedItems = InventoryListMethods.itemsByDepartment(departmentTemplate.id!)
+        oldTaxes = TaxData.taxesByDepartment(departmentTemplate.id!)
+        selectedItems = InventoryListData.itemsByDepartment(departmentTemplate.id!)
         networkActivity.hidden = true
     }
     

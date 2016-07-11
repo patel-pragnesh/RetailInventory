@@ -2,7 +2,7 @@
 //  InventoryList.swift
 //  RetailInventorySwift
 //
-//  Created by Sak, Andrey2 on 7/8/16.
+//  Created by Sak, Andrey2 on 7/11/16.
 //  Copyright © 2016 Anashkin, Evgeny. All rights reserved.
 //
 

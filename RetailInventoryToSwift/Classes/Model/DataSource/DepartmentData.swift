@@ -16,7 +16,7 @@ enum DepartmentField: String {
     name = "name"
 }
 
-class DepartmentMethods: EntityMethods<Department> {
+class DepartmentData: EntityMethods<Department> {
     
     init() {
         let departments = DataManager.fetchAllDepartment()
@@ -64,8 +64,8 @@ class DepartmentMethods: EntityMethods<Department> {
         if add_index.count > 0 {
             for i in 0 ... serverDepartments.count - 1 {
                 if (add_index.indexOf(i) != nil) {
-                    let newDep = DepartmentMethods.addDepartment(serverDepartments[i].name, id: serverDepartments[i].id, icon: nil, active: serverDepartments[i].active, itemsEbt: serverDepartments[i].itemsAreEBT)
-                    TaxMethods.updateTaxesWithDepartmentResponse(newDep, taxesId: serverDepartments[i].taxesId)
+                    let newDep = DepartmentData.addDepartment(serverDepartments[i].name, id: serverDepartments[i].id, icon: nil, active: serverDepartments[i].active, itemsEbt: serverDepartments[i].itemsAreEBT)
+                    TaxData.updateTaxesWithDepartmentResponse(newDep, taxesId: serverDepartments[i].taxesId)
                 }
             }
         }
@@ -121,7 +121,7 @@ class DepartmentMethods: EntityMethods<Department> {
         let i = UInt32(strtoul(departmentResponse.glyph, nil, 16)) // to decimal
         department.icon = String(Character(UnicodeScalar(i)))      // to char and string
         
-        TaxMethods.updateTaxesWithDepartmentResponse(department, taxesId: departmentResponse.taxesId)
+        TaxData.updateTaxesWithDepartmentResponse(department, taxesId: departmentResponse.taxesId)
     }
     
     func editDepartment(index: Int, newDepartment: Department) {

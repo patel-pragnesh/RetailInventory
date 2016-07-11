@@ -10,7 +10,7 @@ import UIKit
 
 protocol AddVendorCellDelegate
 {
-    func editing(identCell: AddVendorsMethods.VendorCell, text: String)
+    func editing(identCell: AddVendorsData.VendorCell, text: String)
     func startEditing()
     func endEditing()
 }
@@ -18,7 +18,7 @@ protocol AddVendorCellDelegate
 class AddVendorCell: BaseCell {
     
     static let cellIdentifier = String(AddVendorCell)
-    var identCell = AddVendorsMethods.VendorCell.name
+    var identCell = AddVendorsData.VendorCell.name
     
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var textField: UITextField!
@@ -30,12 +30,12 @@ class AddVendorCell: BaseCell {
         }
     }
     
-    func updateCell(infoCell: VendorTemplate?, identCell: AddVendorsMethods.VendorCell){
+    func updateCell(infoCell: VendorTemplate?, identCell: AddVendorsData.VendorCell){
         self.identCell = identCell
         textField.inputAccessoryView = toolbar()
         
         if infoCell != nil {
-            textField.text = VendorMethods.fieldDetail(VendorField(rawValue: AddVendorsMethods.fieldNameForDetail(identCell))!, vendor: infoCell!)
+            textField.text = VendorData.fieldDetail(VendorField(rawValue: AddVendorsData.fieldNameForDetail(identCell))!, vendor: infoCell!)
         }
         //textField.placeholder = AddVendorsMethods.placeHolderForCell(identCell)
     }

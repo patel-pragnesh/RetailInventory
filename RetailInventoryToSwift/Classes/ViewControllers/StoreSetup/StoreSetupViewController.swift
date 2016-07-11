@@ -10,7 +10,7 @@ import UIKit
 
 class StoreSetupViewController: BaseViewController {
     
-    var storeSetupMethods: StoreSetupMethods!
+    var storeSetupMethods: StoreSetupData!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -23,7 +23,7 @@ class StoreSetupViewController: BaseViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        storeSetupMethods = StoreSetupMethods()
+        storeSetupMethods = StoreSetupData()
         tableView.reloadData()
     }
     
@@ -48,8 +48,8 @@ class StoreSetupViewController: BaseViewController {
         }
         let clearAction = UIAlertAction(title: "storeSetup.alertClear".localized, style: .Default) {
             (action:UIAlertAction!) in
-            InventoryListMethods.removeAll()
-            self.storeSetupMethods = StoreSetupMethods()
+            InventoryListData.removeAll()
+            self.storeSetupMethods = StoreSetupData()
             self.tableView.reloadData()
         }
         claerInventoryAlert.addAction(cancelAction)
@@ -104,13 +104,13 @@ extension StoreSetupViewController: UITableViewDataSource {
 extension StoreSetupViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch StoreSetupMethods.enumCells(indexPath.row) {
+        switch StoreSetupData.enumCells(indexPath.row) {
         case .department:
-            performSegueWithIdentifier(StoreSetupMethods.segueName(.department)!, sender: self)
+            performSegueWithIdentifier(StoreSetupData.segueName(.department)!, sender: self)
         case .vendors:
-            performSegueWithIdentifier(StoreSetupMethods.segueName(.vendors)!, sender: self)
+            performSegueWithIdentifier(StoreSetupData.segueName(.vendors)!, sender: self)
         case .taxes:
-            performSegueWithIdentifier(StoreSetupMethods.segueName(.taxes)!, sender: self)
+            performSegueWithIdentifier(StoreSetupData.segueName(.taxes)!, sender: self)
         case .clear:
             clearAlert()
         case .restore:

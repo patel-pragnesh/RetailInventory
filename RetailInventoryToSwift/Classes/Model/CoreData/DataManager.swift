@@ -175,6 +175,60 @@ class DataManager {
         return array as! [Tax]
     }
     
+    // MARK: - Set
+    
+    static func fetchAllSet() -> [Set] {
+        return Set.MR_findAllSortedBy("id", ascending: true) as! [Set]
+    }
+    
+    static func getFirstSetByAttribute(attribute: String, value: AnyObject) -> Set? {
+        return Set.MR_findFirstByAttribute(attribute, withValue: value)
+    }
+    
+    static func deleteSet(set: Set) -> Bool {
+        return set.MR_deleteEntity()
+    }
+    
+    static func addSet(id: Int!, active: Bool?, manyPer: Bool?, max: Bool?, name: String?) -> Set {
+        let newSet = Set.MR_createEntity()!
+        
+        newSet.id = id
+        newSet.active = active
+        newSet.manyPer = manyPer
+        newSet.max = max
+        newSet.name = name
+        
+        saveContext()
+        return newSet
+    }
+    
+    // MARK: - Tag
+    
+    static func fetchAllTag() -> [Tag] {
+        return Tag.MR_findAllSortedBy("id", ascending: true) as! [Tag]
+    }
+    
+    static func getFirstSetByAttribute(attribute: String, value: AnyObject) -> Tag? {
+        return Tag.MR_findFirstByAttribute(attribute, withValue: value)
+    }
+    
+    static func deleteSet(tag: Tag) -> Bool {
+        return tag.MR_deleteEntity()
+    }
+    
+    static func addTag(id: Int!, active: Bool?, hidden: Bool?, itemTagDesc: String?) -> Tag {
+        let newTag = Tag.MR_createEntity()!
+        
+        newTag.id = id
+        newTag.active = active
+        newTag.hidden = hidden
+        newTag.itemTagDesc = itemTagDesc
+        
+        saveContext()
+        return newTag
+    }
+    
+    
     // MARK: - Common
     
     static func saveContext() {

@@ -10,21 +10,31 @@
 		7DFE49B71D057D4100EDF2FC /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E203D1061D2270FA007B7F8D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E203D1051D2270FA007B7F8D /* Alamofire.framework */; };
 		E24F17211D2D1BAC004B6601 /* SocketIOClientSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E24F17201D2D1BAC004B6601 /* SocketIOClientSwift.framework */; };
+		E2BAE4D61D338EAB003D5768 /* InventoryList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D41D338EAB003D5768 /* InventoryList+CoreDataProperties.swift */; };
+		E2BAE4D71D338EAB003D5768 /* InventoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D51D338EAB003D5768 /* InventoryList.swift */; };
+		E2BAE4DC1D338EF6003D5768 /* Set+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D81D338EF6003D5768 /* Set+CoreDataProperties.swift */; };
+		E2BAE4DD1D338EF6003D5768 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D91D338EF6003D5768 /* Set.swift */; };
+		E2BAE4DE1D338EF6003D5768 /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4DA1D338EF6003D5768 /* Tag+CoreDataProperties.swift */; };
+		E2BAE4DF1D338EF6003D5768 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4DB1D338EF6003D5768 /* Tag.swift */; };
+		E2BAE4E11D339082003D5768 /* TagResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4E01D339082003D5768 /* TagResponse.swift */; };
+		E2BAE4E31D33908B003D5768 /* SetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4E21D33908B003D5768 /* SetResponse.swift */; };
+		E2BAE4E51D3393A3003D5768 /* TagData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4E41D3393A3003D5768 /* TagData.swift */; };
+		E2BAE4E71D33947D003D5768 /* SetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4E61D33947D003D5768 /* SetData.swift */; };
 		E2D0E6F61D18292F007F0265 /* MagicalRecord.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D0E6F21D18292F007F0265 /* MagicalRecord.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		E2DA73CA1D2E8D7F0099F374 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA735E1D2E8D7F0099F374 /* AppDelegate.swift */; };
 		E2DA73CB1D2E8D7F0099F374 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73611D2E8D7F0099F374 /* DataManager.swift */; };
 		E2DA73CC1D2E8D7F0099F374 /* RetailInventoryToSwift.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73621D2E8D7F0099F374 /* RetailInventoryToSwift.xcdatamodeld */; };
-		E2DA73CD1D2E8D7F0099F374 /* AddDepartmentsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73651D2E8D7F0099F374 /* AddDepartmentsMethods.swift */; };
-		E2DA73CE1D2E8D7F0099F374 /* AddVendorsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73661D2E8D7F0099F374 /* AddVendorsMethods.swift */; };
-		E2DA73CF1D2E8D7F0099F374 /* AdjustStockLevelsMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73671D2E8D7F0099F374 /* AdjustStockLevelsMethods.swift */; };
-		E2DA73D01D2E8D7F0099F374 /* DepartmentMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73681D2E8D7F0099F374 /* DepartmentMethods.swift */; };
+		E2DA73CD1D2E8D7F0099F374 /* AddDepartmentsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73651D2E8D7F0099F374 /* AddDepartmentsData.swift */; };
+		E2DA73CE1D2E8D7F0099F374 /* AddVendorsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73661D2E8D7F0099F374 /* AddVendorsData.swift */; };
+		E2DA73CF1D2E8D7F0099F374 /* AdjustStockLevelsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73671D2E8D7F0099F374 /* AdjustStockLevelsData.swift */; };
+		E2DA73D01D2E8D7F0099F374 /* DepartmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73681D2E8D7F0099F374 /* DepartmentData.swift */; };
 		E2DA73D11D2E8D7F0099F374 /* EntityMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73691D2E8D7F0099F374 /* EntityMethods.swift */; };
-		E2DA73D21D2E8D7F0099F374 /* InventaryDetailMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736A1D2E8D7F0099F374 /* InventaryDetailMethods.swift */; };
-		E2DA73D41D2E8D7F0099F374 /* InventoryListMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736C1D2E8D7F0099F374 /* InventoryListMethods.swift */; };
-		E2DA73D51D2E8D7F0099F374 /* StoreSetupMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736D1D2E8D7F0099F374 /* StoreSetupMethods.swift */; };
-		E2DA73D61D2E8D7F0099F374 /* TaxMethhods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736E1D2E8D7F0099F374 /* TaxMethhods.swift */; };
-		E2DA73D71D2E8D7F0099F374 /* UserMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736F1D2E8D7F0099F374 /* UserMethods.swift */; };
-		E2DA73D81D2E8D7F0099F374 /* VendorMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73701D2E8D7F0099F374 /* VendorMethods.swift */; };
+		E2DA73D21D2E8D7F0099F374 /* InventaryDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736A1D2E8D7F0099F374 /* InventaryDetailData.swift */; };
+		E2DA73D41D2E8D7F0099F374 /* InventoryListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736C1D2E8D7F0099F374 /* InventoryListData.swift */; };
+		E2DA73D51D2E8D7F0099F374 /* StoreSetupData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736D1D2E8D7F0099F374 /* StoreSetupData.swift */; };
+		E2DA73D61D2E8D7F0099F374 /* TaxData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736E1D2E8D7F0099F374 /* TaxData.swift */; };
+		E2DA73D71D2E8D7F0099F374 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA736F1D2E8D7F0099F374 /* UserData.swift */; };
+		E2DA73D81D2E8D7F0099F374 /* VendorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73701D2E8D7F0099F374 /* VendorData.swift */; };
 		E2DA73D91D2E8D7F0099F374 /* AddDepartments.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73721D2E8D7F0099F374 /* AddDepartments.swift */; };
 		E2DA73DA1D2E8D7F0099F374 /* AddVendors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73731D2E8D7F0099F374 /* AddVendors.swift */; };
 		E2DA73DB1D2E8D7F0099F374 /* AdjustStockLevels+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73741D2E8D7F0099F374 /* AdjustStockLevels+CoreDataProperties.swift */; };
@@ -88,8 +98,6 @@
 		E2DA74341D2FBF800099F374 /* TaxeDepartmentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74331D2FBF800099F374 /* TaxeDepartmentRouter.swift */; };
 		E2DA74361D2FC04F0099F374 /* BarcodeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74351D2FC04F0099F374 /* BarcodeRouter.swift */; };
 		E2DA74381D2FC31A0099F374 /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74371D2FC31A0099F374 /* ItemResponse.swift */; };
-		E2DA743F1D2FD4770099F374 /* InventoryList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA743D1D2FD4770099F374 /* InventoryList+CoreDataProperties.swift */; };
-		E2DA74401D2FD4770099F374 /* InventoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA743E1D2FD4770099F374 /* InventoryList.swift */; };
 		E2DA74421D2FF6810099F374 /* IconData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74411D2FF6810099F374 /* IconData.swift */; };
 /* End PBXBuildFile section */
 
@@ -116,21 +124,31 @@
 		7DFE49D01D057D4200EDF2FC /* RetailInventoryToSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RetailInventoryToSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E203D1051D2270FA007B7F8D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		E24F17201D2D1BAC004B6601 /* SocketIOClientSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIOClientSwift.framework; path = Carthage/Build/iOS/SocketIOClientSwift.framework; sourceTree = "<group>"; };
+		E2BAE4D41D338EAB003D5768 /* InventoryList+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InventoryList+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E2BAE4D51D338EAB003D5768 /* InventoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryList.swift; sourceTree = "<group>"; };
+		E2BAE4D81D338EF6003D5768 /* Set+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E2BAE4D91D338EF6003D5768 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		E2BAE4DA1D338EF6003D5768 /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E2BAE4DB1D338EF6003D5768 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		E2BAE4E01D339082003D5768 /* TagResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagResponse.swift; sourceTree = "<group>"; };
+		E2BAE4E21D33908B003D5768 /* SetResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetResponse.swift; sourceTree = "<group>"; };
+		E2BAE4E41D3393A3003D5768 /* TagData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagData.swift; sourceTree = "<group>"; };
+		E2BAE4E61D33947D003D5768 /* SetData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetData.swift; sourceTree = "<group>"; };
 		E2D0E6F21D18292F007F0265 /* MagicalRecord.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MagicalRecord.framework; path = Carthage/Build/iOS/MagicalRecord.framework; sourceTree = "<group>"; };
 		E2DA735E1D2E8D7F0099F374 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E2DA73611D2E8D7F0099F374 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E2DA73631D2E8D7F0099F374 /* RetailInventoryToSwift.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RetailInventoryToSwift.xcdatamodel; sourceTree = "<group>"; };
-		E2DA73651D2E8D7F0099F374 /* AddDepartmentsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDepartmentsMethods.swift; sourceTree = "<group>"; };
-		E2DA73661D2E8D7F0099F374 /* AddVendorsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVendorsMethods.swift; sourceTree = "<group>"; };
-		E2DA73671D2E8D7F0099F374 /* AdjustStockLevelsMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustStockLevelsMethods.swift; sourceTree = "<group>"; };
-		E2DA73681D2E8D7F0099F374 /* DepartmentMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentMethods.swift; sourceTree = "<group>"; };
+		E2DA73651D2E8D7F0099F374 /* AddDepartmentsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDepartmentsData.swift; sourceTree = "<group>"; };
+		E2DA73661D2E8D7F0099F374 /* AddVendorsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVendorsData.swift; sourceTree = "<group>"; };
+		E2DA73671D2E8D7F0099F374 /* AdjustStockLevelsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdjustStockLevelsData.swift; sourceTree = "<group>"; };
+		E2DA73681D2E8D7F0099F374 /* DepartmentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentData.swift; sourceTree = "<group>"; };
 		E2DA73691D2E8D7F0099F374 /* EntityMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityMethods.swift; sourceTree = "<group>"; };
-		E2DA736A1D2E8D7F0099F374 /* InventaryDetailMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventaryDetailMethods.swift; sourceTree = "<group>"; };
-		E2DA736C1D2E8D7F0099F374 /* InventoryListMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryListMethods.swift; sourceTree = "<group>"; };
-		E2DA736D1D2E8D7F0099F374 /* StoreSetupMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreSetupMethods.swift; sourceTree = "<group>"; };
-		E2DA736E1D2E8D7F0099F374 /* TaxMethhods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxMethhods.swift; sourceTree = "<group>"; };
-		E2DA736F1D2E8D7F0099F374 /* UserMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMethods.swift; sourceTree = "<group>"; };
-		E2DA73701D2E8D7F0099F374 /* VendorMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorMethods.swift; sourceTree = "<group>"; };
+		E2DA736A1D2E8D7F0099F374 /* InventaryDetailData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventaryDetailData.swift; sourceTree = "<group>"; };
+		E2DA736C1D2E8D7F0099F374 /* InventoryListData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryListData.swift; sourceTree = "<group>"; };
+		E2DA736D1D2E8D7F0099F374 /* StoreSetupData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreSetupData.swift; sourceTree = "<group>"; };
+		E2DA736E1D2E8D7F0099F374 /* TaxData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxData.swift; sourceTree = "<group>"; };
+		E2DA736F1D2E8D7F0099F374 /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		E2DA73701D2E8D7F0099F374 /* VendorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendorData.swift; sourceTree = "<group>"; };
 		E2DA73721D2E8D7F0099F374 /* AddDepartments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDepartments.swift; sourceTree = "<group>"; };
 		E2DA73731D2E8D7F0099F374 /* AddVendors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVendors.swift; sourceTree = "<group>"; };
 		E2DA73741D2E8D7F0099F374 /* AdjustStockLevels+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AdjustStockLevels+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -194,8 +212,6 @@
 		E2DA74331D2FBF800099F374 /* TaxeDepartmentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxeDepartmentRouter.swift; sourceTree = "<group>"; };
 		E2DA74351D2FC04F0099F374 /* BarcodeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeRouter.swift; sourceTree = "<group>"; };
 		E2DA74371D2FC31A0099F374 /* ItemResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
-		E2DA743D1D2FD4770099F374 /* InventoryList+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InventoryList+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		E2DA743E1D2FD4770099F374 /* InventoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryList.swift; sourceTree = "<group>"; };
 		E2DA74411D2FF6810099F374 /* IconData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,9 +287,9 @@
 		E2DA735F1D2E8D7F0099F374 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E2DA73601D2E8D7F0099F374 /* CoreData */,
-				E2DA73641D2E8D7F0099F374 /* DataSource */,
 				E2DA73711D2E8D7F0099F374 /* Entity */,
+				E2DA73641D2E8D7F0099F374 /* DataSource */,
+				E2DA73601D2E8D7F0099F374 /* CoreData */,
 				E2DA738A1D2E8D7F0099F374 /* Networking */,
 				E2DA738D1D2E8D7F0099F374 /* Storage */,
 				E2DA73901D2E8D7F0099F374 /* Utils */,
@@ -294,17 +310,19 @@
 			isa = PBXGroup;
 			children = (
 				E2DA74411D2FF6810099F374 /* IconData.swift */,
-				E2DA73651D2E8D7F0099F374 /* AddDepartmentsMethods.swift */,
-				E2DA73661D2E8D7F0099F374 /* AddVendorsMethods.swift */,
-				E2DA73671D2E8D7F0099F374 /* AdjustStockLevelsMethods.swift */,
-				E2DA73681D2E8D7F0099F374 /* DepartmentMethods.swift */,
+				E2DA73651D2E8D7F0099F374 /* AddDepartmentsData.swift */,
+				E2DA73661D2E8D7F0099F374 /* AddVendorsData.swift */,
+				E2DA73671D2E8D7F0099F374 /* AdjustStockLevelsData.swift */,
+				E2DA73681D2E8D7F0099F374 /* DepartmentData.swift */,
 				E2DA73691D2E8D7F0099F374 /* EntityMethods.swift */,
-				E2DA736A1D2E8D7F0099F374 /* InventaryDetailMethods.swift */,
-				E2DA736C1D2E8D7F0099F374 /* InventoryListMethods.swift */,
-				E2DA736D1D2E8D7F0099F374 /* StoreSetupMethods.swift */,
-				E2DA736E1D2E8D7F0099F374 /* TaxMethhods.swift */,
-				E2DA736F1D2E8D7F0099F374 /* UserMethods.swift */,
-				E2DA73701D2E8D7F0099F374 /* VendorMethods.swift */,
+				E2DA736A1D2E8D7F0099F374 /* InventaryDetailData.swift */,
+				E2DA736C1D2E8D7F0099F374 /* InventoryListData.swift */,
+				E2DA736D1D2E8D7F0099F374 /* StoreSetupData.swift */,
+				E2DA736E1D2E8D7F0099F374 /* TaxData.swift */,
+				E2DA736F1D2E8D7F0099F374 /* UserData.swift */,
+				E2DA73701D2E8D7F0099F374 /* VendorData.swift */,
+				E2BAE4E41D3393A3003D5768 /* TagData.swift */,
+				E2BAE4E61D33947D003D5768 /* SetData.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -327,8 +345,12 @@
 				E2DA73861D2E8D7F0099F374 /* User.swift */,
 				E2DA73871D2E8D7F0099F374 /* Vendor+CoreDataProperties.swift */,
 				E2DA73881D2E8D7F0099F374 /* Vendor.swift */,
-				E2DA743D1D2FD4770099F374 /* InventoryList+CoreDataProperties.swift */,
-				E2DA743E1D2FD4770099F374 /* InventoryList.swift */,
+				E2BAE4D41D338EAB003D5768 /* InventoryList+CoreDataProperties.swift */,
+				E2BAE4D51D338EAB003D5768 /* InventoryList.swift */,
+				E2BAE4D81D338EF6003D5768 /* Set+CoreDataProperties.swift */,
+				E2BAE4D91D338EF6003D5768 /* Set.swift */,
+				E2BAE4DA1D338EF6003D5768 /* Tag+CoreDataProperties.swift */,
+				E2BAE4DB1D338EF6003D5768 /* Tag.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -339,6 +361,8 @@
 				E2DA737C1D2E8D7F0099F374 /* DepartmentResponse.swift */,
 				E2DA737D1D2E8D7F0099F374 /* TaxResponse.swift */,
 				E2DA74371D2FC31A0099F374 /* ItemResponse.swift */,
+				E2BAE4E01D339082003D5768 /* TagResponse.swift */,
+				E2BAE4E21D33908B003D5768 /* SetResponse.swift */,
 			);
 			path = NetworkEntity;
 			sourceTree = "<group>";
@@ -700,10 +724,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2DA740B1D2E8D7F0099F374 /* IconsCell.swift in Sources */,
+				E2BAE4E71D33947D003D5768 /* SetData.swift in Sources */,
 				E2DA74051D2E8D7F0099F374 /* StoreSetupViewController.swift in Sources */,
+				E2BAE4DE1D338EF6003D5768 /* Tag+CoreDataProperties.swift in Sources */,
 				E2DA73CC1D2E8D7F0099F374 /* RetailInventoryToSwift.xcdatamodeld in Sources */,
 				E2DA73FD1D2E8D7F0099F374 /* ScanController.swift in Sources */,
-				E2DA73D41D2E8D7F0099F374 /* InventoryListMethods.swift in Sources */,
+				E2DA73D41D2E8D7F0099F374 /* InventoryListData.swift in Sources */,
+				E2BAE4DD1D338EF6003D5768 /* Set.swift in Sources */,
 				E2DA74091D2E8D7F0099F374 /* BaseCell.swift in Sources */,
 				E2DA74421D2FF6810099F374 /* IconData.swift in Sources */,
 				E2DA73F31D2E8D7F0099F374 /* String.swift in Sources */,
@@ -714,15 +741,17 @@
 				E2DA742D1D2E98B90099F374 /* AppliedItemsViewController.swift in Sources */,
 				E2DA73E71D2E8D7F0099F374 /* DepartmentTemplate.swift in Sources */,
 				E2DA74301D2E98B90099F374 /* IconsViewController.swift in Sources */,
+				E2BAE4DF1D338EF6003D5768 /* Tag.swift in Sources */,
 				E2DA73FE1D2E8D7F0099F374 /* AdjustViewController.swift in Sources */,
+				E2BAE4E31D33908B003D5768 /* SetResponse.swift in Sources */,
 				E2DA73CA1D2E8D7F0099F374 /* AppDelegate.swift in Sources */,
 				E2DA740E1D2E8D7F0099F374 /* SelectDescriptionCell.swift in Sources */,
 				E2DA74361D2FC04F0099F374 /* BarcodeRouter.swift in Sources */,
 				E2DA740A1D2E8D7F0099F374 /* DepartmentAndVendorCell.swift in Sources */,
 				E2DA73EA1D2E8D7F0099F374 /* User.swift in Sources */,
-				E2DA73D71D2E8D7F0099F374 /* UserMethods.swift in Sources */,
+				E2DA73D71D2E8D7F0099F374 /* UserData.swift in Sources */,
 				E2DA73E31D2E8D7F0099F374 /* TaxResponse.swift in Sources */,
-				E2DA73D61D2E8D7F0099F374 /* TaxMethhods.swift in Sources */,
+				E2DA73D61D2E8D7F0099F374 /* TaxData.swift in Sources */,
 				E2DA74101D2E8D7F0099F374 /* StoreSetupCell.swift in Sources */,
 				E2DA73F71D2E8D7F0099F374 /* InventoryController.swift in Sources */,
 				E2DA74211D2E92420099F374 /* VendorTemplate.swift in Sources */,
@@ -730,28 +759,30 @@
 				E2DA742C1D2E98B90099F374 /* AddDepartmentViewController.swift in Sources */,
 				E2DA73DD1D2E8D7F0099F374 /* Department+CoreDataProperties.swift in Sources */,
 				E2DA73F61D2E8D7F0099F374 /* BaseViewController.swift in Sources */,
-				E2DA73CD1D2E8D7F0099F374 /* AddDepartmentsMethods.swift in Sources */,
-				E2DA73D51D2E8D7F0099F374 /* StoreSetupMethods.swift in Sources */,
+				E2DA73CD1D2E8D7F0099F374 /* AddDepartmentsData.swift in Sources */,
+				E2DA73D51D2E8D7F0099F374 /* StoreSetupData.swift in Sources */,
 				E2DA74341D2FBF800099F374 /* TaxeDepartmentRouter.swift in Sources */,
 				E2DA73E81D2E8D7F0099F374 /* TaxTemplate.swift in Sources */,
 				E2DA73DA1D2E8D7F0099F374 /* AddVendors.swift in Sources */,
-				E2DA73CF1D2E8D7F0099F374 /* AdjustStockLevelsMethods.swift in Sources */,
+				E2BAE4DC1D338EF6003D5768 /* Set+CoreDataProperties.swift in Sources */,
+				E2DA73CF1D2E8D7F0099F374 /* AdjustStockLevelsData.swift in Sources */,
 				E2DA742E1D2E98B90099F374 /* AppliedTaxesViewController.swift in Sources */,
 				E2DA73EF1D2E8D7F0099F374 /* SocketClient.swift in Sources */,
 				E2DA73F81D2E8D7F0099F374 /* InventoryDetailController.swift in Sources */,
 				E2DA73E91D2E8D7F0099F374 /* User+CoreDataProperties.swift in Sources */,
+				E2BAE4E51D3393A3003D5768 /* TagData.swift in Sources */,
 				E2DA73EC1D2E8D7F0099F374 /* Vendor.swift in Sources */,
 				E2DA73EE1D2E8D7F0099F374 /* NetworkLoader.swift in Sources */,
 				E2DA741D1D2E8E4B0099F374 /* UserStorage.swift in Sources */,
 				E2DA73EB1D2E8D7F0099F374 /* Vendor+CoreDataProperties.swift in Sources */,
-				E2DA73D01D2E8D7F0099F374 /* DepartmentMethods.swift in Sources */,
-				E2DA743F1D2FD4770099F374 /* InventoryList+CoreDataProperties.swift in Sources */,
+				E2DA73D01D2E8D7F0099F374 /* DepartmentData.swift in Sources */,
+				E2BAE4D61D338EAB003D5768 /* InventoryList+CoreDataProperties.swift in Sources */,
 				E2DA73E41D2E8D7F0099F374 /* StoreSetup.swift in Sources */,
-				E2DA73CE1D2E8D7F0099F374 /* AddVendorsMethods.swift in Sources */,
-				E2DA73D21D2E8D7F0099F374 /* InventaryDetailMethods.swift in Sources */,
+				E2DA73CE1D2E8D7F0099F374 /* AddVendorsData.swift in Sources */,
+				E2DA73D21D2E8D7F0099F374 /* InventaryDetailData.swift in Sources */,
 				E2DA73CB1D2E8D7F0099F374 /* DataManager.swift in Sources */,
 				E2DA73F41D2E8D7F0099F374 /* TableView.swift in Sources */,
-				E2DA73D81D2E8D7F0099F374 /* VendorMethods.swift in Sources */,
+				E2DA73D81D2E8D7F0099F374 /* VendorData.swift in Sources */,
 				E2DA740C1D2E8D7F0099F374 /* InventoryCell.swift in Sources */,
 				E2DA73E51D2E8D7F0099F374 /* Tax+CoreDataProperties.swift in Sources */,
 				E2DA73D11D2E8D7F0099F374 /* EntityMethods.swift in Sources */,
@@ -762,6 +793,7 @@
 				E2DA73E61D2E8D7F0099F374 /* Tax.swift in Sources */,
 				E2DA73F51D2E8D7F0099F374 /* LogInViewController.swift in Sources */,
 				E2DA74381D2FC31A0099F374 /* ItemResponse.swift in Sources */,
+				E2BAE4E11D339082003D5768 /* TagResponse.swift in Sources */,
 				E2DA74081D2E8D7F0099F374 /* AddVendorCell.swift in Sources */,
 				E2DA73E21D2E8D7F0099F374 /* DepartmentResponse.swift in Sources */,
 				E2DA74321D2E98B90099F374 /* TaxesViewController.swift in Sources */,
@@ -771,7 +803,7 @@
 				E2DA73D91D2E8D7F0099F374 /* AddDepartments.swift in Sources */,
 				E2DA73FA1D2E8D7F0099F374 /* SelectDetailController.swift in Sources */,
 				E2DA73F91D2E8D7F0099F374 /* SelectDescriptionController.swift in Sources */,
-				E2DA74401D2FD4770099F374 /* InventoryList.swift in Sources */,
+				E2BAE4D71D338EAB003D5768 /* InventoryList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

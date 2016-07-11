@@ -122,6 +122,20 @@
 "inventoryDetail.taxes" = "Taxes";
 "inventoryDetail.price" = "Price";
 "inventoryDetail.cost" = "Cost";
+"inventoryDetail.printItem" = "Print Remote";
+"inventoryDetail.openItem" = "Open Item";
+"inventoryDetail.usesWeightScale" = "Uses Weight Scale";
+"inventoryDetail.weighted" = "Item is Sold by Weight";
+"inventoryDetail.tareWeight" = "Tare Weight";
+"inventoryDetail.color" = "Color";
+"inventoryDetail.icon" = "Icon";
+"inventoryDetail.shortName" = "Short Name";
+"inventoryDetail.name" = "Name";
+"inventoryDetail.active" = "Active";
+"inventoryDetail.qtyOnHand" = "Quantity on Hand";
+"inventoryDetail.tag" = "Tags";
+"inventoryDetail.set" = "Modifier Sets";
+
 
 // Select Detail
 
@@ -129,6 +143,8 @@
 "selectDetail.selectVendor" = "Select Vendor";
 "selectDetail.selectTax" = "Select Tax";
 "selectDetail.selectInventory" = "Select Inventory";
+"selectDetail.selectTag" = "Select Tags";
+"selectDetail.selectSet" = "Select Sets";
 
 // Scan
 "scan.cancel" = "Cancel";

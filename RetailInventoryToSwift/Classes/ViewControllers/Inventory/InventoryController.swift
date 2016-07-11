@@ -23,7 +23,7 @@ enum SortButton: Int {
 
 class InventoryController: BaseViewController {
     
-    var inventorys = InventoryListMethods()
+    var inventorys = InventoryListData()
     var sortedBy: SortButton = .all
     var selectIndexPath: NSIndexPath!
     
@@ -140,7 +140,7 @@ extension InventoryController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .Normal, title:"inventory.deleteTitle".localized, handler: {(actin, indexPath) -> Void in
-            InventoryListMethods.removeInventory(self.inventorys.getObjectByIndex(indexPath.row))
+            InventoryListData.removeInventory(self.inventorys.getObjectByIndex(indexPath.row))
             self.inventorys.refresh()
             tableView.reloadData()            
         })
@@ -165,7 +165,7 @@ extension InventoryController: UITableViewDelegate {
 extension InventoryController: ScanNewBarCodeDelegate {
     
     func scanNew(barcode: String) {
-        let newInventory = InventoryListMethods.addInventory(barcode)
+        let newInventory = InventoryListData.addInventory(barcode)
         inventorys.refresh()
         selectIndexPath = NSIndexPath(forRow: inventorys.getIndex(newInventory)!, inSection: 0)
         performSegueWithIdentifier(MyConstant.segueInventaryDetail, sender: self)
@@ -176,7 +176,7 @@ extension InventoryController: ScanNewBarCodeDelegate {
         if inventorys.count != 0 {
             let randomIndex = Int(arc4random_uniform(UInt32(inventorys.count)))
             selectIndexPath = NSIndexPath(forRow: randomIndex, inSection: 0)
-            InventoryListMethods.editInventory(InventoryListField.barcode, at: inventorys.getObjectByIndex(randomIndex), value: barcode)
+            InventoryListData.editInventory(InventoryListField.barcode, at: inventorys.getObjectByIndex(randomIndex), value: barcode)
             performSegueWithIdentifier(MyConstant.segueInventaryDetail, sender: self)
         }
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AdjustStockLevelsMethods: EntityMethods<AdjustStockLevels> {
+class AdjustStockLevelsData: EntityMethods<AdjustStockLevels> {
     
     init() {
         let adjustStockLevels = AdjustStockLevels.MR_findAllSortedBy("adjustId", ascending: true) as! [AdjustStockLevels]

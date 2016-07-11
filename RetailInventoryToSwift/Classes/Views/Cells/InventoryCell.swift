@@ -17,7 +17,7 @@ class InventoryCell: BaseCell {
     
     var inventory: InventoryList! {
         didSet {
-            barCode.text = inventory.barcode
+            barCode.text = inventory.name
             if inventory.list_description != nil {
                 descriptions.hidden = false
                 descriptions.text = inventory.list_description

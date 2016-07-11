@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserMethods: EntityMethods<User> {
+class UserData: EntityMethods<User> {
     
     init() {
         let users = User.MR_findAllSortedBy("userID", ascending: true) as! [User]

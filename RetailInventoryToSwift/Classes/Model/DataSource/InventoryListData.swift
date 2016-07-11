@@ -20,10 +20,22 @@ enum InventoryListField: String {
         listDepartment = "listDepartment",
         listVendor = "listVendor",
         listTax = "listTax",    
-        adjustStockLevels = "adjustStockLevels"
+        adjustStockLevels = "adjustStockLevels",
+        printItem = "printItem",
+        openItem = "openItem",
+        usesWeightScale = "usesWeightScale",
+        weighted = "weighted",
+        tareWeight = "tareWeight",
+        itemShortName = "itemShortName",
+        qtyOnHand = "gtyOnHand",
+        icon = "icon",
+        color = "color",
+        active = "active",
+        listTags = "listTag",
+        listSet = "listSet"
 }
 
-class InventoryListMethods: EntityMethods<InventoryList> {
+class InventoryListData: EntityMethods<InventoryList> {
     
     init() {
         let inventorys = DataManager.fetchAllInventoryList()
@@ -53,21 +65,17 @@ class InventoryListMethods: EntityMethods<InventoryList> {
             for inventory in inventorys {
                 if inventory.id == item.id {
                     isConsist = true
-                    editInventory(InventoryListField.descriptopn, at: inventory, value: item.itemNotes)
-                    editInventory(InventoryListField.cost, at: inventory, value: item.cost)
-                    editInventory(InventoryListField.price, at: inventory, value: item.price)
-                    editInventory(InventoryListField.name, at: inventory, value: item.itemName)
-                    editInventory(InventoryListField.barcode, at: inventory, value: item.barcode)
+                    updateInventory(inventory, fromResponse: item)
                     if item.departmentId != 0 {
-                        editInventory(InventoryListField.listDepartment, at: inventory, value: DepartmentMethods.departmentBy(item.departmentId!))
+                        editInventory(InventoryListField.listDepartment, at: inventory, value: DepartmentData.departmentBy(item.departmentId!))
                     }
                 }
             }
             if !isConsist {
                 addInventory(item.cost, list_description: item.itemNotes, price: item.price, id: item.id, name: item.itemName, departmentId: item.departmentId, barcode: item.barcode)
             }
-            
         }
+        save()
     }
            
     static func removeInventory(inventory: InventoryList) -> Bool {
@@ -116,8 +124,32 @@ class InventoryListMethods: EntityMethods<InventoryList> {
             return inventory.listTax?.taxName
         case .vendor:
             return inventory.listVendor?.name
-        case .id:
-            return inventory.id
+        case .active:
+            return inventory.active
+        case .printItem:
+            return inventory.printItem
+        case .openItem:
+            return inventory.openItem
+        case .tareWeight:
+            return inventory.tareWeight
+        case .usesWeightScale:
+            return inventory.usesWeightScale
+        case .weighted:
+            return inventory.weighted
+        case .icon:
+            return inventory.icon
+        case .color:
+            return inventory.color
+        case .qtyOnHand:
+            return inventory.gtyOnHand
+        case .name:
+            return inventory.name
+        case .shortName:
+            return inventory.itemShortName
+        case .tag:
+            return inventory.listTags?.itemTagDesc
+        case .set:
+            return inventory.listSets?.name
         }
     }
     
@@ -128,6 +160,24 @@ class InventoryListMethods: EntityMethods<InventoryList> {
     static func editInventory(fieldName: InventoryListField, at inventory: InventoryList, value: AnyObject?) {
         inventory[fieldName.rawValue] = value
         self.save()
+    }
+    
+    static func updateInventory(inventory: InventoryList, fromResponse serverInventory: ItemResponse) {
+        inventory.active = serverInventory.active
+        inventory.barcode = serverInventory.barcode
+        inventory.color = serverInventory.color
+        inventory.cost = serverInventory.cost
+        inventory.gtyOnHand = serverInventory.qtyOnHand
+        inventory.icon = serverInventory.icon
+        inventory.itemShortName = serverInventory.itemShortName
+        inventory.list_description = serverInventory.itemNotes
+        inventory.name = serverInventory.itemName
+        inventory.openItem = serverInventory.openItem
+        inventory.price = serverInventory.price
+        inventory.printItem = serverInventory.printItem
+        inventory.tareWeight = serverInventory.tareWeight
+        inventory.usesWeightScale = serverInventory.usesWeightScale
+        inventory.weighted = serverInventory.weighted
     }
     
     static func removeAll() -> Bool {

@@ -14,8 +14,8 @@ enum ControllerType: Int {
 
 class DepartmentsAndVendorsViewController: BaseViewController  {
     
-    var departments: DepartmentMethods?
-    var vendors: VendorMethods?
+    var departments: DepartmentData?
+    var vendors: VendorData?
     var controllerType: ControllerType!
     var selectedRow: Int!
     
@@ -27,9 +27,9 @@ class DepartmentsAndVendorsViewController: BaseViewController  {
         super.viewDidLoad()
         switch controllerType! {
         case .department:
-            departments = DepartmentMethods()
+            departments = DepartmentData()
         case .vendor:
-            vendors = VendorMethods()
+            vendors = VendorData()
         }
         imageForButton()
         configTitles()
@@ -49,9 +49,9 @@ class DepartmentsAndVendorsViewController: BaseViewController  {
     override func viewDidDisappear(animated: Bool) {
         switch controllerType! {
         case .department:
-            DepartmentMethods.save()
+            DepartmentData.save()
         case .vendor:
-            VendorMethods.save()
+            VendorData.save()
         }
     }
     

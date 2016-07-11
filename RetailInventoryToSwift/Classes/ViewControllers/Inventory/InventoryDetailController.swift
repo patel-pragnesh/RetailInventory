@@ -14,7 +14,7 @@ class InventoryDetailController: BaseViewController {
     var barcode: String!
     private var listDescriptions: [String]?    
     private var inventory: InventoryList!
-    private let detailNames = InventoryDetailMethods()
+    private let detailNames = InventoryDetailData()
     private var editableRow: Int!
     
     @IBOutlet weak var tableView: UITableView!
@@ -44,7 +44,7 @@ class InventoryDetailController: BaseViewController {
     }
     
     private func loadInventory() {
-        inventory = InventoryListMethods.getInventoryByBarcode(barcode)
+        inventory = InventoryListData.getInventoryByBarcode(barcode)
         if inventory.list_description != nil {
             networkActivity.hidden = true
         }
@@ -103,6 +103,14 @@ class InventoryDetailController: BaseViewController {
         if segue.identifier == MyConstant.segueSelectTaxes {
             upcoming.tax = inventory.listTax
             upcoming.selectionType = SelectionType.tax
+        }
+        if segue.identifier == MyConstant.segueSelectTag {
+            upcoming.tag = inventory.listTags
+            upcoming.selectionType = SelectionType.tag
+        }
+        if segue.identifier == MyConstant.segueSelectSet {
+            upcoming.set = inventory.listSets
+            upcoming.selectionType = SelectionType.set
         }
     }
     
@@ -193,7 +201,7 @@ extension InventoryDetailController: UITableViewDataSource {
 extension InventoryDetailController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let segueName = InventoryDetailMethods.segueName(indexPath.row) {
+        if let segueName = InventoryDetailData.segueName(indexPath.row) {
             performSegueWithIdentifier(segueName, sender: self)
         }
     }
@@ -218,9 +226,9 @@ extension InventoryDetailController: ToolBarControlsDelegate {
     
     func textFieldEndEditing(text: String?, cellTag: Int) {
         if text != "" {
-             InventoryListMethods.editInventory(InventoryListField(rawValue: InventoryDetailMethods.fieldNameForDetail(DetailName(rawValue: cellTag)!))!, at: inventory, value: text!)
+             InventoryListData.editInventory(InventoryListField(rawValue: InventoryDetailData.fieldNameForDetail(DetailName(rawValue: cellTag)!))!, at: inventory, value: text!)
         } else {
-            InventoryListMethods.editInventory(InventoryListField(rawValue: InventoryDetailMethods.fieldNameForDetail(DetailName(rawValue: cellTag)!))!, at: inventory, value: nil)
+            InventoryListData.editInventory(InventoryListField(rawValue: InventoryDetailData.fieldNameForDetail(DetailName(rawValue: cellTag)!))!, at: inventory, value: nil)
         }
     }
     
@@ -234,15 +242,23 @@ extension InventoryDetailController: ToolBarControlsDelegate {
 extension InventoryDetailController: SelectDetailDelegate {
     
     func updateDepartment(department: Department?) {
-        InventoryListMethods.editInventory(InventoryListField.listDepartment, at: inventory, value: department)
+        InventoryListData.editInventory(InventoryListField.listDepartment, at: inventory, value: department)
     }
     
     func updateTax(tax: Tax?) {
-        InventoryListMethods.editInventory(InventoryListField.listTax, at: inventory, value: tax)
+        InventoryListData.editInventory(InventoryListField.listTax, at: inventory, value: tax)
     }
     
     func updateVendor(vendor: Vendor?) {
-        InventoryListMethods.editInventory(InventoryListField.listVendor, at: inventory, value: vendor)
+        InventoryListData.editInventory(InventoryListField.listVendor, at: inventory, value: vendor)
+    }
+    
+    func updateTag(tag: Tag?) {
+        InventoryListData.editInventory(InventoryListField.listTags, at: inventory, value: tag)
+    }
+    
+    func updateSet(set: Set?) {
+        InventoryListData.editInventory(InventoryListField.listSet, at: inventory, value: set)
     }
 }
 
@@ -251,14 +267,14 @@ extension InventoryDetailController: SelectDetailDelegate {
 extension InventoryDetailController: ScanNewBarCodeDelegate {
     
     func scanNew(barcode: String) {
-        InventoryListMethods.addInventory(barcode)
+        InventoryListData.addInventory(barcode)
         self.barcode = barcode
         loadInventory()
         downloadDescriptionsIfAllowed()
     }
     
     func editExisting(barcode: String) {
-        InventoryListMethods.editInventory(InventoryListField.barcode, at: inventory, value: barcode)
+        InventoryListData.editInventory(InventoryListField.barcode, at: inventory, value: barcode)
         self.barcode = barcode
         downloadDescriptionsIfAllowed()
     }
@@ -269,6 +285,6 @@ extension InventoryDetailController: ScanNewBarCodeDelegate {
 extension InventoryDetailController: SelectDescription {
     
     func selectDescription(description: String) {
-        InventoryListMethods.editInventory(InventoryListField.descriptopn, at: inventory, value: description)        
+        InventoryListData.editInventory(InventoryListField.descriptopn, at: inventory, value: description)        
     }
 }

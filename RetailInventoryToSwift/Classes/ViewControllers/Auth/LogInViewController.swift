@@ -13,7 +13,7 @@ class LogInViewController: BaseViewController {
     var defaultButtonConstraint: CGFloat = 0
     var tapRecognizer: UITapGestureRecognizer!
     var countCompletedRequest = 0
-    var countRequest = 3
+    var countRequest = 5
     var isPresentedErrorAlert = false
     
     @IBOutlet weak var merchantIdLabel: UILabel!
@@ -63,6 +63,8 @@ class LogInViewController: BaseViewController {
         networkActivity.hidden = false
         networkActivity.startAnimating()
         
+        downloadTags()
+        downloadSets()
         downloadTaxes()
         downloadDepartments()
     }
@@ -110,7 +112,7 @@ class LogInViewController: BaseViewController {
     
     func downloadTaxes() {
         NetworkLoader.downloadTaxes({ taxes in
-                TaxMethods().updateTaxes(taxes)
+                TaxData().updateTaxes(taxes)
                 self.countCompletedRequest += 1
                 self.stopAnimateNetworkActivity()
             }, failure: {(code, message) in
@@ -121,7 +123,7 @@ class LogInViewController: BaseViewController {
     
     func downloadItems() {
         NetworkLoader.downloadItems({ items in
-            InventoryListMethods.addInventoryFromResponse(items)
+            InventoryListData.addInventoryFromResponse(items)
             self.countCompletedRequest += 1
             self.stopAnimateNetworkActivity()
             },
@@ -132,13 +134,35 @@ class LogInViewController: BaseViewController {
     
     func downloadDepartments() {
         NetworkLoader.downloadDepartments({ departments in
-                DepartmentMethods().updateDepartments(departments)
+                DepartmentData().updateDepartments(departments)
                 self.countCompletedRequest += 1
                 self.stopAnimateNetworkActivity()
                 self.downloadItems()
         },
               failure: {(code, message) in
                 self.errorAlert(code, message: message)
+        })
+    }
+    
+    func downloadSets() {
+        NetworkLoader.downloadSets( { sets in
+            SetData.addSetsFromResponse(sets)
+            self.countCompletedRequest += 1
+            self.stopAnimateNetworkActivity()
+            },
+                                    failure: {(code, message) in
+                                        self.errorAlert(code, message: message)
+        })
+    }
+    
+    func downloadTags() {
+        NetworkLoader.downloadTags({ tags in
+            TagData.addTagsFromResponse(tags)
+            self.countCompletedRequest += 1
+            self.stopAnimateNetworkActivity()
+            },
+                                    failure: {(code, message) in
+                                        self.errorAlert(code, message: message)
         })
     }
     

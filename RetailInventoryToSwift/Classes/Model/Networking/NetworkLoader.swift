@@ -115,6 +115,7 @@ class NetworkLoader {
 
         }
     }
+    
     static func downloadItems(completion: (items: [ItemResponse]) -> Void, failure: (code: UInt, message: String) -> Void) {
         Alamofire.request(TaxeDepartmentRouter.Items)
             .responseJSON { response in
@@ -150,10 +151,97 @@ class NetworkLoader {
                     price: String(($0["price"] as? Int)!),
                     cost: String(($0["cost"] as? Int)!),
                     id: ($0["id"] as? Int)!,
-                    barcode: ($0["lookup"] as? String)
+                    barcode: ($0["lookup"] as? String),
+                    printItem: ($0["printItem"] as? Bool),
+                    openItem: ($0["openItem"] as? Bool),
+                    usesWeightScale: ($0["usesWeightScale"] as? Bool),
+                    weighted: ($0["weighted"] as? Bool),
+                    tareWeight: ($0["tareWeight"] as? Int),
+                    itemShortName: ($0["itemShortName"] as? String),
+                    qtyOnHand: ($0["qtyOnHand"] as? Int),
+                    icon: ($0["icon"] as? String),
+                    color: ($0["color"] as? String),
+                    active: ($0["active"] as? Bool)
                     )
                 })
                 completion(items: items)
+        }
+    }
+    
+    static func downloadSets(completion: (sets: [SetResponse]) -> Void, failure: (code: UInt, message: String) -> Void) {
+        Alamofire.request(TaxeDepartmentRouter.Sets)
+            .responseJSON { response in
+                guard !response.result.isFailure else {
+                    failure(code: 0, message: "unable to network connection or server unreachable")
+                    return
+                }
+                guard response.result.isSuccess else {
+                    failure(code: 0, message: "response unsuccessful")
+                    return
+                }
+                guard let responseJSON = response.result.value as? [AnyObject] else {
+                    guard let fail = response.result.value as AnyObject! else {
+                        return
+                    }
+                    guard let error = fail["error"] as AnyObject! else {
+                        return
+                    }
+                    guard let code = error["code"] as? UInt else {
+                        return
+                    }
+                    guard let message = error["message"] as? String else {
+                        return
+                    }
+                    
+                    failure(code: code, message: message)
+                    return
+                }
+                let sets = responseJSON.map({ SetResponse(active: ($0["active"] as? Bool)!,
+                    id: ($0["id"] as? Int)!,
+                    manyPer: ($0["manyPer"] as? Bool)!,
+                    max: ($0["max"] as? Bool)!,
+                    name: ($0["name"] as? String)!
+                    )
+                })
+                completion(sets: sets)
+        }
+    }
+    
+    static func downloadTags(completion: (tags: [TagResponse]) -> Void, failure: (code: UInt, message: String) -> Void) {
+        Alamofire.request(TaxeDepartmentRouter.Tags)
+            .responseJSON { response in
+                guard !response.result.isFailure else {
+                    failure(code: 0, message: "unable to network connection or server unreachable")
+                    return
+                }
+                guard response.result.isSuccess else {
+                    failure(code: 0, message: "response unsuccessful")
+                    return
+                }
+                guard let responseJSON = response.result.value as? [AnyObject] else {
+                    guard let fail = response.result.value as AnyObject! else {
+                        return
+                    }
+                    guard let error = fail["error"] as AnyObject! else {
+                        return
+                    }
+                    guard let code = error["code"] as? UInt else {
+                        return
+                    }
+                    guard let message = error["message"] as? String else {
+                        return
+                    }
+                    
+                    failure(code: code, message: message)
+                    return
+                }
+                let tags = responseJSON.map({ TagResponse(active: ($0["active"] as? Bool)!,
+                    hidden: ($0["hidden"] as? Bool)!,
+                    id: ($0["id"] as? Int)!,
+                    itemTagDesc: ($0["itemTagDesc"] as? String)!
+                    )
+                })
+                completion(tags: tags)
         }
     }
 }

@@ -15,6 +15,7 @@ class InventoryDetailCell: BaseCell {
     @IBOutlet private weak var detailNameLabel: UILabel!
     @IBOutlet private weak var detailTextField: UITextField!
     @IBOutlet private weak var arrowImage: UIImageView!
+    @IBOutlet weak var switchOutlet: UISwitch!
     
     var editable: Bool {
         get {
@@ -34,6 +35,7 @@ class InventoryDetailCell: BaseCell {
             detailName = _detailName
             detailType = _detailType
             inventory = _inventory
+            print(_inventory)
             fillTextField()
         }
     }
@@ -43,13 +45,15 @@ class InventoryDetailCell: BaseCell {
     private func fillTextField() {
         let detailParameter = DetailName(rawValue: detailType)
         
-        switch InventoryDetailMethods.parameterCell(detailParameter!) {
+        switch InventoryDetailData.parameterCell(detailParameter!) {
         case .editNumber:
-            configTextField(InventoryListMethods.detailInventoy(detailParameter!, at: inventory) as? String, keyboardType: .NumberPad)
+            configTextField(InventoryListData.detailInventoy(detailParameter!, at: inventory) as? String, keyboardType: .NumberPad)
         case .editWord:
-            configTextField(InventoryListMethods.detailInventoy(detailParameter!, at: inventory) as? String, keyboardType: .Default)
+            configTextField(InventoryListData.detailInventoy(detailParameter!, at: inventory) as? String, keyboardType: .Default)
         case .label:
-            configTextFieldLikeALabel(InventoryListMethods.detailInventoy(detailParameter!, at: inventory) as? String)
+            configTextFieldLikeALabel(InventoryListData.detailInventoy(detailParameter!, at: inventory) as? String)
+        case .switchCell:
+            confitSwitch((InventoryListData.detailInventoy(detailParameter!, at: inventory) as? Bool)!)
         }
     }
     
@@ -58,6 +62,7 @@ class InventoryDetailCell: BaseCell {
         detailTextField.keyboardType = keyboardType
         arrowImage.hidden = true
         detailTextField.delegate = self
+        switchOutlet.hidden = true
         
         if defaultText != nil {
             detailTextField.text = String(defaultText!)
@@ -69,12 +74,22 @@ class InventoryDetailCell: BaseCell {
     private func configTextFieldLikeALabel(defaultText: String?) {
         detailTextField.enabled = false
         arrowImage.hidden = false
+        switchOutlet.hidden = true
         
         if defaultText != nil {
             detailTextField.text = defaultText
         } else {
             detailTextField.text = ""
         }
+    }
+    
+    private func confitSwitch(state: Bool) {
+        detailTextField.enabled = false
+        detailTextField.hidden = true
+        arrowImage.hidden = true
+        switchOutlet.hidden = false
+        
+        switchOutlet.on = state
     }
     
     // MARK: - Public

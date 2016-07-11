@@ -14,7 +14,7 @@ enum TaxField: String {
          inventory = "inventory"
 }
 
-class TaxMethods: EntityMethods<Tax> {
+class TaxData: EntityMethods<Tax> {
     
     init() {
         let taxs = DataManager.fetchAllTax()

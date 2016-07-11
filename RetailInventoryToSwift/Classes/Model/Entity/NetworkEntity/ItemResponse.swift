@@ -16,4 +16,14 @@ struct ItemResponse {
     var cost: String?
     var id: Int
     var barcode: String?
+    var printItem: Bool?
+    var openItem: Bool?
+    var usesWeightScale: Bool?
+    var weighted: Bool?
+    var tareWeight: Int?
+    var itemShortName: String?
+    var qtyOnHand: Int?
+    var icon: String?
+    var color: String?
+    var active: Bool?
 }

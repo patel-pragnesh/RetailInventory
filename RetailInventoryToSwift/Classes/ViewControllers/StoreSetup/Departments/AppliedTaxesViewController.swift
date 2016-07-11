@@ -17,7 +17,7 @@ class AppliedTaxesViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var selectedTaxes: [Tax]!
-    var taxes = TaxMethods()
+    var taxes = TaxData()
     var delegate: SelectedTaxesDelegate?
     
     // MARK:

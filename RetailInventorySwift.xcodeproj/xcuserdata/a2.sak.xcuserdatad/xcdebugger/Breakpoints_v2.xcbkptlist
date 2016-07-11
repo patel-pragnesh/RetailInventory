@@ -86,22 +86,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RetailInventoryToSwift/Classes/Model/Networking/NetworkLoader.swift"
-            timestampString = "489674679.49329"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "downloadItems(_:failure:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -113,6 +97,54 @@
             endingLineNumber = "26"
             landmarkName = "asDictionaryForRequest()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RetailInventoryToSwift/Classes/Views/Cells/InventoryDetailCell.swift"
+            timestampString = "489933665.743653"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "fillTextField()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RetailInventoryToSwift.InventoryDetailCell.(fillTextField in _AD2936ED479DB713E16306B1F8CC4001) () -&gt; ()"
+                  moduleName = "RetailInventoryToSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a2.sak/RetailInventory/RetailInventoryToSwift/Classes/Views/Cells/InventoryDetailCell.swift"
+                  timestampString = "489933670.952966"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "2232">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "RetailInventoryToSwift.InventoryDetailCell.(fillTextField in _AD2936ED479DB713E16306B1F8CC4001) () -&gt; ()"
+                  moduleName = "RetailInventoryToSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/a2.sak/RetailInventory/RetailInventoryToSwift/Classes/Views/Cells/InventoryDetailCell.swift"
+                  timestampString = "489933670.953332"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56"
+                  offsetFromSymbolStart = "2616">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
