@@ -138,6 +138,10 @@ extension InventoryList {
                 listTax = value as? Tax
             case "adjustStockLevels":
                 adjustStockLevels = value as? AdjustStockLevels
+            case "listSet":
+                listSets = value as? Set
+            case "listTag":
+                listTags = value as? Tag
             default: assert(true, "you do something wrong")
             }
         }

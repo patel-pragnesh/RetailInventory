@@ -8,18 +8,18 @@
 
 import UIKit
 
+protocol ChangeSwitchDelegate: class {
+    func changeSwitch(state: Bool, tag: Int)
+}
+
 class InventoryDetailCell: BaseCell {
     
     static let cellIdentifier = String(InventoryDetailCell)
     
-    @IBOutlet private weak var detailNameLabel: UILabel!
-    @IBOutlet private weak var detailTextField: UITextField!
-    @IBOutlet private weak var arrowImage: UIImageView!
-    @IBOutlet weak var switchOutlet: UISwitch!
-    
+    weak var delegateChangeSwitch: ChangeSwitchDelegate?
     var editable: Bool {
         get {
-            return self.arrowImage.hidden
+            return self.detailTextField.enabled
         }
     }
     var detailName: String! {
@@ -35,10 +35,16 @@ class InventoryDetailCell: BaseCell {
             detailName = _detailName
             detailType = _detailType
             inventory = _inventory
-            print(_inventory)
             fillTextField()
         }
     }
+    
+    @IBOutlet private weak var detailNameLabel: UILabel!
+    @IBOutlet private weak var detailTextField: UITextField!
+    @IBOutlet private weak var arrowImage: UIImageView!
+    @IBOutlet private weak var switchOutlet: UISwitch!
+    
+
     
     // MARK: - Private
     
@@ -53,16 +59,20 @@ class InventoryDetailCell: BaseCell {
         case .label:
             configTextFieldLikeALabel(InventoryListData.detailInventoy(detailParameter!, at: inventory) as? String)
         case .switchCell:
-            confitSwitch((InventoryListData.detailInventoy(detailParameter!, at: inventory) as? Bool)!)
+            confitSwitch(InventoryListData.detailInventoy(detailParameter!, at: inventory) as? Bool)
         }
     }
     
     private func configTextField(defaultText: String?, keyboardType: UIKeyboardType) {
+        arrowImage.hidden = true
+        
+        switchOutlet.hidden = true
+        
+        detailTextField.enabled = true
+        detailTextField.hidden = false
         detailTextField.inputAccessoryView = toolbar()
         detailTextField.keyboardType = keyboardType
-        arrowImage.hidden = true
         detailTextField.delegate = self
-        switchOutlet.hidden = true
         
         if defaultText != nil {
             detailTextField.text = String(defaultText!)
@@ -73,7 +83,10 @@ class InventoryDetailCell: BaseCell {
     
     private func configTextFieldLikeALabel(defaultText: String?) {
         detailTextField.enabled = false
+        detailTextField.hidden = false
+        
         arrowImage.hidden = false
+        
         switchOutlet.hidden = true
         
         if defaultText != nil {
@@ -83,13 +96,16 @@ class InventoryDetailCell: BaseCell {
         }
     }
     
-    private func confitSwitch(state: Bool) {
+    private func confitSwitch(state: Bool?) {
         detailTextField.enabled = false
         detailTextField.hidden = true
         arrowImage.hidden = true
         switchOutlet.hidden = false
         
-        switchOutlet.on = state
+        if let on = state {
+            switchOutlet.on = on
+        }
+        
     }
     
     // MARK: - Public
@@ -110,6 +126,12 @@ class InventoryDetailCell: BaseCell {
     
     override func doneButtonTouch(cellTag : Int) {
         delegate?.doneButtonTouch(self.tag)
+    }
+    
+    // MARK: - Switch change
+    
+    @IBAction func changeSwitchAction(sender: UISwitch) {
+        delegateChangeSwitch?.changeSwitch(sender.on, tag: self.tag)
     }
 }
 

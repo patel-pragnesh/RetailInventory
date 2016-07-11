@@ -24,7 +24,7 @@ class DataManager {
     }
 
   
-    static func addInventoryList(cost: String?, list_description: String?, price: String?, id: Int?, name: String?, departmentId: Int?, barcode: String?) -> InventoryList {
+    static func addInventoryList(cost: String?, list_description: String?, price: String?, id: Int?, name: String?, departmentId: Int?, barcode: String?, active: Bool?, printItem: Bool?, openItem: Bool?, tareWeight: Int?, usesWeightScale: Bool?, weighted: Bool?, icon: String?, color: String?, qtyOnHand: Int?, shortName: String?) -> InventoryList {
         let newInventory = InventoryList.MR_createEntity()!
         
         newInventory.cost = cost
@@ -33,6 +33,17 @@ class DataManager {
         newInventory.price = price
         newInventory.name = name
         newInventory.barcode = barcode
+        newInventory.active = active
+        newInventory.tareWeight = tareWeight
+        newInventory.usesWeightScale = usesWeightScale
+        newInventory.printItem = printItem
+        newInventory.openItem = openItem
+        newInventory.weighted = weighted
+        newInventory.icon = icon
+        newInventory.color = color
+        newInventory.gtyOnHand = qtyOnHand
+        newInventory.itemShortName = shortName
+        
         if let depId = departmentId {
             newInventory.listDepartment = getFirstDepartmentByAttribute("id", value: depId)
         }

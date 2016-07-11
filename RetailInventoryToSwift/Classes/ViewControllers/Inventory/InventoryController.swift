@@ -95,7 +95,7 @@ class InventoryController: BaseViewController {
         }
         if segue.identifier == MyConstant.segueInventaryDetail {
             let upcoming = segue.destinationViewController as! InventoryDetailController
-            upcoming.barcode = inventorys.getObjectByIndex(selectIndexPath.row).barcode
+            upcoming.id = inventorys.getObjectByIndex(selectIndexPath.row).id as! Int
         }
     }
     

@@ -465,6 +465,9 @@
                                                 </imageView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Bg-3u-lUK">
                                                     <rect key="frame" x="327" y="10" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="changeSwitchAction:" destination="0KV-mF-4x5" eventType="valueChanged" id="mht-3d-MLO"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -518,10 +521,10 @@
                         <segue destination="t2W-J5-NoP" kind="show" identifier="segueSelectDepartments" id="1E7-bg-OZr"/>
                         <segue destination="t2W-J5-NoP" kind="show" identifier="segueSelectTaxes" id="oSE-j3-dL2"/>
                         <segue destination="t2W-J5-NoP" kind="show" identifier="segueSelectVendors" id="ApK-I6-fGn"/>
-                        <segue destination="iNf-zh-dc8" kind="presentation" identifier="scanBarCode" id="41D-Mq-xQE"/>
                         <segue destination="BJF-rC-XAx" kind="show" identifier="selectDescription" id="UI0-Ma-84i"/>
-                        <segue destination="t2W-J5-NoP" kind="showDetail" identifier="segueSelectTag" id="bmn-X9-zRX"/>
-                        <segue destination="t2W-J5-NoP" kind="showDetail" identifier="segueSelectSet" id="sHb-HK-30d"/>
+                        <segue destination="t2W-J5-NoP" kind="show" identifier="segueSelectTag" id="bmn-X9-zRX"/>
+                        <segue destination="t2W-J5-NoP" kind="show" identifier="segueSelectSet" id="sHb-HK-30d"/>
+                        <segue destination="iNf-zh-dc8" kind="presentation" identifier="scanBarCode" id="eat-Hk-ZLw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bnw-Ce-dNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1690,10 +1693,10 @@
         <image name="whiteCheckmark" width="18" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="41D-Mq-xQE"/>
-        <segue reference="bmn-X9-zRX"/>
-        <segue reference="yey-j1-Evo"/>
-        <segue reference="Wye-Ic-CM1"/>
         <segue reference="xtD-bU-eZI"/>
+        <segue reference="yey-j1-Evo"/>
+        <segue reference="eat-Hk-ZLw"/>
+        <segue reference="ApK-I6-fGn"/>
+        <segue reference="Wye-Ic-CM1"/>
     </inferredMetricsTieBreakers>
 </document>

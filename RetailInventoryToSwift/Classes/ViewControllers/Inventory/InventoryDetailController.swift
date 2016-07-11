@@ -11,7 +11,7 @@ import Alamofire
 
 class InventoryDetailController: BaseViewController {
     
-    var barcode: String!
+    var id: Int!
     private var listDescriptions: [String]?    
     private var inventory: InventoryList!
     private let detailNames = InventoryDetailData()
@@ -44,7 +44,7 @@ class InventoryDetailController: BaseViewController {
     }
     
     private func loadInventory() {
-        inventory = InventoryListData.getInventoryByBarcode(barcode)
+        inventory = InventoryListData.inventory(by: id)
         if inventory.list_description != nil {
             networkActivity.hidden = true
         }
@@ -142,7 +142,7 @@ class InventoryDetailController: BaseViewController {
     
     func downloadDescriptionsIfAllowed() {
         if UserStorage.getLookUpDescription() {
-            downloadDescriptions(barcode)
+            downloadDescriptions(InventoryListData.inventory(by: id).barcode!)
         } else {
             networkActivity.hidden = true
         }
@@ -190,6 +190,7 @@ extension InventoryDetailController: UITableViewDataSource {
         cell.backgroundType = tableView.backgroundForTableCell(at: indexPath)
         cell.cellContents = (detailNames.getObjectByIndex(indexPath.row), indexPath.row, inventory)
         cell.delegate = self
+        cell.delegateChangeSwitch = self
         cell.tag = indexPath.row
         
         return cell
@@ -267,15 +268,15 @@ extension InventoryDetailController: SelectDetailDelegate {
 extension InventoryDetailController: ScanNewBarCodeDelegate {
     
     func scanNew(barcode: String) {
-        InventoryListData.addInventory(barcode)
-        self.barcode = barcode
-        loadInventory()
-        downloadDescriptionsIfAllowed()
+        //InventoryListData.addInventory(barcode)
+        //id = InventoryListData.inventory(by: <#T##Int!#>)
+        //loadInventory()
+        //downloadDescriptionsIfAllowed()
     }
     
     func editExisting(barcode: String) {
         InventoryListData.editInventory(InventoryListField.barcode, at: inventory, value: barcode)
-        self.barcode = barcode
+        //self.barcode = barcode
         downloadDescriptionsIfAllowed()
     }
 }
@@ -286,5 +287,14 @@ extension InventoryDetailController: SelectDescription {
     
     func selectDescription(description: String) {
         InventoryListData.editInventory(InventoryListField.descriptopn, at: inventory, value: description)        
+    }
+}
+
+// MARK: - ChangeSwitchDelegate
+
+extension InventoryDetailController: ChangeSwitchDelegate {
+    
+    func changeSwitch(state: Bool, tag: Int) {
+        InventoryListData.editInventory(InventoryListField(rawValue: InventoryDetailData.fieldNameForDetail(DetailName(rawValue: tag)!))!, at: inventory, value: state)
     }
 }

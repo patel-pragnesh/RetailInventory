@@ -45,17 +45,15 @@ class InventoryListData: EntityMethods<InventoryList> {
     static func addInventory(barcode: String?) -> InventoryList {
          return DataManager.addInventoryList(barcode)
     }
-    
-    
 
-    static func addInventory(cost: String?, list_description: String?, price: String?, id: Int?, name: String?, departmentId: Int?, barcode: String?) -> InventoryList {
+    static func addInventory(cost: String?, list_description: String?, price: String?, id: Int?, name: String?, departmentId: Int?, barcode: String?, active: Bool?, printItem: Bool?, openItem: Bool?, tareWeight: Int?, usesWeightScale: Bool?, weighted: Bool?, icon: String?, color: String?, qtyOnHand: Int?, shortName: String?) -> InventoryList {
         var depId: Int?
         if departmentId == 0 {
             depId = nil
         } else {
             depId = departmentId
         }
-        return DataManager.addInventoryList(cost, list_description: list_description, price: price, id: id, name: name, departmentId: depId, barcode: barcode)
+        return DataManager.addInventoryList(cost, list_description: list_description, price: price, id: id, name: name, departmentId: depId, barcode: barcode, active: active, printItem: printItem, openItem: openItem, tareWeight: tareWeight, usesWeightScale: usesWeightScale, weighted: weighted, icon: icon, color: color, qtyOnHand: qtyOnHand, shortName: shortName)
     }
     
     static func addInventoryFromResponse(items: [ItemResponse]) {
@@ -72,7 +70,7 @@ class InventoryListData: EntityMethods<InventoryList> {
                 }
             }
             if !isConsist {
-                addInventory(item.cost, list_description: item.itemNotes, price: item.price, id: item.id, name: item.itemName, departmentId: item.departmentId, barcode: item.barcode)
+                addInventory(item.cost, list_description: item.itemNotes, price: item.price, id: item.id, name: item.itemName, departmentId: item.departmentId, barcode: item.barcode, active: item.active, printItem: item.printItem, openItem: item.openItem, tareWeight: item.tareWeight, usesWeightScale: item.usesWeightScale, weighted: item.weighted, icon: item.icon, color: item.color, qtyOnHand: item.qtyOnHand, shortName: item.itemShortName)
             }
         }
         save()
@@ -153,8 +151,8 @@ class InventoryListData: EntityMethods<InventoryList> {
         }
     }
     
-    static func getInventoryByBarcode(barcode: String) -> InventoryList {
-        return DataManager.getFirstByAttribute("barcode", value: barcode)
+    static func inventory(by id: Int!) -> InventoryList {
+        return DataManager.getFirstByAttribute("id", value: id)
     }
     
     static func editInventory(fieldName: InventoryListField, at inventory: InventoryList, value: AnyObject?) {
