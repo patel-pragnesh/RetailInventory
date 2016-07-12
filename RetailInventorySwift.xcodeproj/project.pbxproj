@@ -79,7 +79,6 @@
 		E2DA740F1D2E8D7F0099F374 /* SelectDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73B81D2E8D7F0099F374 /* SelectDetailCell.swift */; };
 		E2DA74101D2E8D7F0099F374 /* StoreSetupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73B91D2E8D7F0099F374 /* StoreSetupCell.swift */; };
 		E2DA74111D2E8D7F0099F374 /* TaxCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73BA1D2E8D7F0099F374 /* TaxCell.swift */; };
-		E2DA74121D2E8D7F0099F374 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DA73BC1D2E8D7F0099F374 /* Assets.xcassets */; };
 		E2DA74131D2E8D7F0099F374 /* harbortouch-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2DA73BE1D2E8D7F0099F374 /* harbortouch-webfont.ttf */; };
 		E2DA74141D2E8D7F0099F374 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DA73BF1D2E8D7F0099F374 /* Images.xcassets */; };
 		E2DA74151D2E8D7F0099F374 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DA73C11D2E8D7F0099F374 /* LaunchScreen.storyboard */; };
@@ -193,7 +192,6 @@
 		E2DA73B81D2E8D7F0099F374 /* SelectDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDetailCell.swift; sourceTree = "<group>"; };
 		E2DA73B91D2E8D7F0099F374 /* StoreSetupCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreSetupCell.swift; sourceTree = "<group>"; };
 		E2DA73BA1D2E8D7F0099F374 /* TaxCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxCell.swift; sourceTree = "<group>"; };
-		E2DA73BC1D2E8D7F0099F374 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2DA73BE1D2E8D7F0099F374 /* harbortouch-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "harbortouch-webfont.ttf"; sourceTree = "<group>"; };
 		E2DA73BF1D2E8D7F0099F374 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E2DA73C21D2E8D7F0099F374 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -511,7 +509,6 @@
 		E2DA73BB1D2E8D7F0099F374 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E2DA73BC1D2E8D7F0099F374 /* Assets.xcassets */,
 				E2DA73BD1D2E8D7F0099F374 /* fonts */,
 				E2DA73BF1D2E8D7F0099F374 /* Images.xcassets */,
 				E2DA73C01D2E8D7F0099F374 /* StoryBoards */,
@@ -675,7 +672,6 @@
 				E2DA74131D2E8D7F0099F374 /* harbortouch-webfont.ttf in Resources */,
 				E2DA74141D2E8D7F0099F374 /* Images.xcassets in Resources */,
 				E2DA741F1D2E90E10099F374 /* Info.plist in Resources */,
-				E2DA74121D2E8D7F0099F374 /* Assets.xcassets in Resources */,
 				E2DA74161D2E8D7F0099F374 /* Main.storyboard in Resources */,
 				E2DA74151D2E8D7F0099F374 /* LaunchScreen.storyboard in Resources */,
 				E2DA74191D2E8D7F0099F374 /* Localizable.strings in Resources */,

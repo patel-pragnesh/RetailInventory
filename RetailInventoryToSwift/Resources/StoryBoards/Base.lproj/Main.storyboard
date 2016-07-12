@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gr9-uV-at6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gr9-uV-at6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -1130,7 +1130,7 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hIt-1h-iHp">
                                 <rect key="frame" x="10" y="53" width="394" height="683"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="1" minimumInteritemSpacing="1" id="D17-7e-o2F">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="D17-7e-o2F">
                                     <size key="itemSize" width="75" height="75"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1144,7 +1144,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0o-Za-vNs">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haI-KV-EiJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0o-Za-vNs">
                                                     <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1153,14 +1157,19 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="i0o-Za-vNs" firstAttribute="leading" secondItem="iaB-m9-E3f" secondAttribute="leading" id="Fdh-PY-rXc"/>
                                             <constraint firstAttribute="bottom" secondItem="i0o-Za-vNs" secondAttribute="bottom" id="Msx-o5-opf"/>
+                                            <constraint firstItem="haI-KV-EiJ" firstAttribute="leading" secondItem="iaB-m9-E3f" secondAttribute="leading" id="V4q-Wc-5kz"/>
+                                            <constraint firstAttribute="trailing" secondItem="haI-KV-EiJ" secondAttribute="trailing" id="WcL-cY-rJh"/>
+                                            <constraint firstAttribute="bottom" secondItem="haI-KV-EiJ" secondAttribute="bottom" id="ZI1-dQ-pPu"/>
+                                            <constraint firstItem="haI-KV-EiJ" firstAttribute="top" secondItem="iaB-m9-E3f" secondAttribute="top" id="meq-sB-P34"/>
                                             <constraint firstAttribute="trailing" secondItem="i0o-Za-vNs" secondAttribute="trailing" id="q8U-WU-dO2"/>
                                             <constraint firstItem="i0o-Za-vNs" firstAttribute="top" secondItem="iaB-m9-E3f" secondAttribute="top" id="uxw-We-0tQ"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="borderView" destination="haI-KV-EiJ" id="rzu-Dg-cON"/>
                                             <outlet property="icon" destination="i0o-Za-vNs" id="1pL-OG-sJK"/>
                                         </connections>
                                     </collectionViewCell>
