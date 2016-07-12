@@ -178,64 +178,72 @@ class AddDepartmentViewController: BaseViewController {
     }
     
     func sendNewDepartment() {
-        SocketClient.createDepartment(departmentTemplate,
-                                      failure: { (code, error) in
-                                        switch code {
-                                        case .fail:
-                                            self.errorAlert(error!)
-                                        default:
-                                            self.countCompletedRequest += 1
-                                            self.stopAnimateNetworkActivity()
-                                            self.needUpdateTaxes = false
-                                        }
-        })
+        SocketClient.createDepartment(
+            departmentTemplate,
+            failure: { (code, error) in
+                switch code {
+                case .fail:
+                    self.errorAlert(error!)
+                default:
+                    self.countCompletedRequest += 1
+                    self.stopAnimateNetworkActivity()
+                    self.needUpdateTaxes = false
+                }
+            }
+        )
     }
     
     func sendEditDepartment() {
-        SocketClient.updateDepartment(departmentTemplate,
-                                      failure: { (code, error) in
-                                        switch code {
-                                        case .fail:
-                                            self.errorAlert(error!)
-                                        default:
-                                            self.countCompletedRequest += 1
-                                            self.stopAnimateNetworkActivity()
-                                            self.needUpdateTaxes = false
-                                        }
-        })
+        SocketClient.updateDepartment(
+            departmentTemplate,
+            failure: { (code, error) in
+                switch code {
+                case .fail:
+                    self.errorAlert(error!)
+                default:
+                    self.countCompletedRequest += 1
+                    self.stopAnimateNetworkActivity()
+                    self.needUpdateTaxes = false
+                }
+            }
+        )
     }
     
     func sendTaxesToServer() {
         if taxesForAdd?.count > 0 {
             for tax in taxesForAdd! {
                 countRequest += 1
-                SocketClient.taxMapCreate(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
-                                          failure: { (code, error) in
-                                            switch code {
-                                            case .fail:
-                                                self.errorAlert(error!)
-                                            default:
-                                                self.countCompletedRequest += 1
-                                                self.stopAnimateNetworkActivity()
-                                            }
-                                            self.taxesForAdd = nil
-                })
+                SocketClient.taxMapCreate(
+                    tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
+                    failure: { (code, error) in
+                        switch code {
+                        case .fail:
+                            self.errorAlert(error!)
+                        default:
+                            self.countCompletedRequest += 1
+                            self.stopAnimateNetworkActivity()
+                        }
+                        self.taxesForAdd = nil
+                    }
+                )
             }
         }
         if taxesForRemove?.count > 0 {
             for tax in taxesForRemove! {
                 countRequest += 1
-                SocketClient.taxMapDelete(tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
-                                          failure: { (code, error) in
-                                            switch code {
-                                            case .fail:
-                                                self.errorAlert(error!)
-                                            default:
-                                                self.countCompletedRequest += 1
-                                                self.stopAnimateNetworkActivity()
-                                            }
-                                            self.taxesForRemove = nil
-                })
+                SocketClient.taxMapDelete(
+                    tax.id as! Int, DepartmentId: departmentTemplate.id as! Int,
+                    failure: { (code, error) in
+                        switch code {
+                        case .fail:
+                            self.errorAlert(error!)
+                        default:
+                            self.countCompletedRequest += 1
+                            self.stopAnimateNetworkActivity()
+                        }
+                        self.taxesForRemove = nil
+                    }
+                )
             }
         }
     }

@@ -24,6 +24,8 @@ class LogInViewController: BaseViewController {
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var logInButton: UIButton!
     @IBOutlet weak var networkActivity: UIActivityIndicatorView!
+    @IBOutlet weak var progressLabel: UILabel!
+    @IBOutlet weak var progressView: UIView!
     
     // MARK: 
     
@@ -40,7 +42,7 @@ class LogInViewController: BaseViewController {
     }
     
     override func viewWillAppear(animated: Bool) {        
-        networkActivity.hidden = true
+        progressView.hidden = true
     }
     
     deinit {
@@ -59,14 +61,9 @@ class LogInViewController: BaseViewController {
     
     @IBAction func onLogInTouch(sender: AnyObject) {
         tapOutSideTextField()
-        
-        networkActivity.hidden = false
-        networkActivity.startAnimating()
-        
-        downloadTags()
-        downloadSets()
-        downloadTaxes()
+        progressView.hidden = false
         downloadDepartments()
+        configProgressLabel()
     }
     
     // MARK: - Tap outside textField
@@ -83,7 +80,10 @@ class LogInViewController: BaseViewController {
     
     override func keyboardWillHide(notification: NSNotification) {
         animateLayoutIfNeeded(durationAnimate, hide: false, notification: nil)
-
+    }
+    
+    private func configProgressLabel() {
+        progressLabel.text = "downloading " + String(countCompletedRequest) + " in " + String(countRequest) + " components"
     }
     
     // MARK: - Animation With Duration
@@ -111,70 +111,78 @@ class LogInViewController: BaseViewController {
     // MARK: - Network 
     
     func downloadTaxes() {
-        NetworkLoader.downloadTaxes({ taxes in
+        NetworkLoader.downloadTaxes(
+            completion: { taxes in
                 TaxData().updateTaxes(taxes)
                 self.countCompletedRequest += 1
-                self.stopAnimateNetworkActivity()
-            }, failure: {(code, message) in
+                self.configProgressLabel()
+                self.downloadItems()
+                
+            },
+            failure: {(code, message) in
                 self.errorAlert(code, message: message)
-        })
-        
+            }
+        )
     }
     
     func downloadItems() {
-        NetworkLoader.downloadItems({ items in
-            InventoryListData.addInventoryFromResponse(items)
-            self.countCompletedRequest += 1
-            self.stopAnimateNetworkActivity()
+        NetworkLoader.downloadItems(
+            completion: { items in
+                InventoryListData.addInventoryFromResponse(items)
+                self.countCompletedRequest += 1
+                self.configProgressLabel()
+                self.downloadSets()
             },
-                                          failure: {(code, message) in
-                                            self.errorAlert(code, message: message)
-        })
+            failure: {(code, message) in
+                self.errorAlert(code, message: message)
+            }
+        )
     }
     
     func downloadDepartments() {
-        NetworkLoader.downloadDepartments({ departments in
+        NetworkLoader.downloadDepartments(
+            completion: { departments in
                 DepartmentData().updateDepartments(departments)
                 self.countCompletedRequest += 1
-                self.stopAnimateNetworkActivity()
-                self.downloadItems()
-        },
-              failure: {(code, message) in
+                self.configProgressLabel()
+                self.downloadTaxes()
+            },
+            failure: {(code, message) in
                 self.errorAlert(code, message: message)
-        })
+            }
+        )
     }
     
     func downloadSets() {
-        NetworkLoader.downloadSets( { sets in
-            SetData.addSetsFromResponse(sets)
-            self.countCompletedRequest += 1
-            self.stopAnimateNetworkActivity()
+        NetworkLoader.downloadSets(
+            completion: { sets in
+                SetData.addSetsFromResponse(sets)
+                self.countCompletedRequest += 1
+                self.configProgressLabel()
+                self.downloadTags()
             },
-                                    failure: {(code, message) in
-                                        self.errorAlert(code, message: message)
-        })
+            failure: {(code, message) in
+                self.errorAlert(code, message: message)
+            }
+        )
     }
     
     func downloadTags() {
-        NetworkLoader.downloadTags({ tags in
-            TagData.addTagsFromResponse(tags)
-            self.countCompletedRequest += 1
-            self.stopAnimateNetworkActivity()
+        NetworkLoader.downloadTags(
+            completion: { tags in
+                TagData.addTagsFromResponse(tags)
+                self.countCompletedRequest += 1
+                self.configProgressLabel()
+                self.progressView.hidden = true
+                
+                self.performSegueWithIdentifier("showMenu", sender: self)
+                self.navigationController?.navigationBarHidden = false
+                self.countCompletedRequest = 0
             },
-                                    failure: {(code, message) in
-                                        self.errorAlert(code, message: message)
-        })
-    }
-    
-    // MARK: - ActivityIndicator control
-    
-    func stopAnimateNetworkActivity() {
-        if countCompletedRequest == countRequest {
-            networkActivity.stopAnimating()
-            self.performSegueWithIdentifier("showMenu", sender: self)
-            self.navigationController?.navigationBarHidden = false
-            countCompletedRequest = 0
-        }
+            failure: {(code, message) in
+                self.errorAlert(code, message: message)
+            }
+        )
     }
     
     // MARK: - Alert

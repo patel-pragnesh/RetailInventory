@@ -8,26 +8,21 @@
 
 import Foundation
 
+enum TypeIcons: Int {
+    case hospitality = 0, retail
+}
+
 class IconData {
-    enum TypeIcons: Int {
-        case hospitality = 0, retail
-    }
-    
     var сount: Int! {
-        switch sourceType {
+        switch typeIcons {
         case .hospitality:
             return hospitalityIcons.count
         case .retail:
             return retailIcons.count
         }
     }
-    private var sourceType: TypeIcons = .hospitality
-    
-    var source: Int! {
-        didSet {
-            sourceType = TypeIcons(rawValue: source)!
-        }
-    }
+    var typeIcons: TypeIcons = .hospitality
+
 
     var hospitalityIcons = [Character]()
     var retailIcons = [Character]()
@@ -62,7 +57,7 @@ class IconData {
     }
     
     func itemForIndex(index: Int) -> Character {
-        switch sourceType {
+        switch typeIcons {
         case .hospitality:
             return hospitalityIcons[index]
         case .retail:

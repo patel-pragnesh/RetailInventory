@@ -12,5 +12,18 @@ struct TagResponse {
     var active: Bool?
     var hidden: Bool?
     var id: Int?
-    var itemTagDesc: String?    
+    var itemTagDesc: String?
+    var locationId: Int?
+    var ordinalNum: Int?
+    var sortMode: Bool?
+    
+    init(withDictionary response: [String:AnyObject]) {
+        active = response["active"] as? Bool
+        hidden = response["hidden"] as? Bool
+        id = response["id"] as? Int
+        itemTagDesc = response["itemTagDesc"] as? String
+        locationId = response["locationId"] as? Int
+        ordinalNum = response["ordinalNum"] as? Int
+        sortMode = response["sortMode"] as? Bool
+    }
 }

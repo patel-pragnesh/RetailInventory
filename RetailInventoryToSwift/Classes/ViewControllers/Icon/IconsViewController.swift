@@ -21,7 +21,8 @@ class IconsViewController: BaseViewController {
     let iconData = IconData()
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var segmentControlOutlet: UISegmentedControl!
+    @IBOutlet var collectionSelectSourceButtons: [UIButton]!
+    
     
     // MARK:
     
@@ -34,14 +35,41 @@ class IconsViewController: BaseViewController {
     
     private func configTitles() {
         self.navigationItem.title = "icon.title".localized
-        segmentControlOutlet.setTitle("icon.hospitality".localized, forSegmentAtIndex: 0)
-        segmentControlOutlet.setTitle("icon.retail".localized, forSegmentAtIndex: 1)
+        for button in collectionSelectSourceButtons {
+            switch TypeIcons(rawValue: button.tag)! {
+            case .hospitality:
+                button.setTitle("icon.hospitality".localized, forState: .Normal)
+                selectedStateFor(button)
+            case .retail:
+                button.setTitle("icon.retail".localized, forState: .Normal)
+            }
+        }
     }
     
-    @IBAction func segmentControlChanged(sender: UISegmentedControl) {
-        iconData.source = sender.selectedSegmentIndex
+    private func configButtonsState(selectedButtonTag: Int) {
+        for button in collectionSelectSourceButtons {
+            if button.tag == selectedButtonTag {
+                button.selected = true
+            } else {
+                button.selected = false
+            }
+        }
+        
+    }
+    
+    private func selectedStateFor(button: UIButton) {
+        button.selected = true
+    }
+    
+    // MARK: - Action
+    
+    @IBAction func selectSourceButtonTouched(sender: UIButton) {
+        configButtonsState(sender.tag)
+        iconData.typeIcons = TypeIcons(rawValue: sender.tag)!
         collectionView.reloadData()
     }
+
+    
 }
 
 extension IconsViewController: UICollectionViewDelegate {

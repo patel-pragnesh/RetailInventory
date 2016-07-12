@@ -10,6 +10,9 @@
 		7DFE49B71D057D4100EDF2FC /* (null) in Resources */ = {isa = PBXBuildFile; };
 		E203D1061D2270FA007B7F8D /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E203D1051D2270FA007B7F8D /* Alamofire.framework */; };
 		E24F17211D2D1BAC004B6601 /* SocketIOClientSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E24F17201D2D1BAC004B6601 /* SocketIOClientSwift.framework */; };
+		E28FF7651D35181000884A26 /* ModifiersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF7641D35181000884A26 /* ModifiersResponse.swift */; };
+		E28FF7671D35188400884A26 /* ModifierResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF7661D35188400884A26 /* ModifierResponse.swift */; };
+		E28FF76A1D352E5100884A26 /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28FF7691D352E5100884A26 /* IconsViewController.swift */; };
 		E2BAE4D61D338EAB003D5768 /* InventoryList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D41D338EAB003D5768 /* InventoryList+CoreDataProperties.swift */; };
 		E2BAE4D71D338EAB003D5768 /* InventoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D51D338EAB003D5768 /* InventoryList.swift */; };
 		E2BAE4DC1D338EF6003D5768 /* Set+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAE4D81D338EF6003D5768 /* Set+CoreDataProperties.swift */; };
@@ -86,13 +89,11 @@
 		E2DA74171D2E8D7F0099F374 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA73C61D2E8D7F0099F374 /* Constant.swift */; };
 		E2DA74191D2E8D7F0099F374 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E2DA73C81D2E8D7F0099F374 /* Localizable.strings */; };
 		E2DA741D1D2E8E4B0099F374 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA741C1D2E8E4B0099F374 /* UserStorage.swift */; };
-		E2DA741F1D2E90E10099F374 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2DA741E1D2E90E10099F374 /* Info.plist */; };
 		E2DA74211D2E92420099F374 /* VendorTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74201D2E92420099F374 /* VendorTemplate.swift */; };
 		E2DA742C1D2E98B90099F374 /* AddDepartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74241D2E98B90099F374 /* AddDepartmentViewController.swift */; };
 		E2DA742D1D2E98B90099F374 /* AppliedItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74251D2E98B90099F374 /* AppliedItemsViewController.swift */; };
 		E2DA742E1D2E98B90099F374 /* AppliedTaxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74261D2E98B90099F374 /* AppliedTaxesViewController.swift */; };
 		E2DA742F1D2E98B90099F374 /* DepartmentsAndVendorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74271D2E98B90099F374 /* DepartmentsAndVendorsViewController.swift */; };
-		E2DA74301D2E98B90099F374 /* IconsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74281D2E98B90099F374 /* IconsViewController.swift */; };
 		E2DA74321D2E98B90099F374 /* TaxesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA742A1D2E98B90099F374 /* TaxesViewController.swift */; };
 		E2DA74341D2FBF800099F374 /* TaxeDepartmentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74331D2FBF800099F374 /* TaxeDepartmentRouter.swift */; };
 		E2DA74361D2FC04F0099F374 /* BarcodeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DA74351D2FC04F0099F374 /* BarcodeRouter.swift */; };
@@ -123,6 +124,9 @@
 		7DFE49D01D057D4200EDF2FC /* RetailInventoryToSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RetailInventoryToSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E203D1051D2270FA007B7F8D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		E24F17201D2D1BAC004B6601 /* SocketIOClientSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SocketIOClientSwift.framework; path = Carthage/Build/iOS/SocketIOClientSwift.framework; sourceTree = "<group>"; };
+		E28FF7641D35181000884A26 /* ModifiersResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifiersResponse.swift; sourceTree = "<group>"; };
+		E28FF7661D35188400884A26 /* ModifierResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModifierResponse.swift; sourceTree = "<group>"; };
+		E28FF7691D352E5100884A26 /* IconsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		E2BAE4D41D338EAB003D5768 /* InventoryList+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "InventoryList+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E2BAE4D51D338EAB003D5768 /* InventoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryList.swift; sourceTree = "<group>"; };
 		E2BAE4D81D338EF6003D5768 /* Set+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -205,7 +209,6 @@
 		E2DA74251D2E98B90099F374 /* AppliedItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppliedItemsViewController.swift; sourceTree = "<group>"; };
 		E2DA74261D2E98B90099F374 /* AppliedTaxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppliedTaxesViewController.swift; sourceTree = "<group>"; };
 		E2DA74271D2E98B90099F374 /* DepartmentsAndVendorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsAndVendorsViewController.swift; sourceTree = "<group>"; };
-		E2DA74281D2E98B90099F374 /* IconsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconsViewController.swift; sourceTree = "<group>"; };
 		E2DA742A1D2E98B90099F374 /* TaxesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxesViewController.swift; sourceTree = "<group>"; };
 		E2DA74331D2FBF800099F374 /* TaxeDepartmentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxeDepartmentRouter.swift; sourceTree = "<group>"; };
 		E2DA74351D2FC04F0099F374 /* BarcodeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarcodeRouter.swift; sourceTree = "<group>"; };
@@ -269,6 +272,14 @@
 				E2DA73C51D2E8D7F0099F374 /* Supporting files */,
 			);
 			path = RetailInventoryToSwift;
+			sourceTree = "<group>";
+		};
+		E28FF7681D352E1E00884A26 /* Icon */ = {
+			isa = PBXGroup;
+			children = (
+				E28FF7691D352E5100884A26 /* IconsViewController.swift */,
+			);
+			path = Icon;
 			sourceTree = "<group>";
 		};
 		E2DA735D1D2E8D7F0099F374 /* Classes */ = {
@@ -361,6 +372,8 @@
 				E2DA74371D2FC31A0099F374 /* ItemResponse.swift */,
 				E2BAE4E01D339082003D5768 /* TagResponse.swift */,
 				E2BAE4E21D33908B003D5768 /* SetResponse.swift */,
+				E28FF7641D35181000884A26 /* ModifiersResponse.swift */,
+				E28FF7661D35188400884A26 /* ModifierResponse.swift */,
 			);
 			path = NetworkEntity;
 			sourceTree = "<group>";
@@ -407,6 +420,7 @@
 		E2DA73941D2E8D7F0099F374 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				E28FF7681D352E1E00884A26 /* Icon */,
 				E2DA73951D2E8D7F0099F374 /* Auth */,
 				E2DA73971D2E8D7F0099F374 /* Base */,
 				E2DA73991D2E8D7F0099F374 /* Inventory */,
@@ -559,7 +573,6 @@
 				E2DA74251D2E98B90099F374 /* AppliedItemsViewController.swift */,
 				E2DA74261D2E98B90099F374 /* AppliedTaxesViewController.swift */,
 				E2DA74271D2E98B90099F374 /* DepartmentsAndVendorsViewController.swift */,
-				E2DA74281D2E98B90099F374 /* IconsViewController.swift */,
 			);
 			path = Departments;
 			sourceTree = "<group>";
@@ -671,7 +684,6 @@
 			files = (
 				E2DA74131D2E8D7F0099F374 /* harbortouch-webfont.ttf in Resources */,
 				E2DA74141D2E8D7F0099F374 /* Images.xcassets in Resources */,
-				E2DA741F1D2E90E10099F374 /* Info.plist in Resources */,
 				E2DA74161D2E8D7F0099F374 /* Main.storyboard in Resources */,
 				E2DA74151D2E8D7F0099F374 /* LaunchScreen.storyboard in Resources */,
 				E2DA74191D2E8D7F0099F374 /* Localizable.strings in Resources */,
@@ -725,6 +737,7 @@
 				E2BAE4DE1D338EF6003D5768 /* Tag+CoreDataProperties.swift in Sources */,
 				E2DA73CC1D2E8D7F0099F374 /* RetailInventoryToSwift.xcdatamodeld in Sources */,
 				E2DA73FD1D2E8D7F0099F374 /* ScanController.swift in Sources */,
+				E28FF7651D35181000884A26 /* ModifiersResponse.swift in Sources */,
 				E2DA73D41D2E8D7F0099F374 /* InventoryListData.swift in Sources */,
 				E2BAE4DD1D338EF6003D5768 /* Set.swift in Sources */,
 				E2DA74091D2E8D7F0099F374 /* BaseCell.swift in Sources */,
@@ -733,10 +746,10 @@
 				E2DA73FB1D2E8D7F0099F374 /* MenuViewController.swift in Sources */,
 				E2DA74071D2E8D7F0099F374 /* AddDepartmentCell.swift in Sources */,
 				E2DA74001D2E8D7F0099F374 /* AddVendorViewController.swift in Sources */,
+				E28FF7671D35188400884A26 /* ModifierResponse.swift in Sources */,
 				E2DA74171D2E8D7F0099F374 /* Constant.swift in Sources */,
 				E2DA742D1D2E98B90099F374 /* AppliedItemsViewController.swift in Sources */,
 				E2DA73E71D2E8D7F0099F374 /* DepartmentTemplate.swift in Sources */,
-				E2DA74301D2E98B90099F374 /* IconsViewController.swift in Sources */,
 				E2BAE4DF1D338EF6003D5768 /* Tag.swift in Sources */,
 				E2DA73FE1D2E8D7F0099F374 /* AdjustViewController.swift in Sources */,
 				E2BAE4E31D33908B003D5768 /* SetResponse.swift in Sources */,
@@ -784,6 +797,7 @@
 				E2DA73D11D2E8D7F0099F374 /* EntityMethods.swift in Sources */,
 				E2DA73DC1D2E8D7F0099F374 /* AdjustStockLevels.swift in Sources */,
 				E2DA742F1D2E98B90099F374 /* DepartmentsAndVendorsViewController.swift in Sources */,
+				E28FF76A1D352E5100884A26 /* IconsViewController.swift in Sources */,
 				E2DA73DB1D2E8D7F0099F374 /* AdjustStockLevels+CoreDataProperties.swift in Sources */,
 				E2DA73F21D2E8D7F0099F374 /* NavigationBar.swift in Sources */,
 				E2DA73E61D2E8D7F0099F374 /* Tax.swift in Sources */,

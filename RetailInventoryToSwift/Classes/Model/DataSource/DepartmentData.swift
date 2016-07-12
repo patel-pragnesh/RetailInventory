@@ -64,7 +64,7 @@ class DepartmentData: EntityMethods<Department> {
         if add_index.count > 0 {
             for i in 0 ... serverDepartments.count - 1 {
                 if (add_index.indexOf(i) != nil) {
-                    let newDep = DepartmentData.addDepartment(serverDepartments[i].name, id: serverDepartments[i].id, icon: nil, active: serverDepartments[i].active, itemsEbt: serverDepartments[i].itemsAreEBT)
+                    let newDep = DepartmentData.addDepartment(serverDepartments[i].name, id: serverDepartments[i].id, icon: nil, active: serverDepartments[i].active, itemsEbt: serverDepartments[i].ebtItem)
                     TaxData.updateTaxesWithDepartmentResponse(newDep, taxesId: serverDepartments[i].taxesId)
                 }
             }
@@ -117,7 +117,7 @@ class DepartmentData: EntityMethods<Department> {
     func editDepartmentWithResponse(department: Department, departmentResponse: DepartmentResponse) {
         department.name = departmentResponse.name
         department.active = departmentResponse.active
-        department.itemsEbt = departmentResponse.itemsAreEBT
+        department.itemsEbt = departmentResponse.ebtItem
         let i = UInt32(strtoul(departmentResponse.glyph, nil, 16)) // to decimal
         department.icon = String(Character(UnicodeScalar(i)))      // to char and string
         

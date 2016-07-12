@@ -70,7 +70,7 @@ class InventoryListData: EntityMethods<InventoryList> {
                 }
             }
             if !isConsist {
-                addInventory(item.cost, list_description: item.itemNotes, price: item.price, id: item.id, name: item.itemName, departmentId: item.departmentId, barcode: item.barcode, active: item.active, printItem: item.printItem, openItem: item.openItem, tareWeight: item.tareWeight, usesWeightScale: item.usesWeightScale, weighted: item.weighted, icon: item.icon, color: item.color, qtyOnHand: item.qtyOnHand, shortName: item.itemShortName)
+                addInventory(item.cost, list_description: item.itemNotes, price: item.price, id: item.id, name: item.itemName, departmentId: item.departmentId, barcode: item.lookup, active: item.active, printItem: item.printItem, openItem: item.openItem, tareWeight: item.tareWeight, usesWeightScale: item.usesWeightScale, weighted: item.weighted, icon: item.icon, color: item.color, qtyOnHand: item.qtyOnHand, shortName: item.itemShortName)
             }
         }
         save()
@@ -162,7 +162,7 @@ class InventoryListData: EntityMethods<InventoryList> {
     
     static func updateInventory(inventory: InventoryList, fromResponse serverInventory: ItemResponse) {
         inventory.active = serverInventory.active
-        inventory.barcode = serverInventory.barcode
+        inventory.barcode = serverInventory.lookup
         inventory.color = serverInventory.color
         inventory.cost = serverInventory.cost
         inventory.gtyOnHand = serverInventory.qtyOnHand

@@ -54,7 +54,7 @@ class TaxData: EntityMethods<Tax> {
     
     func updateTaxes(serverTaxes: [TaxResponse]) {
         for serverTax in serverTaxes {
-            let index = getIndexByName(serverTax.name)
+            let index = getIndexByName(serverTax.name!)
             switch index {
             case -1:
                 addTax(serverTax.name, taxValue: serverTax.percent)
