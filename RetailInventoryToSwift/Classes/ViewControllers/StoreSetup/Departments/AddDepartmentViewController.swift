@@ -79,7 +79,7 @@ class AddDepartmentViewController: BaseViewController {
     {
         if segue.identifier ==  MyConstant.segueIcon {
             let iconViewController = segue.destinationViewController as! IconsViewController
-            iconViewController.delegateIconViewController = self
+            iconViewController.delegate = self
         }
         if segue.identifier == MyConstant.segueAppliedItems {
             let upcoming = segue.destinationViewController as! AppliedItemsViewController

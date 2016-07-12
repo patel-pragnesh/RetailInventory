@@ -9,18 +9,35 @@
 import Foundation
 
 class IconData {
-    var countHospitalityIcons: Int! {
-        return hospitalityIcons.count
+    enum TypeIcons: Int {
+        case hospitality = 0, retail
     }
-    var countRetailIcons: Int! {
-        return retailIcons.count
+    
+    var сount: Int! {
+        switch sourceType {
+        case .hospitality:
+            return hospitalityIcons.count
+        case .retail:
+            return retailIcons.count
+        }
     }
+    private var sourceType: TypeIcons = .hospitality
+    
+    var source: Int! {
+        didSet {
+            sourceType = TypeIcons(rawValue: source)!
+        }
+    }
+
     var hospitalityIcons = [Character]()
     var retailIcons = [Character]()
+    
     let startCodeHospitality = 61440
     let endCodeHospitality = 61491
+    
     let startCodeRetail = 61492
     let endCodeRetail = 61568
+    
     let emptyCode = 61569
     let anonymusIcons = [61455, 61471, 61472, 61503, 61519, 61535, 61551, 61567]
     
@@ -33,15 +50,19 @@ class IconData {
         retailIcons.append(Character(UnicodeScalar(emptyCode)))
         
         for char in startCodeHospitality ... endCodeHospitality {
-            if !anonymusIcons.contains(char) { hospitalityIcons.append(Character(UnicodeScalar(char))) }
+            if !anonymusIcons.contains(char) {
+                hospitalityIcons.append(Character(UnicodeScalar(char)))
+            }
         }
         for char in startCodeRetail ... endCodeRetail {
-            if !anonymusIcons.contains(char) { retailIcons.append(Character(UnicodeScalar(char))) }
+            if !anonymusIcons.contains(char) {
+                retailIcons.append(Character(UnicodeScalar(char)))
+            }
         }
     }
     
-    func itemForIndex(index: Int, typeIcon: TypeIcons) -> Character {
-        switch typeIcon {
+    func itemForIndex(index: Int) -> Character {
+        switch sourceType {
         case .hospitality:
             return hospitalityIcons[index]
         case .retail:

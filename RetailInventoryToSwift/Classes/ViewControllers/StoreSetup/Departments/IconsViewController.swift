@@ -12,16 +12,13 @@ protocol IconsViewControllerDelegate: class {
     func iconsViewControllerResponse(icon: Character)
 }
 
-enum TypeIcons {
-    case hospitality, retail
-}
+
 
 class IconsViewController: BaseViewController {
     
-    weak var delegateIconViewController: IconsViewControllerDelegate?
+    weak var delegate: IconsViewControllerDelegate?
     
     let iconData = IconData()
-    var typeIcons: TypeIcons = .hospitality
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var segmentControlOutlet: UISegmentedControl!
@@ -42,13 +39,7 @@ class IconsViewController: BaseViewController {
     }
     
     @IBAction func segmentControlChanged(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            typeIcons = .hospitality
-        case 1:
-            typeIcons = .retail
-        default: break
-        }
+        iconData.source = sender.selectedSegmentIndex
         collectionView.reloadData()
     }
 }
@@ -56,17 +47,12 @@ class IconsViewController: BaseViewController {
 extension IconsViewController: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch typeIcons {
-        case .hospitality:
-            return iconData.countHospitalityIcons
-        case .retail:
-            return iconData.countRetailIcons
-        }
+        return iconData.сount
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(IconsCell.cellIdentifier, forIndexPath: indexPath) as! IconsCell
-        cell.title = iconData.itemForIndex(indexPath.row, typeIcon: typeIcons)
+        cell.title = iconData.itemForIndex(indexPath.row)
         return cell
     }
 }
@@ -74,7 +60,7 @@ extension IconsViewController: UICollectionViewDelegate {
 extension IconsViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        self.delegateIconViewController?.iconsViewControllerResponse(iconData.itemForIndex(indexPath.row, typeIcon: typeIcons))
+        self.delegate?.iconsViewControllerResponse(iconData.itemForIndex(indexPath.row))
         navigationController?.popViewControllerAnimated(true)
     }
 }

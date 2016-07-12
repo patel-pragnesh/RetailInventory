@@ -77,8 +77,6 @@ class NetworkLoader {
                         taxesId: arrayID
                     ))
                 })
-//                print("------------- departmetns -----------------")
-//                print(departments)
                 completion(departments: departments)
         }
     }
@@ -109,8 +107,6 @@ class NetworkLoader {
                     return
                 }
                 let taxes = responseJSON.map({ TaxResponse(name: ($0["name"] as? String)!,percent: ($0["percent"] as? Double)!, id: ($0["id"] as? Int)!, active: ($0["active"] as? Bool)!) })
-//                print("------------- taxes -----------------")
-//                print(responseJSON)
                 completion(taxs: taxes)
 
         }
